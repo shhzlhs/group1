@@ -62,6 +62,7 @@ CREATE TABLE Notifications (
    id 			INT AUTO_INCREMENT PRIMARY KEY,
    user_id 	INT NOT NULL,
    content     VARCHAR(255) NOT NULL,
+   is_read     BOOLEAN DEFAULT FALSE,
    FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE
 );
 CREATE TABLE Items(
