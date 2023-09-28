@@ -46,17 +46,17 @@ CREATE TABLE `Follows` (
     id INT AUTO_INCREMENT PRIMARY KEY,
     follower_id INT,
     following_id INT,
-    created_id TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (follower_id) REFERENCES Users(id),
     FOREIGN KEY (following_id) REFERENCES Users(id),
     UNIQUE KEY  (follower_id,following_id)
 );
 CREATE TABLE Messages (
    id INT AUTO_INCREMENT PRIMARY KEY,
-   sent_id INT,
-   received_id INT,
-   FOREIGN KEY (sent_id) REFERENCES Users (id),
-   FOREIGN KEY (received_id) REFERENCES Users (id)
+   sender_id INT,
+   receiver_id INT,
+   FOREIGN KEY (sender_id) REFERENCES Users (id),
+   FOREIGN KEY (receiver_id) REFERENCES Users (id)
   );
 CREATE TABLE Notifications (
    id 			INT AUTO_INCREMENT PRIMARY KEY,
@@ -85,9 +85,10 @@ id     TINYINT AUTO_INCREMENT PRIMARY KEY,
 `name` VARCHAR(255) NOT NULL
 );
 CREATE TABLE Game_slot (
-id INT AUTO_INCREMENT PRIMARY KEY,
+id         INT AUTO_INCREMENT PRIMARY KEY,
 user_id INT NOT NULL,
 game_id TINYINT NOT NULL,
+slot    INT DEFAULT 3,
 FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE,
 FOREIGN KEY (game_id) REFERENCES Games(id) ON DELETE CASCADE
 );
