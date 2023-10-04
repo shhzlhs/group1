@@ -35,4 +35,11 @@ public class Comment {
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private Date createdAt;
+
+    @PrePersist
+    public void prePersist() {
+        if (createdAt == null) {
+            createdAt = new Date();
+        }
+    }
 }

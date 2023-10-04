@@ -6,10 +6,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.Instant;
 import java.util.Date;
 
 @Entity
-@Table(name="Likes")
+@Table(name = "Likes")
 @Data
 @NoArgsConstructor
 public class Like {
@@ -24,7 +25,7 @@ public class Like {
     private Post post;
 
     @ManyToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     @JsonBackReference
     private User user;
 
@@ -32,4 +33,13 @@ public class Like {
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private Date createdAt;
+
+    @PrePersist
+    public void prePersist() {
+        Instant now = Instant.now();
+        if (createdAt == null) {
+            createdAt = Date.from(now);
+        }
+    }
+
 }

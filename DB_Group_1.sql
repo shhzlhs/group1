@@ -4,6 +4,7 @@ USE group_1;
 CREATE TABLE Users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) NOT NULL UNIQUE KEY,
+    full_name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE KEY,
     `password` VARCHAR(255) NOT NULL,
     `role` ENUM("ADMIN","USER") DEFAULT "USER",
@@ -55,14 +56,15 @@ CREATE TABLE Messages (
    id INT AUTO_INCREMENT PRIMARY KEY,
    sender_id INT,
    receiver_id INT,
+   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
    FOREIGN KEY (sender_id) REFERENCES Users (id),
    FOREIGN KEY (receiver_id) REFERENCES Users (id)
   );
 CREATE TABLE Notifications (
    id 			INT AUTO_INCREMENT PRIMARY KEY,
-   user_id 	INT NOT NULL,
-   content     VARCHAR(255) NOT NULL,
-   is_read     BOOLEAN DEFAULT FALSE,
+   user_id 		INT NOT NULL,
+   content     	VARCHAR(255) NOT NULL,
+   is_read     	BOOLEAN DEFAULT FALSE,
    FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE
 );
 CREATE TABLE Items(
@@ -106,9 +108,40 @@ q_id INT UNSIGNED NOT NULL,
 is_true VARCHAR(2),
 FOREIGN KEY (q_id) REFERENCES Questions(id) ON DELETE CASCADE
 );
-INSERT INTO Users (username ,  email              ,`password`													 ,`role` ,`status`)
-VALUES            ("admin1" ,"nhom1@gmail.com"    ,"$2a$10$W2neF9.6Agi6kAKVq8q3fec5dHW8KUA.b0VSIGdIZyUravfLpyIFi",'ADMIN',"ACTIVED"),
-				  ("user1"  ,"usernhom1@gmail.com","$2a$10$W2neF9.6Agi6kAKVq8q3fec5dHW8KUA.b0VSIGdIZyUravfLpyIFi",'USER' ,"ACTIVED");
+INSERT INTO Users (username ,full_name,  email              ,`password`													 ,`role` ,`status`,avatar)
+VALUES            ("admin1" ,"Lê Văn Anh","nhom1@gmail.com"    ,"$2a$10$W2neF9.6Agi6kAKVq8q3fec5dHW8KUA.b0VSIGdIZyUravfLpyIFi",'ADMIN',"ACTIVED","user_1.png"),
+				  ("user2" ,"Lê Anh","user123@gmail.com"    ,"$2a$10$W2neF9.6Agi6kAKVq8q3fec5dHW8KUA.b0VSIGdIZyUravfLpyIFi",'USER',"ACTIVED","user_2.png"),
+				  ("user1"  ,"Lê Thị Anh","usernhom1@gmail.com","$2a$10$W2neF9.6Agi6kAKVq8q3fec5dHW8KUA.b0VSIGdIZyUravfLpyIFi",'USER' ,"ACTIVED","user_3.png");
 INSERT INTO Items (`name`,image,coin_cost,gold_cost)
-VALUES            ("Mũ phù thuỷ","item_1.png",0,100);
+VALUES            ("Mũ phù thuỷ","item_1.png",0,100),
+				 ("Nón rơm","item_2.png",1000,0);
+INSERT INTO `Follows`(follower_id,following_id)
+VALUES               (1,2),
+					 (1,3),
+					 (2,3),
+					 (3,2),
+					 (2,1);
+INSERT INTO User_item(user_id,item_id)
+VALUES               (1,1),
+					 (1,2),
+					 (2,2);
+INSERT INTO Posts (user_id,image,content)
+VALUES			  (1,"post_1.png","Chào mọi người"),
+				  (1,"post_2.png","Tạm biệt mọi người"),
+				  (2,"post_3.png","Vĩnh biệt mọi người"),
+				  (3,"post_4.png","Chào 500 anh em nhé!"),
+				  (1,"post_5.png","Ta đã quay trở lại");
+INSERT INTO Likes (post_id,user_id)
+VALUES			  (1,2),
+				  (2,3),
+				  (1,3),
+				  (2,1),
+				  (1,1);
+INSERT INTO Comments (post_id,user_id,content)
+VALUES			  (1,2,"OK"),
+				  (2,3,"Woao"),
+				  (1,3,"Úi dồi"),
+				  (2,1,"kkk"),
+				  (1,1,"Đã xem:)");
+                  
 

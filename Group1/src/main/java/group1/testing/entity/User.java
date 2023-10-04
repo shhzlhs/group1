@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 
@@ -25,6 +26,9 @@ public class User {
     @Column(length = 255, nullable = false, unique = true)
     private String email;
 
+    @Column(name = "full_name", length = 255, nullable = false)
+    private String fullName;
+
     @Column(name = "`password`", length = 255, nullable = false)
     private String password;
 
@@ -33,22 +37,14 @@ public class User {
     private Role role;
 
 
-
     @Column(name = "`status`", nullable = false)
     @Enumerated(EnumType.STRING)
     private Status status;
 
 
-
     @Column
     private int coin;
 
-    @PrePersist
-    public void prePersistCoin() {
-        if (coin == 0) {
-            coin = 1000;
-        }
-    }
 
     @Column
     private int gold;
@@ -96,10 +92,43 @@ public class User {
 
     @ManyToMany
     @JoinTable(
+            name = "Follows",
+            joinColumns = {@JoinColumn(name = "follower_id")},
+            inverseJoinColumns = {@JoinColumn(name = "following_id")}
+    )
+    private List<User> follows;
+
+    @ManyToMany
+    @JoinTable(
+            name = "Follows",
+            joinColumns = {@JoinColumn(name = "following_id")},
+            inverseJoinColumns = {@JoinColumn(name = "follower_id")}
+    )
+    private List<User> followings;
+
+    @ManyToMany
+    @JoinTable(
             name = "User_item",
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "item_id")}
     )
     private List<Item> items;
+
+    @PrePersist
+    public void prePersist() {
+        if (coin == 0) {
+            coin = 1000;
+        }
+        if (role == null) {
+            role = Role.USER;
+        }
+        if (status == null) {
+            status = Status.U_ACTIVE;
+        }
+        Instant now = Instant.now();
+        if (createdAt == null) {
+            createdAt = Date.from(now);
+        }
+    }
 
 }

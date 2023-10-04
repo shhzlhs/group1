@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 
@@ -44,4 +45,12 @@ public class Post {
     @OneToMany(mappedBy = "post")
     @JsonBackReference
     private List<Like> likes;
+
+    @PrePersist
+    public void prePersist() {
+        Instant now = Instant.now();
+        if (createdAt == null) {
+            createdAt = Date.from(now);
+        }
+    }
 }
