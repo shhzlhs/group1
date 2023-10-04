@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Table(name = "Game_slot")
+@Entity
 public class GameSlot {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

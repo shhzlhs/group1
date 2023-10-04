@@ -82,7 +82,8 @@ CREATE TABLE User_item(
 -- Games: -- 
 CREATE TABLE Games (
 id     TINYINT AUTO_INCREMENT PRIMARY KEY,
-`name` VARCHAR(255) NOT NULL
+`name` VARCHAR(255) NOT NULL,
+slot_price INT NOT NULL
 );
 CREATE TABLE Game_slot (
 id         INT AUTO_INCREMENT PRIMARY KEY,
@@ -108,4 +109,6 @@ FOREIGN KEY (q_id) REFERENCES Questions(id) ON DELETE CASCADE
 INSERT INTO Users (username ,  email              ,`password`													 ,`role` ,`status`)
 VALUES            ("admin1" ,"nhom1@gmail.com"    ,"$2a$10$W2neF9.6Agi6kAKVq8q3fec5dHW8KUA.b0VSIGdIZyUravfLpyIFi",'ADMIN',"ACTIVED"),
 				  ("user1"  ,"usernhom1@gmail.com","$2a$10$W2neF9.6Agi6kAKVq8q3fec5dHW8KUA.b0VSIGdIZyUravfLpyIFi",'USER' ,"ACTIVED");
+INSERT INTO Items (`name`,image,coin_cost,gold_cost)
+VALUES            ("Mũ phù thuỷ","item_1.png",0,100);
 

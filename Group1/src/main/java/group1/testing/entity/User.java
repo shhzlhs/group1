@@ -32,23 +32,13 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @PrePersist
-    public void prePersistRole() {
-        if (role == null) {
-            role = Role.USER;
-        }
-    }
+
 
     @Column(name = "`status`", nullable = false)
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @PrePersist
-    public void prePersistStatus() {
-        if (status == null) {
-            status = Status.U_ACTIVE;
-        }
-    }
+
 
     @Column
     private int coin;
