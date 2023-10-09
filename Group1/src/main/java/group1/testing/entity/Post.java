@@ -46,6 +46,10 @@ public class Post {
     @JsonBackReference
     private List<Like> likes;
 
+    @OneToMany(mappedBy = "post")
+    @JsonBackReference
+    private List<Report> reports;
+
     @PrePersist
     public void prePersist() {
         Instant now = Instant.now();

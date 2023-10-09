@@ -32,6 +32,10 @@ public class User {
     @Column(name = "`password`", length = 255, nullable = false)
     private String password;
 
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
     @Column(name = "`role`", nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -85,6 +89,14 @@ public class User {
     @OneToMany(mappedBy = "user")
     @JsonBackReference
     private List<Notification> notifications;
+
+    @OneToMany(mappedBy = "reporter")
+    @JsonBackReference
+    private List<Report> reports;
+
+    @OneToMany(mappedBy = "reportTo")
+    @JsonBackReference
+    private List<Report> beReports;
 
     @OneToMany(mappedBy = "user")
     @JsonBackReference

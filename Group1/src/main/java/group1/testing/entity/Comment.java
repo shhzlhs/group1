@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "Comments")
@@ -27,6 +28,19 @@ public class Comment {
     @JoinColumn(name = "user_id")
     @JsonBackReference
     private User user;
+
+    @OneToMany(mappedBy = "comment")
+    @JsonBackReference
+    private List<Report> reports;
+
+    @OneToMany(mappedBy = "comment")
+    @JsonBackReference
+    private List<Like> likes;
+
+    @ManyToOne
+    @JoinColumn(name = "reply_to")
+    @JsonBackReference
+    private Comment replies;
 
     @Column(length = 2000, nullable = false)
     private String content;

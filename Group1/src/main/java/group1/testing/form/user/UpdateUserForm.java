@@ -1,6 +1,7 @@
 package group1.testing.form.user;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import group1.testing.entity.Gender;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,6 +20,8 @@ public class UpdateUserForm {
     private String email;
 
     private String password;
+
+    private Gender gender;
 
     private String role;
 

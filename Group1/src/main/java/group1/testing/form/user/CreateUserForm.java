@@ -1,6 +1,7 @@
 package group1.testing.form.user;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import group1.testing.entity.Gender;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,8 @@ public class CreateUserForm {
     private String role;
 
     private String status;
+
+    private Gender gender;
 
     private int coin;
 
