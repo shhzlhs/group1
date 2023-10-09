@@ -31,18 +31,12 @@ public class UserController {
     private ModelMapper modelMapper;
 
     @GetMapping
-    public Page<UserDTO> getAllUsers(@PageableDefault(page = 0, size = 10) Pageable pageable, UserFilterForm form) {
-        Page<User> userPage = userService.getAllUsers(pageable, form);
-        List<User> users = new ArrayList<>(userPage.getContent());
-        Collections.sort(users, new Comparator<User>() {
-            @Override
-            public int compare(User o1, User o2) {
-                return o2.getFollows().size() - o1.getFollows().size();
-            }
-        });
+    public List<UserDTO> getAllUsers(UserFilterForm form) {
+        List<User> users = userService.getAllUsers(form);
+
         List<UserDTO> userDTOS = modelMapper.map(users, new TypeToken<List<UserDTO>>() {
         }.getType());
-        return new PageImpl<>(userDTOS, pageable, userPage.getTotalElements());
+        return userDTOS;
     }
 
     @PostMapping

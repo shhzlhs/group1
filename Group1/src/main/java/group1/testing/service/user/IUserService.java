@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface IUserService {
     //phân trang, get All User
-    Page<User> getAllUsers(Pageable pageable, UserFilterForm form);
+    List<User> getAllUsers(UserFilterForm form);
     //create
     void createUser(CreateUserForm form);
     //update

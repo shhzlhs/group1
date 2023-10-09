@@ -24,9 +24,9 @@ public class UserService implements IUserService {
     @Autowired
     private ModelMapper modelMapper;
     @Override
-    public Page<User> getAllUsers(Pageable pageable, UserFilterForm form) {
+    public List<User> getAllUsers(UserFilterForm form) {
         Specification<User> where = UserSpecification.buildWhere(form);
-        return userRepository.findAll(where, pageable);
+        return userRepository.findAll(where);
     }
 
     @Override

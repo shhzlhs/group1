@@ -180,8 +180,12 @@ VALUES			  (1,2,NULL),
 				  (NULL,2,1),
 				  (1,1,NULL);
                   
-INSERT INTO Reports(reporter_id, report_to, post_id, comment_id, content)
+INSERT INTO Reports(reporter_id, report_to_user, post_id, comment_id, content)
 VALUES
 					(1,2,NULL, NULL,"Người này quá đẹp trai!"),
+					(3,NULL,3, NULL,"Post truyền tải nội dung xấu"),
+					(1,NULL,3, NULL,"Hãy ngăn người này lại@@"),
+					(3,NULL,NULL, 5,"Có ý trêu trọc"),
+					(1,NULL,NULL, 4,"Tôi không muốn người này comment");
                   
 
