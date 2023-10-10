@@ -64,11 +64,11 @@ CREATE TABLE Likes (
 
 CREATE TABLE `Follows` (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    follower_id INT UNSIGNED,
-    following_id INT UNSIGNED,
+    follower_id INT UNSIGNED NOT NULL,
+    following_id INT UNSIGNED NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (follower_id) REFERENCES Users(id) ON DELETE CASCADE,
-    FOREIGN KEY (following_id) REFERENCES Users(id) ON DELETE CASCADE,
+    FOREIGN KEY (follower_id) REFERENCES Users(id) ,
+    FOREIGN KEY (following_id) REFERENCES Users(id),
     UNIQUE KEY  (follower_id,following_id)
 );
 CREATE TABLE Messages (
@@ -98,8 +98,8 @@ CREATE TABLE User_item(
     id     INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     user_id INT UNSIGNED NOT NULL,
     item_id INT UNSIGNED NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE,
-    FOREIGN KEY (item_id) REFERENCES Items(id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES Users(id),
+    FOREIGN KEY (item_id) REFERENCES Items(id)
     );
 
 CREATE TABLE Transaction_History(
@@ -183,6 +183,7 @@ VALUES			  (1,2,NULL),
 INSERT INTO Reports(reporter_id, report_to_user, post_id, comment_id, content)
 VALUES
 					(1,2,NULL, NULL,"Người này quá đẹp trai!"),
+					(2,1,NULL, NULL,"Thích thì report"),
 					(3,NULL,3, NULL,"Post truyền tải nội dung xấu"),
 					(1,NULL,3, NULL,"Hãy ngăn người này lại@@"),
 					(3,NULL,NULL, 5,"Có ý trêu trọc"),
