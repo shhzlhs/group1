@@ -10,37 +10,25 @@ import java.time.Instant;
 import java.util.Date;
 
 @Entity
-@NoArgsConstructor
+@Table(name = "Follows")
 @Data
-@Table(name = "Reports")
-public class Report {
+@NoArgsConstructor
+public class Follow {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private int id;
-    @Column
-    private String content;
 
     @ManyToOne
-    @JoinColumn(name = "reporter_id")
+    @JoinColumn(name = "follower_id")
     @JsonBackReference
-    private User reporter;
+    private User follower;
 
     @ManyToOne
-    @JoinColumn(name = "report_to_user")
+    @JoinColumn(name = "following_id")
     @JsonBackReference
-    private User reportTo;
-
-    @ManyToOne
-    @JoinColumn(name = "comment_id")
-    @JsonBackReference
-    private Comment comment;
-
-    @ManyToOne
-    @JoinColumn(name = "post_id")
-    @JsonBackReference
-    private Post post;
-
+    private User following;
 
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
@@ -49,6 +37,7 @@ public class Report {
 
     @PrePersist
     public void prePersist() {
+
         Instant now = Instant.now();
         if (createdAt == null) {
             createdAt = Date.from(now);

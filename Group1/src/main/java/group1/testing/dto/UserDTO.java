@@ -48,9 +48,20 @@ public class UserDTO {
 
     private List<UserDTO1> followings;
 
-    private List <ReportDTO> reports;
+    private List<ReportDTO> reports;
 
-    private List <ReportDTO> beReports;
+    private List<ReportDTO> beReports;
+
+    private List<PostDTO> posts;
+
+    @Data
+    @NoArgsConstructor
+    static class PostDTO {
+
+        private int id;
+
+        private String image;
+    }
 
 
     @Data
@@ -62,6 +73,8 @@ public class UserDTO {
         private String name;
 
         private String image;
+
+        private String type;
     }
 
     @Data
@@ -77,10 +90,26 @@ public class UserDTO {
 
         private String gender;
 
+        private String avatar;
+
+        private List<UserDTO2> follows;
+
+        @Data
+        @NoArgsConstructor
+        static class UserDTO2 {
+
+            private int id;
+
+            private String username;
+
+            private String avatar;
+        }
+
     }
+
     @Data
     @NoArgsConstructor
-    static class ReportDTO{
+    static class ReportDTO {
 
         private int id;
 

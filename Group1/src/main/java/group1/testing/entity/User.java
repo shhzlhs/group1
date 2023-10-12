@@ -108,7 +108,7 @@ public class User {
             joinColumns = {@JoinColumn(name = "follower_id")},
             inverseJoinColumns = {@JoinColumn(name = "following_id")}
     )
-    private List<User> follows;
+    private List<User> followings;
 
     @ManyToMany
     @JoinTable(
@@ -116,7 +116,7 @@ public class User {
             joinColumns = {@JoinColumn(name = "following_id")},
             inverseJoinColumns = {@JoinColumn(name = "follower_id")}
     )
-    private List<User> followings;
+    private List<User> follows;
 
     @ManyToMany
     @JoinTable(

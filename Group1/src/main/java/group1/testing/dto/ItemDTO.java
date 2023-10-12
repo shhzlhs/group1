@@ -7,10 +7,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class ItemDTO {
+
     private int id;
+
     private String name;
+
     private String image;
+
     private int coinCost;
+
     private int goldCost;
+
+    private String type;
 
 }

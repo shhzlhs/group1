@@ -30,4 +30,8 @@ public class Item {
 
     @ManyToMany(mappedBy = "items")
     private List<User> users;
+
+    @Column(name = "`type`", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private ItemType type;
 }

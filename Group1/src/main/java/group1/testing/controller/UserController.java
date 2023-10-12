@@ -55,4 +55,15 @@ public class UserController {
         userService.deleteUserById(ids);
     }
 
+    @GetMapping(value = "/id={id}")
+    public UserDTO getUserById(@PathVariable int id) {
+        User user = userService.getUserById(id);
+        return modelMapper.map(user, UserDTO.class);
+    }
+
+    @GetMapping(value = "/username={username}")
+    public UserDTO getUserByUsername(@PathVariable String username) {
+        User user = userService.getUserByUsername(username);
+        return modelMapper.map(user, UserDTO.class);
+    }
 }

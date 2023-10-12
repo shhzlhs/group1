@@ -23,6 +23,7 @@ public class UserService implements IUserService {
     private IUserRepository userRepository;
     @Autowired
     private ModelMapper modelMapper;
+
     @Override
     public List<User> getAllUsers(UserFilterForm form) {
         Specification<User> where = UserSpecification.buildWhere(form);
@@ -58,5 +59,15 @@ public class UserService implements IUserService {
     public void deleteUserById(List<Integer> ids) {
         userRepository.deleteAllById(ids);
 
+    }
+
+    @Override
+    public User getUserById(int id) {
+        return userRepository.findById(id);
+    }
+
+    @Override
+    public User getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 }

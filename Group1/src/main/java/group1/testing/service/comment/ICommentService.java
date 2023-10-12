@@ -12,3 +12,4 @@ public interface ICommentService {
 
     void deleteComments (List<Integer> ids);
 }
+

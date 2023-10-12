@@ -17,4 +17,6 @@ public class CreatingItemForm {
     private int coinCost;
 
     private int goldCost;
+
+    private String type;
 }

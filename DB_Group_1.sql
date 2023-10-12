@@ -143,9 +143,9 @@ INSERT INTO Users (username ,full_name,  email,gender              ,`password`		
 VALUES            ("admin1" ,"Lê Văn Anh","nhom1@gmail.com" ,"MALE"   ,"$2a$10$W2neF9.6Agi6kAKVq8q3fec5dHW8KUA.b0VSIGdIZyUravfLpyIFi",'ADMIN',"ACTIVED","user_1.png"),
 				  ("user2" ,"Lê Anh","user123@gmail.com"    ,"FEMALE","$2a$10$W2neF9.6Agi6kAKVq8q3fec5dHW8KUA.b0VSIGdIZyUravfLpyIFi",'USER',"ACTIVED","user_2.png"),
 				  ("user1"  ,"Lê Thị Anh","usernhom1@gmail.com","FEMALE","$2a$10$W2neF9.6Agi6kAKVq8q3fec5dHW8KUA.b0VSIGdIZyUravfLpyIFi",'USER' ,"ACTIVED","user_3.png");
-INSERT INTO Items (`name`,image,coin_cost,gold_cost)
-VALUES            ("Mũ phù thuỷ","item_1.png",0,100),
-				 ("Nón rơm","item_2.png",1000,0);
+INSERT INTO Items (`name`,image,coin_cost,gold_cost,`type`)
+VALUES            ("Mũ phù thuỷ","item_1.png",0,100,"CAP"),
+				 ("Nón rơm","item_2.png",1000,0,"CAP");
 INSERT INTO `Follows`(follower_id,following_id)
 VALUES               (1,2),
 					 (1,3),

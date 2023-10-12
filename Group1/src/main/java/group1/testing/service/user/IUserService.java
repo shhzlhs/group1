@@ -10,12 +10,18 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface IUserService {
-    //phân trang, get All User
     List<User> getAllUsers(UserFilterForm form);
+
     //create
     void createUser(CreateUserForm form);
+
     //update
     void updateUser(UpdateUserForm form);
+
     //delete
     void deleteUserById(List<Integer> ids);
+
+    User getUserById(int id);
+
+    User getUserByUsername(String username);
 }
