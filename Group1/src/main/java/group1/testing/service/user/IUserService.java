@@ -19,7 +19,7 @@ public interface IUserService {
     void updateUser(UpdateUserForm form);
 
     //delete
-    void deleteUserById(List<Integer> ids);
+    void deleteUserByIds(List<Integer> ids);
 
     User getUserById(int id);
 

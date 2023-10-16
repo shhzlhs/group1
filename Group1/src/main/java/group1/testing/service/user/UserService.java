@@ -56,7 +56,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void deleteUserById(List<Integer> ids) {
+    public void deleteUserByIds(List<Integer> ids) {
         userRepository.deleteAllById(ids);
 
     }

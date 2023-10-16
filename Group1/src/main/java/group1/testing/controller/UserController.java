@@ -52,7 +52,7 @@ public class UserController {
 
     @DeleteMapping(value = "/{ids}")
     public void deleteAllUserById(@PathVariable(name = "ids") List<Integer> ids) {
-        userService.deleteUserById(ids);
+        userService.deleteUserByIds(ids);
     }
 
     @GetMapping(value = "/id={id}")

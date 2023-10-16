@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="Notifications")
+@Table(name = "Notifications")
 @Data
 @NoArgsConstructor
 public class Notification {
@@ -16,16 +16,20 @@ public class Notification {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name="user_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     @JsonBackReference
     private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "creator_id", nullable = false)
+    @JsonBackReference
+    private User creator;
 
     @Column(length = 255, nullable = false)
     private String content;
 
-    private boolean is_read;
-    @PrePersist
-    public void prePersistIsRead() {
-        is_read = false;
-    }
+    @Column(name = "is_read", nullable = false)
+    private boolean isRead;
+
+
 }
