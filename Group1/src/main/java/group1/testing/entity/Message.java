@@ -24,6 +24,9 @@ public class Message {
     @JsonBackReference
     private User sender;
 
+    @Column
+    private String content;
+
     @ManyToOne
     @JoinColumn(name = "receiver_id")
     @JsonBackReference

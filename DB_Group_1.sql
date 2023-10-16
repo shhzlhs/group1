@@ -76,6 +76,7 @@ CREATE TABLE Messages (
    sender_id INT UNSIGNED,
    receiver_id INT UNSIGNED,
    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   content    VARCHAR(2000),
    FOREIGN KEY (sender_id) REFERENCES Users (id) ON DELETE CASCADE,
    FOREIGN KEY (receiver_id) REFERENCES Users (id) ON DELETE CASCADE
   );
