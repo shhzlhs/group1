@@ -1,0 +1,6 @@
+#LeftPart {
+  height: 650px;
+  border-right: 1px solid black;
+  margin-right: 20px;
+  position: fixed;
+}

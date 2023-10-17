@@ -1,8 +1,7 @@
 import { api } from "./API";
 
-const getAllUsersAPI = (page, search) => {
-  let url = "users/page=" + page + "&size=10&?search=" + search;
-  return api("GET", url, null);
+const getAllUsersAPI = () => {
+  return api("GET", "users", null);
 };
 const getUserByUsernameAPI = (username) => {
   const url = `users/${username}`;

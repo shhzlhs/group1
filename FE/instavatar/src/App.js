@@ -1,10 +1,10 @@
 import "./App.css";
-import HomePageLogedIn from "./Pages/HomePageLogedIn";
+import HPNotLogIn from "./Pages/HPNotLogIn";
 
 function App() {
   return (
     <div className="App">
-      <HomePageLogedIn />
+      <HPNotLogIn />
     </div>
   );
 }

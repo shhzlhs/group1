@@ -1,0 +1,39 @@
+.PostAvatar {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  border: inset red 1px;
+  object-fit: cover;
+}
+#PostHeader {
+  text-align: left;
+}
+#PostContent {
+  text-align: justify;
+}
+#PostImg {
+  text-align: left;
+  width: 600px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+#PostPage {
+  display: grid;
+  place-items: center;
+}
+#Post {
+  
+  width: 600px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid black;
+}
+.PostIcon{
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    margin: 5px;
+
+}
+#PostFooter{
+    text-align: left;
+}
