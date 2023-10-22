@@ -37,10 +37,14 @@ public class Comment {
     @JsonBackReference
     private List<Like> likes;
 
+    @OneToMany(mappedBy = "comment")
+    @JsonBackReference
+    private List<Comment> replies;
+
     @ManyToOne
     @JoinColumn(name = "reply_to")
     @JsonBackReference
-    private Comment replies;
+    private Comment comment;
 
     @Column(length = 2000, nullable = false)
     private String content;

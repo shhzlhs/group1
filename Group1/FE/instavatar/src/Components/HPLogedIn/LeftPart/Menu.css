@@ -1,0 +1,17 @@
+.Icon{
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}
+#MenuButton{
+    height: 60px;
+    object-fit: cover;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    background: none;
+    margin-bottom: 10px;
+}
+#MenuTitle{
+    height: 60px;
+}

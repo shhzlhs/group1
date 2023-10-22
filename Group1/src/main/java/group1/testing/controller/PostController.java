@@ -54,4 +54,20 @@ public class PostController {
     void deletePosts(@PathVariable List<Integer> ids) {
         postService.deletePosts(ids);
     }
+
+    @GetMapping(value = "/post_user/{username}")
+    List<PostDTO> getByUser(@PathVariable String username) {
+        List<Post> posts = postService.getByUser(username);
+        List<PostDTO> postDTOS = modelMapper.map(posts, new TypeToken<List<PostDTO>>() {
+        }.getType());
+        return postDTOS;
+    }
+
+    @GetMapping(value = "/post_users/{usernames}")
+    List<PostDTO> getByUser(@PathVariable List<String> usernames) {
+        List<Post> posts = postService.getByFollowings(usernames);
+        List<PostDTO> postDTOS = modelMapper.map(posts, new TypeToken<List<PostDTO>>() {
+        }.getType());
+        return postDTOS;
+    }
 }

@@ -12,10 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping(value = "/api/v1/likes")
-@CrossOrigin("*")
 public class LikeController {
     @Autowired
     private ModelMapper modelMapper;
@@ -32,11 +31,11 @@ public class LikeController {
     }
 
     @PostMapping
-    void addLike(@RequestBody CreateLikeForm form) {
+    public void addLike(@RequestBody CreateLikeForm form) {
         likeService.addLike(form);
     }
 
-    @DeleteMapping(value = "/{ids}")
+    @DeleteMapping(value = "/{id}")
     public void disLike(@PathVariable int id) {
         likeService.disLike(id);
     }

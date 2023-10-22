@@ -39,4 +39,8 @@ public class NotificationController {
     public void updateNotificationToReadCompleted(@PathVariable int id) {
         notificationService.setNotificationToReadCompleted(id);
     }
+    @DeleteMapping(value = "/{id}")
+    public void deleteById(@PathVariable int id){
+        notificationService.deleteById(id);
+    }
 }
