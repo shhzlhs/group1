@@ -68,4 +68,13 @@ public class UserService implements IUserService {
     public User getUserByUsername(String username) {
         return userRepository.findByUsername(username);
     }
+
+//    @Override
+//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        User user = userRepository.findByUsername(username);
+//        if (user == null) {
+//            throw new UsernameNotFoundException(username);
+//        }
+//        return new org.springframework.security.core.userdetails.User(username, user.getPassword(), AuthorityUtils.createAuthorityList(user.getRole().toString()));
+//    }
 }

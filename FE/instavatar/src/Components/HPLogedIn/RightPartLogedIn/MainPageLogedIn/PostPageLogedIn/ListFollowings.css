@@ -1,0 +1,19 @@
+.FollowingsAvatar {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border: 1px solid red;
+  border-radius: 50%;
+}
+.NextButton {
+  height: 60px;
+  object-fit: cover;
+}
+#UserText {
+  overflow: hidden;
+}
+.AvatarButton {
+  object-fit: cover;
+  width: 60px;
+  background: none;
+}
