@@ -6,10 +6,15 @@ import AddPostButton from "./PostPageLogedIn/AddPostButton";
 function PostPageLogedIn(props) {
   return (
     <div>
-      <div id="PostsPage" className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-        <FollowingsBar />
-        <AddPostButton />
-        <ListPost />
+      <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+        <div className="row">
+          <FollowingsBar />
+        </div>
+
+        <div id="PostsPage" className="row">
+          <AddPostButton />
+          <ListPost />
+        </div>
       </div>
     </div>
   );

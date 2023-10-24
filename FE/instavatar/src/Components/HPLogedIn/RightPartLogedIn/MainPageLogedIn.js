@@ -1,6 +1,7 @@
 import React from "react";
 import PostPageLogedIn from "./MainPageLogedIn/PostPageLogedIn";
 import "./MainPageLogedIn.css";
+import UserArea from "./MainPageLogedIn/UserArea";
 function MainPageLogedIn(props) {
   return (
     <div className="MainPageLogedIn">
@@ -8,6 +9,7 @@ function MainPageLogedIn(props) {
 
       <div className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
         <PostPageLogedIn />
+        <UserArea />
       </div>
     </div>
   );

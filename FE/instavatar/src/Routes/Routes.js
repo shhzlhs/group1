@@ -4,7 +4,8 @@ import HPNotLogIn from "../Pages/HPNotLogIn";
 import LogInPage from "../Pages/LogInPage";
 import HPLogedIn from "../Pages/HPLogedIn";
 import MainPageLogedIn from "../Components/HPLogedIn/RightPartLogedIn/MainPageLogedIn";
-import UserDetail from "../Components/HPLogedIn/RightPartLogedIn/MainPageLogedIn/UserDetail";
+import UserProfile from "../Components/HPLogedIn/RightPartLogedIn/UserProfile";
+import PostDetail from "../Components/HPLogedIn/RightPartLogedIn/PostDetail";
 
 export let notLoginRoutes = (
   <Routes>
@@ -17,12 +18,10 @@ export let bigRoutes = (
     <Route path="/instavatar/welcome" element={<HPNotLogIn />}>
       {" "}
     </Route>
-    <Route path="/instavatar/login" element={<LogInPage />}>
+    <Route path="/instavatar/logIn" element={<LogInPage />}>
       {" "}
     </Route>
-    <Route path="/instavatar/logedIn/*" element={<HPLogedIn />}>
-      {" "}
-    </Route>
+    <Route path="/instavatar/logedIn/*" element={<HPLogedIn />}></Route>
     <Route path="/*" element={<HPNotLogIn />}>
       {" "}
     </Route>
@@ -30,14 +29,12 @@ export let bigRoutes = (
 );
 export let logedInRoutes = (
   <Routes>
-    <Route
-      path="/instavatar/logedIn/main"
-      element={<MainPageLogedIn />}
-    ></Route>
-    <Route
-      path="/instavatar/logedIn/user/:username"
-      element={UserDetail}
-    ></Route>
+    <Route path="/post/:postId" element={<PostDetail />}>
+      {" "}
+    </Route>
+    <Route path="/main" element={<MainPageLogedIn />}></Route>
+    <Route path="/user/:username" element={<UserProfile />}></Route>
+    {/* <Route path="/instavatar/logedIn/user/items" element={<UserItem />}></Route> */}
     <Route path="/*" element={<MainPageLogedIn />}></Route>
   </Routes>
 );

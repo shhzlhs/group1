@@ -54,3 +54,17 @@ export const getRandomElementFromArray = (arr) => {
 export const getCommonElements = (arr1, arr2) => {
   return arr1.filter((element) => arr2.includes(element));
 };
+export const getRandomElementsFromArray = (array, n) => {
+  if (n >= array.length) {
+    return array.slice();
+  }
+
+  const shuffled = array.slice();
+  let i = array.length;
+  while (i--) {
+    const randomIndex = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[i]];
+  }
+
+  return shuffled.slice(0, n);
+};

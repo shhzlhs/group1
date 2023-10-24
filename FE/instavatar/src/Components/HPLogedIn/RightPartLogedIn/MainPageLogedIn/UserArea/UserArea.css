@@ -1,0 +1,32 @@
+.BigAvatar {
+  width: 70px;
+  height: 70px;
+  border: inset 3px red;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.MiniIcon {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+}
+#Sugguest {
+  margin-top: 50px;
+}
+.SugguestAvatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: inset 1px red;
+}
+#SugguestBox{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#SugguestRow{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+#Username{
+    text-align: left;
+}

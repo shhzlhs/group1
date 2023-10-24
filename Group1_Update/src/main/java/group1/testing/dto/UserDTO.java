@@ -29,6 +29,8 @@ public class UserDTO {
 
     private int gold;
 
+    private String password;
+
     @Enumerated(EnumType.STRING)
 
     private Role role;
@@ -60,6 +62,9 @@ public class UserDTO {
         private int id;
 
         private String image;
+
+        @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss")
+        private Date createdAt;
     }
 
 
@@ -91,7 +96,7 @@ public class UserDTO {
 
         private String avatar;
 
-        private List<UserDTO2> follows;
+        private List<UserDTO2> followings;
 
         @Data
         @NoArgsConstructor

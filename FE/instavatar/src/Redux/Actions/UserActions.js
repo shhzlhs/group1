@@ -1,11 +1,22 @@
-import { getAllUsersAPI } from "../../API/UserAPI";
+import { getAllUsersAPI, getUserByUsernameAPI } from "../../API/UserAPI";
 import {
   GET_ALL_USERS,
   SET_FOLLOWS_BAR,
-  SET_USERNAME_DETAIL,
+  SET_USER_DETAIL,
+  SET_USER_LOGEDIN,
 } from "../ActionType/UserActionTypes";
-const setUsernameDetail = (username) => {
-  return { type: SET_USERNAME_DETAIL, payload: username };
+const setUserLogedIn = (user) => {
+  return { type: SET_USER_LOGEDIN, payload: user };
+};
+const setUserDetailRedux = (user) => {
+  return { type: SET_USER_DETAIL, payload: user };
+};
+const setUserDetail = (username) => {
+  return (dispatch) => {
+    return getUserByUsernameAPI(username).then((res) => {
+      dispatch(setUserDetailRedux(res));
+    });
+  };
 };
 const getAllUsersRedux = (users) => {
   return {
@@ -26,4 +37,10 @@ const getAllUsers = () => {
     });
   };
 };
-export { getAllUsers, getAllUsersRedux, setFollowsBar, setUsernameDetail };
+export {
+  getAllUsers,
+  getAllUsersRedux,
+  setFollowsBar,
+  setUserDetail,
+  setUserLogedIn,
+};

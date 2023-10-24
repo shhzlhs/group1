@@ -1,13 +1,15 @@
 import {
   GET_ALL_USERS,
   SET_FOLLOWS_BAR,
-  SET_USERNAME_DETAIL,
+  SET_USER_DETAIL,
+  SET_USER_LOGEDIN,
 } from "../ActionType/UserActionTypes";
 
 var initialState = [];
 const userReducer = (
   state = [
     {
+      avatar: "",
       followings: [{ avatar: "", username: "" }],
       follows: [{ avatar: "", username: "" }],
     },
@@ -31,13 +33,27 @@ const followsBarReducer = (state = initialState, action) => {
       return [...state];
   }
 };
-const usernameDetailReducer = (state = "", action) => {
+const userDetailReducer = (state = {}, action) => {
   switch (action.type) {
-    case SET_USERNAME_DETAIL:
+    case SET_USER_DETAIL:
+      state = action.payload;
+      return { ...state };
+    default:
+      return { ...state };
+  }
+};
+const userLogedInReducer = (state = {}, action) => {
+  switch (action.type) {
+    case SET_USER_LOGEDIN:
       state = action.payload;
       return state;
     default:
       return state;
   }
 };
-export { userReducer, followsBarReducer, usernameDetailReducer };
+export {
+  userReducer,
+  followsBarReducer,
+  userDetailReducer,
+  userLogedInReducer,
+};

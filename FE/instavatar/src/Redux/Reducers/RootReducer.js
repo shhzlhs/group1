@@ -1,14 +1,23 @@
 import { combineReducers } from "redux";
 import {
   followsBarReducer,
+  userDetailReducer,
+  userLogedInReducer,
   userReducer,
-  usernameDetailReducer,
 } from "./UserReducer";
-import { postReducer } from "./PostReducer";
+import { postReducer, potsDetailReducer } from "./PostReducer";
+import {
+  showFollowingsListModalReducer,
+  showFollowsListModalReducer,
+} from "./ModalReducers";
 const rootReducer = combineReducers({
   users: userReducer,
   posts: postReducer,
   followsBar: followsBarReducer,
-  usernameDetail: usernameDetailReducer,
+  userDetail: userDetailReducer,
+  userLogedIn: userLogedInReducer,
+  postDetail: potsDetailReducer,
+  showFollows: showFollowsListModalReducer,
+  showFollowings: showFollowingsListModalReducer,
 });
 export { rootReducer };

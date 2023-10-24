@@ -12,14 +12,16 @@ import "./ListPosts.css";
 import { disLikeAPI, likeAPI } from "../../../../../API/LikeAPI";
 import { getAllUsers } from "../../../../../Redux/Actions/UserActions";
 import { addCommentAPI } from "../../../../../API/CommentAPI";
+import { Link } from "react-router-dom";
 function ListPost(props) {
   let [posts, setPosts] = useState([]);
   let [comment, setComment] = useState("");
   let reduxState = useSelector((state) => state);
+  let userLogedIn = reduxState.userLogedIn;
   let dispatch = useDispatch();
   let users = reduxState.users;
-  let followings = [...users[0].followings, users[0]];
-  let followings1 = users[0].followings;
+  let followings = [...userLogedIn.followings, userLogedIn];
+  let followings1 = userLogedIn.followings;
   let usernames = followings
     ? followings.map((following) => following.username)
     : [];
@@ -31,7 +33,7 @@ function ListPost(props) {
       setPosts(res);
     });
   }, [users]);
-  if (posts && posts.length > 0) {
+  if (posts && posts.length > 1) {
     posts.sort((postA, postB) => {
       const dateA = parseDateString(postA.createdAt);
       const dateB = parseDateString(postB.createdAt);
@@ -44,7 +46,11 @@ function ListPost(props) {
         dispatch(getAllUsers());
       });
     } else {
-      let newLike = { postId: post.id, userId: users[0].id, content: comment };
+      let newLike = {
+        postId: post.id,
+        userId: userLogedIn.id,
+        content: comment,
+      };
       likeAPI(newLike).then(() => {
         dispatch(getAllUsers());
       });
@@ -52,7 +58,7 @@ function ListPost(props) {
   };
   let addComment = (post) => {
     let newComment = {
-      userId: users[0].id,
+      userId: userLogedIn.id,
       postId: post.id,
       content: comment,
     };
@@ -67,7 +73,9 @@ function ListPost(props) {
         let avatar = `/imgs/avatars/${post.userAvatar}`;
         let timestamp = formatRelativeTime(parseDateString(post.createdAt));
         let likes = post.likes;
-        let like = likes.find((like) => like.userUsername == users[0].username);
+        let like = likes.find(
+          (like) => like.userUsername == userLogedIn.username
+        );
         let likedUsernames = likes.map((like) => like.userUsername);
         let randomFollowingUser = likedUsernames
           ? getRandomElementFromArray(
@@ -157,7 +165,9 @@ function ListPost(props) {
 
               <div className="row">
                 <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                  <Button>Xem thêm</Button>
+                  <Link to={`/instavatar/logedIn/post/${post.id}`}>
+                    Xem thêm
+                  </Link>
                 </div>
               </div>
 

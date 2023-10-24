@@ -1,6 +1,5 @@
-import { getAllPostAPI } from "../../API/PostAPI";
-import { getAllUsersAPI } from "../../API/UserAPI";
-import { GET_ALL_POST } from "../ActionType/PostActionTypes";
+import { getAllPostAPI, getPostByIdAPI } from "../../API/PostAPI";
+import { GET_ALL_POST, GET_POST_BY_ID } from "../ActionType/PostActionTypes";
 
 const getAllPostsRedux = (posts) => {
   return {
@@ -8,7 +7,19 @@ const getAllPostsRedux = (posts) => {
     payload: posts,
   };
 };
-
+const getPostDetailRedux = (post) => {
+  return {
+    type: GET_POST_BY_ID,
+    payload: post,
+  };
+};
+const getPostById = (id) => {
+  return (dispatch) => {
+    return getPostByIdAPI(id).then((res) => {
+      dispatch(getPostDetailRedux(res));
+    });
+  };
+};
 const getAllPosts = () => {
   return (dispatch) => {
     return getAllPostAPI().then((res) => {
@@ -16,4 +27,4 @@ const getAllPosts = () => {
     });
   };
 };
-export { getAllPosts, getAllPostsRedux };
+export { getAllPosts, getAllPostsRedux, getPostById, getPostDetailRedux };

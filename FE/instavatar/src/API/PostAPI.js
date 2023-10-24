@@ -11,4 +11,13 @@ const getPostsFollowingsAPI = (usernames) => {
   let url = `posts/post_users/${usernames}`;
   return api("GET", url, null);
 };
-export { getAllPostAPI, getPostsByUserAPI, getPostsFollowingsAPI };
+const getPostByIdAPI = (id) => {
+  let url = "posts/" + id;
+  return api("GET", url, null);
+};
+export {
+  getAllPostAPI,
+  getPostsByUserAPI,
+  getPostsFollowingsAPI,
+  getPostByIdAPI,
+};

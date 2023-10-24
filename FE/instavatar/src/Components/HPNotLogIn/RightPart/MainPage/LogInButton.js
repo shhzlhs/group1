@@ -5,7 +5,7 @@ import { Button } from "reactstrap";
 function LogInButton(props) {
   return (
     <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-      <Link to={"/instavatar/logedIn"}>
+      <Link to={"instavatar/logIn"}>
         {" "}
         <Button>Đăng nhập</Button>{" "}
       </Link>
