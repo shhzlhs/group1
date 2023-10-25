@@ -54,12 +54,13 @@ CREATE TABLE Likes (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     post_id INT UNSIGNED,
     comment_id INT UNSIGNED,
-    user_id INT UNSIGNED,
+    user_id INT UNSIGNED NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (post_id) REFERENCES Posts(id) ON DELETE CASCADE,
     FOREIGN KEY (comment_id) REFERENCES Comments(id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES Users(id)ON DELETE CASCADE,
-    UNIQUE KEY (post_id,user_id)
+    UNIQUE KEY (post_id,user_id),
+    UNIQUE KEY (comment_id,user_id)
 );
 
 CREATE TABLE `Follows` (
@@ -80,14 +81,19 @@ CREATE TABLE Messages (
    FOREIGN KEY (sender_id) REFERENCES Users (id) ON DELETE CASCADE,
    FOREIGN KEY (receiver_id) REFERENCES Users (id) ON DELETE CASCADE
   );
+DROP TABLE IF EXISTS Notifications;
 CREATE TABLE Notifications (
    id 			INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
    user_id 		INT UNSIGNED NOT NULL,
    content     	VARCHAR(255) NOT NULL,
    is_read     	BOOLEAN DEFAULT FALSE NOT NULL,
    creator_id   INT UNSIGNED NOT NULL,
+   post_id		INT UNSIGNED NOT NULL,
+   comment_id	INT UNSIGNED,
    FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE,
-   FOREIGN KEY (creator_id) REFERENCES Users(id) ON DELETE CASCADE
+   FOREIGN KEY (creator_id) REFERENCES Users(id) ON DELETE CASCADE,
+   FOREIGN KEY (post_id) REFERENCES Posts(id) ON DELETE CASCADE,
+   FOREIGN KEY (comment_id) REFERENCES Comments(id) ON DELETE CASCADE
 );
 CREATE TABLE Items(
     id     INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,

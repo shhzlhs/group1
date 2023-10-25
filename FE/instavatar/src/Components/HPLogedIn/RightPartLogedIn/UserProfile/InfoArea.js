@@ -21,7 +21,7 @@ function InfoArea(props) {
   let following = userLogedIn.followings.find(
     (user) => user.username === userDetail.username
   );
-  let buttonText = following ? "Bỏ follow" : "Follow";
+  let buttonText = following ? "Bỏ theo dõi" : "Theo dõi";
   let followUnfollow = () => {
     if (following) {
       unFollowAPI(userLogedIn.id, userDetail.id).then(() => {

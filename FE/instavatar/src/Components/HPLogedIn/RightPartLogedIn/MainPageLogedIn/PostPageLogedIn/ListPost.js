@@ -22,6 +22,7 @@ function ListPost(props) {
   let users = reduxState.users;
   let followings = [...userLogedIn.followings, userLogedIn];
   let followings1 = userLogedIn.followings;
+  let allUsernames = users ? users.map((user) => user.username) : [];
   let usernames = followings
     ? followings.map((following) => following.username)
     : [];
@@ -29,9 +30,15 @@ function ListPost(props) {
     ? followings1.map((following) => following.username)
     : [];
   useEffect(() => {
-    getPostsFollowingsAPI(usernames).then((res) => {
-      setPosts(res);
-    });
+    if (usernames.length > 1) {
+      getPostsFollowingsAPI(usernames).then((res) => {
+        setPosts(res);
+      });
+    } else {
+      getPostsFollowingsAPI(allUsernames).then((res) => {
+        setPosts(res);
+      });
+    }
   }, [users]);
   if (posts && posts.length > 1) {
     posts.sort((postA, postB) => {
@@ -49,7 +56,6 @@ function ListPost(props) {
       let newLike = {
         postId: post.id,
         userId: userLogedIn.id,
-        content: comment,
       };
       likeAPI(newLike).then(() => {
         dispatch(getAllUsers());
@@ -100,15 +106,19 @@ function ListPost(props) {
           <div key={post.id} id="Post" className="row">
             <div id="PostHeader">
               <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                <img
-                  className="PostAvatar"
-                  src={avatar}
-                  alt={post.userUsername}
-                />
+                <Link to={`/instavatar/logedIn/user/${post.userUsername}`}>
+                  <img
+                    className="PostAvatar"
+                    src={avatar}
+                    alt={post.userUsername}
+                  />
+                </Link>
               </div>
 
               <p>
-                <b>{post.userUsername}</b>
+                <Link to={`/instavatar/logedIn/user/${post.userUsername}`}>
+                  <b>{post.userUsername}</b>
+                </Link>
                 <br></br>
                 {timestamp}
               </p>
@@ -164,13 +174,14 @@ function ListPost(props) {
               </div>
 
               <div className="row">
+                <br></br>
                 <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                   <Link to={`/instavatar/logedIn/post/${post.id}`}>
                     Xem thêm
                   </Link>
                 </div>
               </div>
-
+              <br></br>
               <div className="row">
                 <div className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                   <Input
@@ -185,6 +196,7 @@ function ListPost(props) {
 
                 <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                   <Button
+                    color="primary"
                     onClick={() => {
                       addComment(post);
                     }}

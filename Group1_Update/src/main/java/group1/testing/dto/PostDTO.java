@@ -61,6 +61,8 @@ public class PostDTO {
 
         private List<LikeDTO2> likes;
 
+        private List<CommentDTO2> replies;
+
         @Data
         @NoArgsConstructor
         static class LikeDTO2 {
@@ -70,6 +72,21 @@ public class PostDTO {
             private String userUsername;
 
             private String userAvatar;
+
+            @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss")
+            private Date createdAt;
+        }
+        @Data
+        @NoArgsConstructor
+        static class CommentDTO2{
+
+            private int id;
+
+            private String userAvatar;
+
+            private String userUsername;
+
+            private String content;
 
             @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss")
             private Date createdAt;

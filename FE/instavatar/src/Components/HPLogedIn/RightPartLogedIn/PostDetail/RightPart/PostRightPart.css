@@ -1,0 +1,45 @@
+.PostAvatar {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border: red inset 2px;
+  border-radius: 50%;
+}
+#Content {
+  text-align: start;
+}
+#Header {
+  border-bottom: 1px gray solid;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+#PostBody{
+    max-height: 400px;
+    overflow-y: auto;
+    padding-left: 15px;
+    margin-bottom: 20px;
+}
+.CommentAvatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: red inset 1px;
+}
+#CommentText {
+  text-align: start;
+}
+.button {
+  width: 50px;
+  background: none;
+  object-fit: cover;
+}
+#EachComment {
+  margin-bottom: 20px;
+  background-color:#e9edf5 ;
+}
+.Like {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+}

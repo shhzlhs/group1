@@ -67,6 +67,21 @@ public class CommentDTO {
 
         @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss")
         private Date createdAt;
+
+        private List<LikeDTO1> likes;
+        @Data
+        @NoArgsConstructor
+        static class LikeDTO1 {
+
+            private int id;
+
+            private String userUsername;
+
+            private String UserAvatar;
+
+            @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss")
+            private Date createdAt;
+        }
     }
 
     @Data

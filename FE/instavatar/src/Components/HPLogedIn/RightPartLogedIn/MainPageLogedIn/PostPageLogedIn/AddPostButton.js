@@ -4,7 +4,7 @@ import { Button } from "reactstrap";
 function AddPostButton(props) {
   return (
     <div className="row">
-      <Button>Tạo bài viết</Button>
+      <Button color="success">Tạo bài viết</Button>
     </div>
   );
 }

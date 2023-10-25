@@ -37,7 +37,15 @@ public class CommentController {
     }
 
     @DeleteMapping(value = "/{ids}")
-    void deleteComments(@PathVariable List<Integer> ids) {
+    public void deleteComments(@PathVariable List<Integer> ids) {
         commentService.deleteComments(ids);
+    }
+
+    @GetMapping(value = "/{id}")
+    public CommentDTO findById(@PathVariable int id) {
+        Comment comment = commentService.findById(id);
+        CommentDTO commentDTO = modelMapper.map(comment, CommentDTO.class);
+
+        return commentDTO;
     }
 }

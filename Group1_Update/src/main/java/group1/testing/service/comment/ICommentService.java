@@ -11,5 +11,7 @@ public interface ICommentService {
     void addComment(AddCommentForm form);
 
     void deleteComments (List<Integer> ids);
+
+    Comment findById(int id);
 }
 

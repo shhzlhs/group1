@@ -54,5 +54,10 @@ public class CommentService implements ICommentService {
         commentRepository.deleteAllById(ids);
     }
 
+    @Override
+    public Comment findById(int id) {
+        return commentRepository.findById(id);
+    }
+
 
 }

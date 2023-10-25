@@ -2,6 +2,7 @@ import React from "react";
 import UserInfo from "./UserArea/UserInfo";
 import LogOutButton from "./UserArea/LogOutButton";
 import Sugguets from "./UserArea/Sugguets";
+import WebInfo from "../../../HPNotLogIn/RightPart/MainPage/WebInfo";
 
 function UserArea(props) {
   return (
@@ -11,6 +12,7 @@ function UserArea(props) {
         <LogOutButton />
       </div>
       <Sugguets />
+      <WebInfo />
     </div>
   );
 }

@@ -5,6 +5,7 @@ import {
   getCommonElements,
   getRandomElementFromArray,
   getRandomElementsFromArray,
+  selectItemsFromIndex,
 } from "../../../../../Funtions";
 import "./UserArea.css";
 import { Button } from "reactstrap";
@@ -16,6 +17,7 @@ function Sugguets(props) {
   let userLogedIn = useSelector((state) => state.userLogedIn);
   let dispatch = useDispatch();
   let users = useSelector((state) => state.users);
+  users.sort((a, b) => b.follows.length - a.follows.length);
   let followingss = userLogedIn ? userLogedIn.followings : null;
   let followingUsernames = followingss
     ? followingss.map((following) => following.username)
@@ -39,9 +41,10 @@ function Sugguets(props) {
   let allFollowings = allFollowings3.filter(
     (itemA) => !followingUsernames.includes(itemA.username)
   );
-  let sugguets = allFollowings
-    ? getRandomElementsFromArray(allFollowings, 5)
-    : [];
+  let sugguets =
+    allFollowings.length !== 0
+      ? getRandomElementsFromArray(allFollowings, 5)
+      : selectItemsFromIndex(users, 0, 5);
   let items = sugguets
     ? sugguets.map((sugguet, index) => {
         let sugguetUser = users
@@ -99,6 +102,7 @@ function Sugguets(props) {
 
             <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
               <Button
+                color="primary"
                 onClick={() => {
                   follow(sugguetUser.id);
                 }}

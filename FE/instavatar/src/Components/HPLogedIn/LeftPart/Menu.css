@@ -5,6 +5,7 @@
 }
 #MenuButton{
     height: 60px;
+    width: 200px;
     object-fit: cover;
     display: flex;
     align-items: center; 

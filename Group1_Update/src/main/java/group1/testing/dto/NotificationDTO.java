@@ -19,5 +19,9 @@ public class NotificationDTO {
 
     private String creatorFullName;
 
+    private int postId;
+
+    private int commentId;
+
     private boolean isRead;
 }

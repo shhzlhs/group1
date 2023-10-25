@@ -9,9 +9,13 @@ public class CreateNotificationForm {
 
     private int id;
 
-    private int userId;
+    private int UserId;
 
     private int creatorId;
+
+    private Integer postId;
+
+    private Integer commentId;
 
     private String content;
 

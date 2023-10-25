@@ -1,0 +1,105 @@
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Button, Input } from "reactstrap";
+import { disLikeAPI, likeAPI } from "../../../../../API/LikeAPI";
+import { getPostById } from "../../../../../Redux/Actions/PostAction";
+import PostLikesModal from "../../PostLikesModal";
+import { showPostLikesModal } from "../../../../../Redux/Actions/ModalActions";
+import { addCommentAPI } from "../../../../../API/CommentAPI";
+function PostFooter(props) {
+  let dispatch = useDispatch();
+  let reduxStore = useSelector((state) => state);
+  let [input, setInput] = useState("");
+  let userLogedIn = reduxStore.userLogedIn;
+  let post = reduxStore.postDetail;
+  let likes = post ? post.likes : [];
+  let like = likes
+    ? likes.find((lk) => lk.userUsername === userLogedIn.username)
+    : null;
+  let likeButton = like ? "/imgs/icons/Dislike.png" : "/imgs/icons/Like.png";
+  let likeText = () => {
+    if (likes && likes.length === 0) {
+      return "";
+    } else if (likes) return `${likes.length} lượt thích`;
+  };
+  let comments = post ? post.comments : [];
+  let commentText = () => {
+    if (comments && comments.length === 0) {
+      return "";
+    } else if (comments) {
+      return `${comments.length} bình luận`;
+    }
+  };
+  let likeDisLike = () => {
+    if (like) {
+      disLikeAPI(like.id).then(() => {
+        dispatch(getPostById(post.id));
+      });
+    } else {
+      likeAPI({ postId: post.id, userId: userLogedIn.id }).then(() => {
+        dispatch(getPostById(post.id));
+      });
+    }
+  };
+  let addComment = () => {
+    let newComment = {
+      userId: userLogedIn.id,
+      content: input,
+      postId: post.id,
+    };
+    addCommentAPI(newComment).then(() => {
+      dispatch(getPostById(post.id));
+    });
+  };
+  return (
+    <div className="row">
+      <div className="row">
+        <div
+          onClick={() => {
+            dispatch(showPostLikesModal());
+          }}
+          className="col-xs-2 col-sm-2 col-md-2 col-lg-2"
+        >
+          {likeText()}
+        </div>
+        <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+          {commentText()}
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+          <Button onClick={likeDisLike} className="button">
+            <img className="Like" src={likeButton}></img>
+          </Button>
+        </div>
+        <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+          <Button className="button">
+            <img className="Like" src="/imgs/icons/Share.png"></img>
+          </Button>
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+          <Input
+            type="text"
+            placeholder="Nhập bình luận..."
+            value={input}
+            onChange={(event) => {
+              setInput(event.target.value);
+            }}
+          ></Input>
+        </div>
+
+        <Button onClick={addComment} color="primary">
+          Đăng
+        </Button>
+      </div>
+
+      <PostLikesModal />
+    </div>
+  );
+}
+
+export default PostFooter;

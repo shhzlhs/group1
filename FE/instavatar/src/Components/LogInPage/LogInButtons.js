@@ -16,9 +16,11 @@ function LogInButtons(props) {
       </div>
 
       <div className="row">
-        <Button>Đăng ký</Button>
+        <Button color="success">Đăng ký</Button>
 
         <Button
+          className="LogInButton"
+          color="primary"
           onClick={() => {
             login(username, password);
           }}

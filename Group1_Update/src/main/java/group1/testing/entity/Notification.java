@@ -26,6 +26,16 @@ public class Notification {
     @JsonBackReference
     private User creator;
 
+    @ManyToOne
+    @JoinColumn(name = "post_id")
+    @JsonBackReference
+    private Post post;
+
+    @ManyToOne
+    @JoinColumn(name = "comment_id")
+    @JsonBackReference
+    private Comment comment;
+
     @Column(length = 255, nullable = false)
     private String content;
 
