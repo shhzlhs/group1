@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import CommentLikesModal from "../../CommentLikesModal";
 import { showCommentLikesModal } from "../../../../../Redux/Actions/ModalActions";
 import { setCommentDetail } from "../../../../../Redux/Actions/CommentActions";
+import { createNotificationAPI } from "../../../../../API/NotificationAPI";
 function PostBody(props) {
   let post = useSelector((state) => state.postDetail);
   let dispatch = useDispatch();
@@ -53,6 +54,14 @@ function PostBody(props) {
             likeAPI({ commentId: comment.id, userId: userLogedIn.id }).then(
               () => {
                 dispatch(getPostById(post.id));
+                if (userLogedIn.username !== comment.userUsername) {
+                  let no = {
+                    creatorId: userLogedIn.id,
+                    commentId: comment.id,
+                    content: `${userLogedIn.fullName} thích bình luận của bạn`,
+                  };
+                  createNotificationAPI(no);
+                }
               }
             );
           }
@@ -61,7 +70,7 @@ function PostBody(props) {
           <div key={index} id="EachComment" className="row">
             <div className="row">
               <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                <Link to={`/instavatar/logedIn/user/${post.userUsername}`}>
+                <Link to={`/instavatar/logedIn/user/${comment.userUsername}`}>
                   <img
                     className="CommentAvatar"
                     alt={comment.userUsername}
@@ -76,7 +85,9 @@ function PostBody(props) {
                     id="CommentText"
                     className="col-xs-10 col-sm-10 col-md-10 col-lg-10"
                   >
-                    <Link to={`/instavatar/logedIn/user/${post.userUsername}`}>
+                    <Link
+                      to={`/instavatar/logedIn/user/${comment.userUsername}`}
+                    >
                       <b>{comment.userUsername}</b>
                     </Link>{" "}
                     {comment.content}

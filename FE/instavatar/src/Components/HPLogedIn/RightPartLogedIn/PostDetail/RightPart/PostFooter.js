@@ -6,6 +6,7 @@ import { getPostById } from "../../../../../Redux/Actions/PostAction";
 import PostLikesModal from "../../PostLikesModal";
 import { showPostLikesModal } from "../../../../../Redux/Actions/ModalActions";
 import { addCommentAPI } from "../../../../../API/CommentAPI";
+import { createNotificationAPI } from "../../../../../API/NotificationAPI";
 function PostFooter(props) {
   let dispatch = useDispatch();
   let reduxStore = useSelector((state) => state);
@@ -38,6 +39,13 @@ function PostFooter(props) {
     } else {
       likeAPI({ postId: post.id, userId: userLogedIn.id }).then(() => {
         dispatch(getPostById(post.id));
+        if (userLogedIn.username !== post.userUsername) {
+          createNotificationAPI({
+            creatorId: userLogedIn.id,
+            postId: post.id,
+            content: `${userLogedIn.fullName} đã thích bài viết của bạn`,
+          });
+        }
       });
     }
   };

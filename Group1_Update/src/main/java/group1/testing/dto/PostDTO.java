@@ -21,7 +21,7 @@ public class PostDTO {
 
     private String image;
 
-    @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss")
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private Date createdAt;
 
     private List<LikeDTO> likes;
@@ -40,7 +40,7 @@ public class PostDTO {
 
         private String userAvatar;
 
-        @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss")
+        @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
         private Date createdAt;
     }
 
@@ -56,7 +56,7 @@ public class PostDTO {
 
         private String content;
 
-        @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss")
+        @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
         private Date createdAt;
 
         private List<LikeDTO2> likes;
@@ -73,7 +73,7 @@ public class PostDTO {
 
             private String userAvatar;
 
-            @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss")
+            @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
             private Date createdAt;
         }
         @Data
@@ -88,7 +88,7 @@ public class PostDTO {
 
             private String content;
 
-            @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss")
+            @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
             private Date createdAt;
         }
     }
@@ -105,7 +105,7 @@ public class PostDTO {
 
         private String content;
 
-        @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss")
+        @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
         private Date createdAt;
     }
 }

@@ -12,7 +12,21 @@
   max-height: 500px;
   overflow-y: auto;
 }
-.LinkToProfile{
+.LinkToProfile {
   object-fit: cover;
   background: none;
+}
+.NotRead {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+}
+#N{
+  background-color: gray;
+  color: white;
+  margin-bottom: 10px;
+}
+#Y{
+  background-color: blanchedalmond;
+  margin-bottom: 10px;
 }

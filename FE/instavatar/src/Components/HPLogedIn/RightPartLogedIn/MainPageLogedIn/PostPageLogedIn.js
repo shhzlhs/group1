@@ -3,6 +3,7 @@ import FollowingsBar from "./PostPageLogedIn/FollowingsBar";
 import ListPost from "./PostPageLogedIn/ListPost";
 import "./PostPageLogedIn.css";
 import AddPostButton from "./PostPageLogedIn/AddPostButton";
+import NotificationModal from "../NotificationModal";
 function PostPageLogedIn(props) {
   return (
     <div>
@@ -14,6 +15,7 @@ function PostPageLogedIn(props) {
         <div id="PostsPage" className="row">
           <AddPostButton />
           <ListPost />
+          <NotificationModal />
         </div>
       </div>
     </div>

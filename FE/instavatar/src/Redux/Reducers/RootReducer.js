@@ -10,10 +10,12 @@ import {
   showCommentLikesModalReducer,
   showFollowingsListModalReducer,
   showFollowsListModalReducer,
+  showNosReducer,
   showPostLikesModalReducer,
   showRepliesReducer,
 } from "./ModalReducers";
 import { commentReducer } from "./CommentReducer";
+import { notificationReducer } from "./NotificationReducer";
 const rootReducer = combineReducers({
   users: userReducer,
   posts: postReducer,
@@ -27,5 +29,7 @@ const rootReducer = combineReducers({
   showCommentLikes: showCommentLikesModalReducer,
   showPostLikes: showPostLikesModalReducer,
   showReplies: showRepliesReducer,
+  notifications: notificationReducer,
+  showNos: showNosReducer,
 });
 export { rootReducer };

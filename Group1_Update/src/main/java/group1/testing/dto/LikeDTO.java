@@ -17,6 +17,6 @@ public class LikeDTO {
 
     private String postContent;
 
-    @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss")
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private Date createdAt;
 }

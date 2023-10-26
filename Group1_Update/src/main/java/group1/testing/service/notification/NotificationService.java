@@ -54,7 +54,7 @@ public class NotificationService implements INotificationService {
             int commentId = form.getCommentId();
             Comment comment = commentRepository.findById(commentId);
             notification.setComment(comment);
-            if (comment.getComment() != null) {
+            if (comment.getComment() == null) {
                 notification.setPost(comment.getPost());
                 notification.setUser(comment.getUser());
             } else {
@@ -73,7 +73,7 @@ public class NotificationService implements INotificationService {
     @Override
     public void setNotificationToReadCompleted(int id) {
         Notification notification = notificationRepository.findById(id);
-        notification.setRead(true);
+        notification.setIsRead("Y");
         notificationRepository.save(notification);
     }
 

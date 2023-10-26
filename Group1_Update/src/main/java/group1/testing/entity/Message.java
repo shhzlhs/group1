@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.Instant;
+import java.time.ZoneId;
 import java.util.Date;
 
 @Entity
@@ -38,9 +39,10 @@ public class Message {
     private Date createdAt;
     @PrePersist
     public void prePersist() {
+        ZoneId zoneId = ZoneId.of("Asia/Bangkok");
         Instant now = Instant.now();
         if (createdAt == null) {
-            createdAt = Date.from(now);
+            createdAt = Date.from(now.atZone(zoneId).toInstant());
         }
     }
 }

@@ -26,16 +26,13 @@ export const formatRelativeTime = (timestamp) => {
   }
 };
 export const parseDateString = (dateString) => {
-  const parts = dateString.split(/[\s\/:]/);
+  const [datePart, timePart] = dateString.split(" ");
 
-  const day = parseInt(parts[0], 10);
-  const month = parseInt(parts[1] - 1, 10);
-  const year = parseInt(parts[2], 10);
-  const hours = parseInt(parts[3], 10);
-  const minutes = parseInt(parts[4], 10);
-  const seconds = parseInt(parts[5], 10);
+  const [day, month, year] = datePart.split("/").map(Number);
 
-  return new Date(year, month, day, hours, minutes, seconds);
+  const [hour, minute, second] = timePart.split(":").map(Number);
+
+  return new Date(year, month - 1, day, hour, minute, second);
 };
 export const selectItemsFromIndex = (array, startIndex, number) => {
   if (!Array.isArray(array) || startIndex < 0) {

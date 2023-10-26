@@ -19,5 +19,5 @@ public class CreateNotificationForm {
 
     private String content;
 
-    private boolean isRead;
+    private String isRead;
 }

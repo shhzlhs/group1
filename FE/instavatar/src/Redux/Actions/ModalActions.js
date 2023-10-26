@@ -2,11 +2,13 @@ import {
   CLOSE_COMMENT_LIKES_MODAL,
   CLOSE_FOLLOWINGS_LIST_MODAL,
   CLOSE_FOLLOWS_LIST_MODAL,
+  CLOSE_NOS,
   CLOSE_POST_LIKES_MODAL,
   CLOSE_REPLIES,
   SHOW_COMMENT_LIKES_MODAL,
   SHOW_FOLLOWINGS_LIST_MODAL,
   SHOW_FOLLOWS_LIST_MODAL,
+  SHOW_NOS,
   SHOW_POST_LIKES_MODAL,
   SHOW_REPLIES,
 } from "../ActionType/ModalActionTypes";
@@ -43,6 +45,12 @@ const closeCommentLikesModal = () => {
 const closeRePlies = () => {
   return { type: CLOSE_REPLIES };
 };
+const showNosModal = () => {
+  return { type: SHOW_NOS };
+};
+const closeNosModal = () => {
+  return { type: CLOSE_NOS };
+};
 export {
   closeFollowingsListModal,
   closeFollowsListModal,
@@ -54,4 +62,6 @@ export {
   closeCommentLikesModal,
   closePostLikesModal,
   closeRePlies,
+  showNosModal,
+  closeNosModal,
 };

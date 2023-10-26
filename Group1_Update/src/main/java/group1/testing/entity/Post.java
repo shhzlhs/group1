@@ -1,18 +1,21 @@
 package group1.testing.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 
 import java.time.Instant;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name="Posts")
+@Table(name = "Posts")
 @Data
 @NoArgsConstructor
 public class Post {
@@ -22,7 +25,7 @@ public class Post {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     @JsonBackReference
     private User user;
 
@@ -53,9 +56,10 @@ public class Post {
 
     @PrePersist
     public void prePersist() {
+        ZoneId zoneId = ZoneId.of("Asia/Bangkok");
         Instant now = Instant.now();
         if (createdAt == null) {
-            createdAt = Date.from(now);
+            createdAt = Date.from(now.atZone(zoneId).toInstant());
         }
     }
 }

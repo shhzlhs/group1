@@ -1,7 +1,10 @@
 package group1.testing.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Date;
 
 @NoArgsConstructor
 @Data
@@ -23,5 +26,8 @@ public class NotificationDTO {
 
     private int commentId;
 
-    private boolean isRead;
+    private String isRead;
+
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    private Date createdAt;
 }

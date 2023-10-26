@@ -86,10 +86,11 @@ CREATE TABLE Notifications (
    id 			INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
    user_id 		INT UNSIGNED NOT NULL,
    content     	VARCHAR(255) NOT NULL,
-   is_read     	BOOLEAN DEFAULT FALSE NOT NULL,
+   is_read     	VARCHAR(2) DEFAULT "N",
    creator_id   INT UNSIGNED NOT NULL,
-   post_id		INT UNSIGNED NOT NULL,
+   post_id		INT UNSIGNED,
    comment_id	INT UNSIGNED,
+   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
    FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE,
    FOREIGN KEY (creator_id) REFERENCES Users(id) ON DELETE CASCADE,
    FOREIGN KEY (post_id) REFERENCES Posts(id) ON DELETE CASCADE,
@@ -239,7 +240,7 @@ VALUES			  (1,"post_1.png","Áo em trắng quá nhìn không ra!","2022-10-10"),
 				  (1,"post_5.png","Ta đã quay trở lại!Hehe","2023-01-01");
 
 INSERT INTO Comments (post_id,user_id,content,reply_to)
-VALUES			  (1,2,"OK",NULL),
+VALUES			  (5,2,"OK",NULL),
 				  (2,3,"Woao",NULL),
 				  (1,3,"Úi dồi",NULL),
 				  (2,1,"kkk",NULL),
@@ -324,5 +325,5 @@ VALUES					 (1		 , "Lê Anh đã bình luận bài viết của bạn",2),
 						 (2		 , "Hạ Đông Xuân đã bình luận bài viết của bạn",3),
 						 (3		 , "Lê Anh đã bình luận bài viết của bạn",2),
 						 (3		 , "Lê Văn Anh đã thích bài viết của bạn",1);
-                  
+SET time_zone = '+07:00';               
 

@@ -32,7 +32,7 @@ public class CommentDTO {
 
     private List<CommentDTO1> replies;
 
-    @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss")
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private Date createdAt;
 
     @Data
@@ -47,7 +47,7 @@ public class CommentDTO {
 
         private String content;
 
-        @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss")
+        @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
         private Date createdAt;
 
 
@@ -65,7 +65,7 @@ public class CommentDTO {
 
         private String content;
 
-        @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss")
+        @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
         private Date createdAt;
 
         private List<LikeDTO1> likes;
@@ -79,7 +79,7 @@ public class CommentDTO {
 
             private String UserAvatar;
 
-            @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss")
+            @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
             private Date createdAt;
         }
     }
@@ -94,7 +94,7 @@ public class CommentDTO {
 
         private String UserAvatar;
 
-        @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss")
+        @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
         private Date createdAt;
     }
 

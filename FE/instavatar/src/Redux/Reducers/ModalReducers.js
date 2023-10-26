@@ -2,11 +2,13 @@ import {
   CLOSE_COMMENT_LIKES_MODAL,
   CLOSE_FOLLOWINGS_LIST_MODAL,
   CLOSE_FOLLOWS_LIST_MODAL,
+  CLOSE_NOS,
   CLOSE_POST_LIKES_MODAL,
   CLOSE_REPLIES,
   SHOW_COMMENT_LIKES_MODAL,
   SHOW_FOLLOWINGS_LIST_MODAL,
   SHOW_FOLLOWS_LIST_MODAL,
+  SHOW_NOS,
   SHOW_POST_LIKES_MODAL,
   SHOW_REPLIES,
 } from "../ActionType/ModalActionTypes";
@@ -62,10 +64,21 @@ const showRepliesReducer = (state = false, action) => {
       return state;
   }
 };
+const showNosReducer = (state = false, action) => {
+  switch (action.type) {
+    case SHOW_NOS:
+      return true;
+    case CLOSE_NOS:
+      return false;
+    default:
+      return state;
+  }
+};
 export {
   showFollowingsListModalReducer,
   showFollowsListModalReducer,
   showCommentLikesModalReducer,
   showPostLikesModalReducer,
   showRepliesReducer,
+  showNosReducer,
 };

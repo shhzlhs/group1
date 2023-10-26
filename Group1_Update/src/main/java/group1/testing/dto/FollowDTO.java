@@ -16,6 +16,6 @@ public class FollowDTO {
 
     private String followingUsername;
 
-    @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss")
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private Date createdAt;
 }
