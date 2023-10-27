@@ -13,6 +13,7 @@ import { disLikeAPI, likeAPI } from "../../../../../API/LikeAPI";
 import { getAllUsers } from "../../../../../Redux/Actions/UserActions";
 import { addCommentAPI } from "../../../../../API/CommentAPI";
 import { Link } from "react-router-dom";
+import { createNotificationAPI } from "../../../../../API/NotificationAPI";
 function ListPost(props) {
   let [posts, setPosts] = useState([]);
   let [comment, setComment] = useState("");
@@ -59,6 +60,13 @@ function ListPost(props) {
       };
       likeAPI(newLike).then(() => {
         dispatch(getAllUsers());
+        if (post.userUsername !== userLogedIn.username) {
+          createNotificationAPI({
+            creatorId: userLogedIn.id,
+            postId: post.id,
+            content: `${userLogedIn.fullName} thích bài viết của bạn`,
+          });
+        }
       });
     }
   };
@@ -71,10 +79,17 @@ function ListPost(props) {
     addCommentAPI(newComment).then(() => {
       dispatch(getAllUsers());
       setComment("");
+      if (userLogedIn.username !== post.userUsername) {
+        createNotificationAPI({
+          creatorId: userLogedIn.id,
+          postId: post.id,
+          content: `${userLogedIn.fullName} đã bình luận bài viết của bạn`,
+        });
+      }
     });
   };
   const items = posts
-    ? posts.map((post) => {
+    ? posts.map((post, index) => {
         let img = `/imgs/post_imgs/${post.image}`;
         let avatar = `/imgs/avatars/${post.userAvatar}`;
         let timestamp = formatRelativeTime(parseDateString(post.createdAt));
@@ -103,7 +118,7 @@ function ListPost(props) {
             ? ""
             : likes.length;
         return (
-          <div key={post.id} id="Post" className="row">
+          <div key={index} id="Post" className="row">
             <div id="PostHeader">
               <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                 <Link to={`/instavatar/logedIn/user/${post.userUsername}`}>

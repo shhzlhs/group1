@@ -21,7 +21,7 @@ public class PostDTO {
 
     private String image;
 
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Bangkok")
     private Date createdAt;
 
     private List<LikeDTO> likes;
@@ -40,7 +40,7 @@ public class PostDTO {
 
         private String userAvatar;
 
-        @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+        @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Bangkok")
         private Date createdAt;
     }
 
@@ -56,7 +56,7 @@ public class PostDTO {
 
         private String content;
 
-        @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+        @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Bangkok")
         private Date createdAt;
 
         private List<LikeDTO2> likes;
@@ -73,12 +73,13 @@ public class PostDTO {
 
             private String userAvatar;
 
-            @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+            @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Bangkok")
             private Date createdAt;
         }
+
         @Data
         @NoArgsConstructor
-        static class CommentDTO2{
+        static class CommentDTO2 {
 
             private int id;
 
@@ -88,8 +89,23 @@ public class PostDTO {
 
             private String content;
 
-            @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+            private List<LikeDTO> likes;
+
+            @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Bangkok")
             private Date createdAt;
+
+            @Data
+            @NoArgsConstructor
+            static class LikeDTO {
+                private int id;
+
+                private String userUsername;
+
+                private String userAvatar;
+
+                @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Bangkok")
+                private Date createdAt;
+            }
         }
     }
 
@@ -105,7 +121,7 @@ public class PostDTO {
 
         private String content;
 
-        @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+        @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Bangkok")
         private Date createdAt;
     }
 }

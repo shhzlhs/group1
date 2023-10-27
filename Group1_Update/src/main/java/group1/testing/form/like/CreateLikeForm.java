@@ -11,7 +11,7 @@ public class CreateLikeForm {
 
     private Integer postId;
 
-    private Integer userId;
+    private int userId;
 
     private Integer commentId;
 

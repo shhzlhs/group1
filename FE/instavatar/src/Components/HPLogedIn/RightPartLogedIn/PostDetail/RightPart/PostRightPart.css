@@ -29,6 +29,9 @@
 #CommentText {
   text-align: start;
 }
+.likeNumber{
+  background: none;
+}
 .button {
   width: 50px;
   background: none;
@@ -37,9 +40,24 @@
 #EachComment {
   margin-bottom: 20px;
   background-color:#e9edf5 ;
+  border-radius: 5px;
+  border: #e9edf5 inset 2px;
+}
+#ForEachReply{
+  margin-bottom: 5px;
+  background-color:#eaf3f3 ;
+  border-radius: 5px;
+  border: #e3d969 inset 2px;
 }
 .Like {
-  width: 20px;
   height: 20px;
   object-fit: cover;
+}
+.ReplyText{color: Red;}
+#reply{
+  text-align: justify;
+}
+#input{
+  width: 450px;
+  margin-left: 20px;
 }

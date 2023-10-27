@@ -27,3 +27,11 @@
   max-height: 400px;
   overflow-y: auto;
 }
+#Follow{
+  background:none;
+  color: blue;
+}
+#UnFollow{
+  background:none;
+  color: red;
+}

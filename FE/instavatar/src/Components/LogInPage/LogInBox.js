@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import "./LogInBox.css";
 import LogInForm from "./LogInForm";
 import LogInButtons from "./LogInButtons";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUserLogedIn } from "../../Redux/Actions/UserActions";
 import { getUserByUsernameAPI } from "../../API/UserAPI";
 function LogInBox(props) {
   let dispatch = useDispatch();
   let navigate = useNavigate();
-  let users = useSelector((state) => state.users);
   let [showWrong, setShowWrong] = useState(false);
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("passworddddddddđ");

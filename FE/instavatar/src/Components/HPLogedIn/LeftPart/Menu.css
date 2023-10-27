@@ -1,19 +1,21 @@
-.Icon{
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
+.Icon {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
 }
-#MenuButton{
-    height: 60px;
-    width: 200px;
-    object-fit: cover;
-    display: flex;
-    align-items: center; 
-    justify-content: center; 
-    background: none;
-    margin-bottom: 10px;
+#MenuButton {
+  object-fit: cover;
+  background: none;
+ 
 }
-#MenuTitle{
-    height: 60px;
+#MenuTitle {
+  height: 60px;
 }
-.No{color: red;}
+.No {
+  color: red;
+}
+#menu{
+  margin-bottom: 10px;
+  border: white inset 5px;
+  border-radius: 20px;
+}

@@ -43,21 +43,31 @@ function PostFooter(props) {
           createNotificationAPI({
             creatorId: userLogedIn.id,
             postId: post.id,
-            content: `${userLogedIn.fullName} đã thích bài viết của bạn`,
+            content: `${userLogedIn.fullName} thích bài viết của bạn`,
           });
         }
       });
     }
   };
   let addComment = () => {
-    let newComment = {
-      userId: userLogedIn.id,
-      content: input,
-      postId: post.id,
-    };
-    addCommentAPI(newComment).then(() => {
-      dispatch(getPostById(post.id));
-    });
+    if (input.trim() !== "") {
+      let newComment = {
+        userId: userLogedIn.id,
+        content: input,
+        postId: post.id,
+      };
+      addCommentAPI(newComment).then(() => {
+        dispatch(getPostById(post.id));
+        setInput("");
+        if (userLogedIn.username !== post.userUsername) {
+          createNotificationAPI({
+            creatorId: userLogedIn.id,
+            content: userLogedIn.fullName + " đã bình luận bài viết của bạn",
+            postId: post.id,
+          });
+        }
+      });
+    }
   };
   return (
     <div className="row">
@@ -66,7 +76,7 @@ function PostFooter(props) {
           onClick={() => {
             dispatch(showPostLikesModal());
           }}
-          className="col-xs-2 col-sm-2 col-md-2 col-lg-2"
+          className="col-xs-3 col-sm-3 col-md-3 col-lg-3"
         >
           {likeText()}
         </div>
@@ -76,14 +86,14 @@ function PostFooter(props) {
       </div>
 
       <div className="row">
-        <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
           <Button onClick={likeDisLike} className="button">
-            <img className="Like" src={likeButton}></img>
+            <img className="Like" src={likeButton} alt="Like"></img>
           </Button>
         </div>
         <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
           <Button className="button">
-            <img className="Like" src="/imgs/icons/Share.png"></img>
+            <img className="Like" src="/imgs/icons/Share.png" alt="Share"></img>
           </Button>
         </div>
       </div>

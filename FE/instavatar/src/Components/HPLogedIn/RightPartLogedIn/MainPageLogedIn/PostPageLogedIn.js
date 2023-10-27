@@ -4,6 +4,8 @@ import ListPost from "./PostPageLogedIn/ListPost";
 import "./PostPageLogedIn.css";
 import AddPostButton from "./PostPageLogedIn/AddPostButton";
 import NotificationModal from "../NotificationModal";
+import DelNoModal from "../DelNoModal";
+import CreatePostModal from "../CreatePostModal";
 function PostPageLogedIn(props) {
   return (
     <div>
@@ -16,6 +18,8 @@ function PostPageLogedIn(props) {
           <AddPostButton />
           <ListPost />
           <NotificationModal />
+          <DelNoModal />
+          <CreatePostModal />
         </div>
       </div>
     </div>

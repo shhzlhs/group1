@@ -29,10 +29,12 @@ export const parseDateString = (dateString) => {
   const [datePart, timePart] = dateString.split(" ");
 
   const [day, month, year] = datePart.split("/").map(Number);
-
   const [hour, minute, second] = timePart.split(":").map(Number);
 
-  return new Date(year, month - 1, day, hour, minute, second);
+  const parsedDate = new Date(year, month - 1, day, hour, minute, second);
+  // parsedDate.setHours(parsedDate.getHours() + 7);
+
+  return parsedDate;
 };
 export const selectItemsFromIndex = (array, startIndex, number) => {
   if (!Array.isArray(array) || startIndex < 0) {

@@ -9,29 +9,27 @@ function NotificationButton(props) {
   let nos1 = nos ? nos.filter((no) => no.isRead === "N") : [];
   let number =
     nos1 && nos1.length > 0 ? <b className="No">{nos1.length}</b> : null;
-  console.log("Number", number);
   return (
-    <div className="row">
-      <Button
-        onClick={() => {
-          dispatch(showNosModal());
-        }}
-        id="MenuButton"
-      >
-        <div className="row">
-          <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-            <img
-              className="Icon"
-              src="/imgs/icons/Notification.png"
-              alt="Thông báo"
-            />
-          </div>
+    <div id="menu" className="row">
+      <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        <img
+          className="Icon"
+          src="/imgs/icons/Notification.png"
+          alt="Thông báo"
+        />
+      </div>
 
-          <div id="MenuTitle" className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            <h3>Thông báo {number}</h3>
-          </div>
-        </div>
-      </Button>
+      <div id="MenuTitle" className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+        <Button
+          onClick={() => {
+            dispatch(showNosModal());
+          }}
+          id="MenuButton"
+        >
+          {" "}
+          <h3> Thông báo {number}</h3>
+        </Button>
+      </div>
     </div>
   );
 }

@@ -1,11 +1,15 @@
 import {
   CLOSE_COMMENT_LIKES_MODAL,
+  CLOSE_CREATE_POST_MODAL,
+  CLOSE_DEL_NO,
   CLOSE_FOLLOWINGS_LIST_MODAL,
   CLOSE_FOLLOWS_LIST_MODAL,
   CLOSE_NOS,
   CLOSE_POST_LIKES_MODAL,
   CLOSE_REPLIES,
   SHOW_COMMENT_LIKES_MODAL,
+  SHOW_CREATE_POST_MODAL,
+  SHOW_DEL_NO,
   SHOW_FOLLOWINGS_LIST_MODAL,
   SHOW_FOLLOWS_LIST_MODAL,
   SHOW_NOS,
@@ -51,6 +55,18 @@ const showNosModal = () => {
 const closeNosModal = () => {
   return { type: CLOSE_NOS };
 };
+const showDelNoModal = () => {
+  return { type: SHOW_DEL_NO };
+};
+const closeDelNoModal = () => {
+  return { type: CLOSE_DEL_NO };
+};
+const showCreatePostModal = () => {
+  return { type: SHOW_CREATE_POST_MODAL };
+};
+const closeCreatePostModal = () => {
+  return { type: CLOSE_CREATE_POST_MODAL };
+};
 export {
   closeFollowingsListModal,
   closeFollowsListModal,
@@ -64,4 +80,8 @@ export {
   closeRePlies,
   showNosModal,
   closeNosModal,
+  showDelNoModal,
+  closeDelNoModal,
+  showCreatePostModal,
+  closeCreatePostModal,
 };

@@ -1,7 +1,10 @@
 package group1.testing.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Date;
 
 @NoArgsConstructor
 @Data
@@ -11,11 +14,18 @@ public class MessageDTO {
 
     private String content;
 
+    private int senderId;
+
     private String senderAvatar;
 
     private String senderUsername;
 
-    private String receiverAvatar;
+    private String isRead;
 
-    private String receiverUsername;
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Bangkok")
+    private Date createdAt;
+
+    private String del1;
+
+    private String del2;
 }

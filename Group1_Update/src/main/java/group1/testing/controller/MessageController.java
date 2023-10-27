@@ -27,21 +27,37 @@ public class MessageController {
         messageService.createMessage(form);
     }
 
-    @GetMapping(value = "/{senderId},{receiverId}")
-    public List<MessageDTO> getMessagesBySenderAndReceiver(@PathVariable int senderId, @PathVariable int receiverId) {
-        List<Message> messages = messageService.getMessagesBySenderAndReceiver(senderId, receiverId);
+    @GetMapping(value = "/{id}")
+    public List<MessageDTO> getByConversation(@PathVariable int id) {
+        List<Message> messages = messageService.getByConversation(id);
         List<MessageDTO> messageDTOS = modelMapper.map(messages, new TypeToken<List<MessageDTO>>() {
         }.getType());
         return messageDTOS;
     }
 
-    @DeleteMapping(value = "/{senderId}/{receiverId}")
-    public void deleteBySenderAndReceiver(@PathVariable int senderId, @PathVariable int receiverId) {
-        messageService.deleteBySenderAndReceiver(senderId, receiverId);
-    }
-
     @DeleteMapping(value = "/{id}")
     public void deleteById(@PathVariable int id) {
         messageService.deleteById(id);
+    }
+
+    @PutMapping(value = "/{ids}")
+    public void updateToReadComplete(@PathVariable List<Integer> ids) {
+        messageService.updateToReadCompleted(ids);
+    }
+
+    @GetMapping(value = "/last/{id}")
+    public MessageDTO getLastByConversation(@PathVariable int id) {
+        Message message = messageService.getLastMessageByConversation(id);
+        return modelMapper.map(message, MessageDTO.class);
+    }
+
+    @GetMapping(value = "/user/{userId}/convers/{conversationId}")
+    public int getNumberOfNotReadYetByUserAndConversation(@PathVariable int userId, @PathVariable int conversationId) {
+        return messageService.getNumberOfNotReadYetByUserAndConversation(userId, conversationId);
+    }
+
+    @PutMapping(value = "/user/{userId}/convers/{conversationId}")
+    public void updateMessageToDel(@PathVariable int userId, @PathVariable int conversationId) {
+        messageService.updateToDeleteByUser(userId, conversationId);
     }
 }

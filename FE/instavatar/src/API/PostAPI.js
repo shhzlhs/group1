@@ -15,9 +15,13 @@ const getPostByIdAPI = (id) => {
   let url = "posts/" + id;
   return api("GET", url, null);
 };
+const createPostAPI = (post) => {
+  return api("POST", "posts/", post);
+};
 export {
   getAllPostAPI,
   getPostsByUserAPI,
   getPostsFollowingsAPI,
   getPostByIdAPI,
+  createPostAPI,
 };

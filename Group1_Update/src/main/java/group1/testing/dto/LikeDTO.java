@@ -17,6 +17,8 @@ public class LikeDTO {
 
     private String postContent;
 
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    private String commentContent;
+
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Bangkok")
     private Date createdAt;
 }

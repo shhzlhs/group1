@@ -92,7 +92,7 @@ function CommentLikesModal(props) {
                   }}
                   className="LinkToProfile"
                 >
-                  {like.username}
+                  {like.userUsername}
                 </Button>
               </div>
 

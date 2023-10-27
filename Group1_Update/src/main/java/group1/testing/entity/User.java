@@ -82,9 +82,7 @@ public class User {
     @OneToMany(mappedBy = "sender")
     @JsonBackReference
     private List<Message> sentMessages;
-    @OneToMany(mappedBy = "receiver")
-    @JsonBackReference
-    private List<Message> receivedMessages;
+
 
     //notifications
     @OneToMany(mappedBy = "user")

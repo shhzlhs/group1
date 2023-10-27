@@ -2,11 +2,19 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import "./MainPageLogedIn.css";
-import { closeNosModal } from "../../../Redux/Actions/ModalActions";
+import {
+  closeNosModal,
+  showDelNoModal,
+} from "../../../Redux/Actions/ModalActions";
 import { formatRelativeTime, parseDateString } from "../../../Funtions";
-import { getNoByUserId } from "../../../Redux/Actions/NotificationActions";
-
+import {
+  getNoByUserId,
+  setNoDel,
+} from "../../../Redux/Actions/NotificationActions";
+import { useNavigate } from "react-router-dom";
+import { updateToReadCompleteAPI } from "../../../API/NotificationAPI";
 function NotificationModal(props) {
+  let navigate = useNavigate();
   const reduxStore = useSelector((state) => state);
   const dispatch = useDispatch();
   const showNos = reduxStore.showNos;
@@ -16,6 +24,13 @@ function NotificationModal(props) {
   }, []);
 
   const notifications = reduxStore.notifications;
+  if (notifications && notifications.length > 1) {
+    notifications.sort((noA, noB) => {
+      const dateA = parseDateString(noA.createdAt);
+      const dateB = parseDateString(noB.createdAt);
+      return dateB - dateA;
+    });
+  }
 
   const items = () => {
     if (!notifications || notifications.length === 0) {
@@ -26,7 +41,15 @@ function NotificationModal(props) {
         notification.isRead === "N" ? (
           <img className="NotRead" alt="point" src="/imgs/icons/Red.png"></img>
         ) : (
-          <Button>Xoá</Button>
+          <Button
+            onClick={() => {
+              dispatch(setNoDel(notification));
+              dispatch(showDelNoModal());
+            }}
+            color="danger"
+          >
+            Xoá
+          </Button>
         );
       let id = notification.isRead === "N" ? "N" : "Y";
       return (
@@ -40,12 +63,28 @@ function NotificationModal(props) {
           </div>
 
           <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-            {notification.content}
+            <Button
+              onClick={() => {
+                dispatch(closeNosModal());
+                updateToReadCompleteAPI(notification.id).then(() => {
+                  dispatch(getNoByUserId(userLogedIn.id));
+                  if (notification.postId) {
+                    navigate(`/instavatar/logedIn/post/${notification.postId}`);
+                  }
+                });
+              }}
+              id="Link"
+            >
+              {notification.content}
+            </Button>
             <br />
             <i>{formatRelativeTime(parseDateString(notification.createdAt))}</i>
           </div>
 
-          <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">{del}</div>
+          <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            <br></br>
+            {del}
+          </div>
         </div>
       );
     });

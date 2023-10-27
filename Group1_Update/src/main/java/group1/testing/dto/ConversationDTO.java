@@ -6,16 +6,29 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-@NoArgsConstructor
 @Data
-public class FollowDTO {
+@NoArgsConstructor
+public class ConversationDTO {
 
     private int id;
 
-    private String followerUsername;
+    private int user1Id;
 
-    private String followingUsername;
+    private String user1Username;
+
+    private int user2Id;
+
+    private String user2Username;
+
+    private String user1Avatar;
+
+    private String user2Avatar;
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Bangkok")
     private Date createdAt;
+
+    private String del1;
+
+    private String del2;
+
 }

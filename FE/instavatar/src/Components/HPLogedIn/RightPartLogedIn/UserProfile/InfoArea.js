@@ -14,7 +14,9 @@ import {
 } from "../../../../Redux/Actions/ModalActions";
 import FollowsListModal from "../FollowsListModal";
 import FollowingsListModal from "../FollowingsListModal";
+import { useNavigate } from "react-router-dom";
 function InfoArea(props) {
+  let navigate = useNavigate();
   let dispatch = useDispatch();
   let userDetail = useSelector((state) => state.userDetail);
   let userLogedIn = useSelector((state) => state.userLogedIn);
@@ -22,6 +24,7 @@ function InfoArea(props) {
     (user) => user.username === userDetail.username
   );
   let buttonText = following ? "Bỏ theo dõi" : "Theo dõi";
+  let id = following ? "UnFollow" : "Follow";
   let followUnfollow = () => {
     if (following) {
       unFollowAPI(userLogedIn.id, userDetail.id).then(() => {
@@ -61,6 +64,48 @@ function InfoArea(props) {
       return `Đang theo dõi ${userDetail.followings.length} người khác`;
     }
   };
+  let button = () => {
+    if (userDetail.username === userLogedIn.username) {
+      return (
+        <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+          <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <Button color="primary">Chỉnh sửa trang cá nhân</Button>
+          </div>
+          <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+
+          <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <Button
+              onClick={() => {
+                navigate("/instavatar/logIn");
+                dispatch(setUserLogedIn({}));
+              }}
+              color="danger"
+            >
+              Đăng xuất
+            </Button>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+          <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8"></div>
+          <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <Button color="danger">Báo cáo</Button>
+          </div>
+        </div>
+      );
+    }
+  };
+  let followButton = () => {
+    if (userDetail.username !== userLogedIn.username) {
+      return (
+        <Button id={id} onClick={followUnfollow}>
+          {buttonText}
+        </Button>
+      );
+    }
+  };
   return (
     <div id="InfoArea" className="row">
       <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
@@ -71,18 +116,24 @@ function InfoArea(props) {
             src={`/imgs/avatars/${userDetail.avatar}`}
           ></img>
         </div>
-
+        <br></br>
+        {followButton()}
         <div className="row">
           <br></br>
-          <Button onClick={followUnfollow}>{buttonText}</Button>
         </div>
       </div>
       <div id="Info" className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
         <div className="row">
-          <h3>{userDetail.username}</h3>
+          <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <h3>{userDetail.username}</h3>
+          </div>
+
+          {button()}
         </div>
         <div className="row">
-          <h4>{userDetail.fullName}</h4>
+          <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <h4>{userDetail.fullName}</h4>
+          </div>
         </div>
         <div className="row">
           <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1">

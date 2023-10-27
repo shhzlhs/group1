@@ -8,6 +8,8 @@ import {
 import { postReducer, potsDetailReducer } from "./PostReducer";
 import {
   showCommentLikesModalReducer,
+  showCreatePostReducer,
+  showDelNoReducer,
   showFollowingsListModalReducer,
   showFollowsListModalReducer,
   showNosReducer,
@@ -15,7 +17,7 @@ import {
   showRepliesReducer,
 } from "./ModalReducers";
 import { commentReducer } from "./CommentReducer";
-import { notificationReducer } from "./NotificationReducer";
+import { noDelReducer, notificationReducer } from "./NotificationReducer";
 const rootReducer = combineReducers({
   users: userReducer,
   posts: postReducer,
@@ -31,5 +33,8 @@ const rootReducer = combineReducers({
   showReplies: showRepliesReducer,
   notifications: notificationReducer,
   showNos: showNosReducer,
+  showDelNo: showDelNoReducer,
+  noDel: noDelReducer,
+  showCreatePost: showCreatePostReducer,
 });
 export { rootReducer };

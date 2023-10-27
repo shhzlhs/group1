@@ -1,9 +1,6 @@
 package group1.testing.service.notification;
 
-import group1.testing.entity.Comment;
-import group1.testing.entity.Item;
-import group1.testing.entity.Notification;
-import group1.testing.entity.User;
+import group1.testing.entity.*;
 import group1.testing.form.item.CreatingItemForm;
 import group1.testing.form.noification.CreateNotificationForm;
 import group1.testing.repository.ICommentRepository;
@@ -18,6 +15,7 @@ import org.modelmapper.TypeMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.awt.*;
 import java.util.List;
 
 @Service
@@ -44,22 +42,39 @@ public class NotificationService implements INotificationService {
     @Override
     public void createNotification(CreateNotificationForm form) {
         Notification notification = new Notification();
-        notification.setContent(form.getContent());
         notification.setCreator(userRepository.findById(form.getCreatorId()));
-        if (form.getPostId() != null) {
-            int postId = form.getPostId();
-            notification.setPost(postRepository.findById(postId));
-            notification.setUser(postRepository.findById(postId).getUser());
-        } else if (form.getCommentId() != null) {
-            int commentId = form.getCommentId();
-            Comment comment = commentRepository.findById(commentId);
-            notification.setComment(comment);
-            if (comment.getComment() == null) {
-                notification.setPost(comment.getPost());
-                notification.setUser(comment.getUser());
+        notification.setContent(form.getContent());
+        if (form.getUserId() != 0) {
+            notification.setUser(userRepository.findById(form.getUserId()));
+            if (form.getPostId() != null) {
+                int potsId = form.getPostId();
+                notification.setPost(postRepository.findById(potsId));
+            }
+        } else {
+            if (form.getPostId() != null) {
+
+                int postId = form.getPostId();
+                Post post = postRepository.findById(postId);
+                notification.setPost(post);
+                if (form.getCommentId() == null) {
+                    notification.setUser(post.getUser());
+                } else {
+                    int commentId = form.getCommentId();
+                    Comment comment = commentRepository.findById(commentId);
+                    notification.setComment(comment);
+                    notification.setUser(comment.getUser());
+                }
             } else {
-                notification.setPost(comment.getComment().getPost());
-                notification.setUser(comment.getComment().getPost().getUser());
+                int commentId = form.getCommentId();
+                Comment comment = commentRepository.findById(commentId);
+                if(comment.getComment()==null){
+                    notification.setPost(comment.getPost());
+                    notification.setUser(comment.getUser());
+                }else {
+                    notification.setPost(comment.getComment().getPost());
+                    notification.setUser(comment.getUser());
+                }
+
             }
         }
         notificationRepository.save(notification);

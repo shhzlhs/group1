@@ -12,6 +12,10 @@
   max-height: 500px;
   overflow-y: auto;
 }
+.TextInput{
+  height: 500px;
+  margin-bottom: 50px;
+}
 .LinkToProfile {
   object-fit: cover;
   background: none;
@@ -21,12 +25,19 @@
   height: 20px;
   object-fit: cover;
 }
-#N{
+#N {
   background-color: gray;
   color: white;
   margin-bottom: 10px;
 }
-#Y{
+#Y {
   background-color: blanchedalmond;
   margin-bottom: 10px;
+}
+#Link {
+  object-fit: cover;
+  background: none;
+}
+#PostContentInput{
+  height: 500px;
 }

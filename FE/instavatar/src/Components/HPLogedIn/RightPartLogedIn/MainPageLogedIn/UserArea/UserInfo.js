@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import "./UserArea.css";
+import { Link } from "react-router-dom";
 function UserInfo(props) {
   let userLogedIn = useSelector((state) => state.userLogedIn);
   let avatar = userLogedIn ? `/imgs/avatars/${userLogedIn.avatar}` : "";
@@ -8,16 +9,21 @@ function UserInfo(props) {
     <div>
       <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
         <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-          <img
-            className="BigAvatar"
-            src={avatar}
-            alt={userLogedIn.username}
-          ></img>
+          <Link to={`/instavatar/logedIn/user/${userLogedIn.username}`}>
+            {" "}
+            <img
+              className="BigAvatar"
+              src={avatar}
+              alt={userLogedIn.username}
+            ></img>
+          </Link>
         </div>
 
         <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
           <div className="row">
-            <b>{userLogedIn.username}</b>
+            <Link to={`/instavatar/logedIn/user/${userLogedIn.username}`}>
+              <b>{userLogedIn.username}</b>
+            </Link>
           </div>
 
           <div className="row">

@@ -11,7 +11,7 @@ public class CreateMessageForm {
 
     private int senderId;
 
-    private int receiverId;
+    private int conversationId;
 
     private String content;
 }

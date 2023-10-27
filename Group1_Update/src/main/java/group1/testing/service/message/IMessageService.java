@@ -7,11 +7,18 @@ import java.util.List;
 
 public interface IMessageService {
 
-void createMessage (CreateMessageForm form);
+    void createMessage(CreateMessageForm form);
 
-List<Message> getMessagesBySenderAndReceiver (int senderId, int receiverId);
+    List<Message> getByConversation(int id);//Hiển thị các tin nhắn theo cuộc trò chuyện;
 
-void deleteBySenderAndReceiver(int senderId, int receiverId);
+    void deleteById(int id);
 
-void deleteById (int id);
+    void updateToReadCompleted(List<Integer> ids);//Sửa tình trạng thành đã xem;
+
+    Message getLastMessageByConversation(int id);//Lấy ra tin nhắn mới nhất theo cuộc trò chuyện;
+
+    int getNumberOfNotReadYetByUserAndConversation(int userId, int conversationId); //Lấy ra số lượng tin nhắn chưa đọc theo cuộc trò chuyện
+
+    void updateToDeleteByUser(int UserId,int messId); //Xoá tin nhắn từ 1 phía.
+
 }

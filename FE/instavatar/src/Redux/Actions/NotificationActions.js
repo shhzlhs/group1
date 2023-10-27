@@ -5,6 +5,7 @@ import {
 import {
   DELETE_NO,
   GET_NO_BY_USER_ID,
+  SET_NO_DEL,
 } from "../ActionType/NotificationActionTypes";
 
 export const getNoByUserIdRedux = (nos) => {
@@ -32,4 +33,7 @@ export const deleteNo = (no) => {
       dispatch(deleteNoRedux(no));
     });
   };
+};
+export const setNoDel = (no) => {
+  return { type: SET_NO_DEL, payload: no };
 };
