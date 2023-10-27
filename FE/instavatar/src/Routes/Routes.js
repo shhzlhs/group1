@@ -15,26 +15,18 @@ export let notLoginRoutes = (
 );
 export let bigRoutes = (
   <Routes>
-    <Route path="/instavatar/welcome" element={<HPNotLogIn />}>
-      {" "}
-    </Route>
-    <Route path="/instavatar/logIn" element={<LogInPage />}>
-      {" "}
-    </Route>
+    <Route path="/instavatar/welcome" element={<HPNotLogIn />}></Route>
+    <Route path="/instavatar/logIn" element={<LogInPage />}></Route>
     <Route path="/instavatar/logedIn/*" element={<HPLogedIn />}></Route>
-    <Route path="/*" element={<HPNotLogIn />}>
-      {" "}
-    </Route>
+    <Route path="/*" element={<HPNotLogIn />}></Route>
   </Routes>
 );
 export let logedInRoutes = (
   <Routes>
-    <Route path="/post/:postId" element={<PostDetail />}>
-      {" "}
-    </Route>
+    <Route path="/post/:postId" element={<PostDetail />}></Route>
     <Route path="/main" element={<MainPageLogedIn />}></Route>
     <Route path="/user/:username" element={<UserProfile />}></Route>
-    {/* <Route path="/instavatar/logedIn/user/items" element={<UserItem />}></Route> */}
+    {/* <Route path="/user/items" element={<UserItem />}></Route> */}
     <Route path="/*" element={<MainPageLogedIn />}></Route>
   </Routes>
 );

@@ -72,14 +72,32 @@ CREATE TABLE `Follows` (
     FOREIGN KEY (following_id) REFERENCES Users(id),
     UNIQUE KEY  (follower_id,following_id)
 );
+
+DROP TABLE IF EXISTS Conversations;
+CREATE TABLE Conversations(
+	id	INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_1_id INT UNSIGNED NOT NULL,
+    user_2_id INT UNSIGNED NOT NULL,
+    is_deleted_1 VARCHAR(1) DEFAULT "N",
+    is_deleted_2 VARCHAR(1) DEFAULT "N",
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY (user_1_id,user_2_id),
+    FOREIGN KEY (user_1_id) REFERENCES Users(id) ,
+    FOREIGN KEY (user_2_id) REFERENCES Users(id) 
+    );
+
+DROP TABLE IF EXISTS Messages;
 CREATE TABLE Messages (
    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-   sender_id INT UNSIGNED,
-   receiver_id INT UNSIGNED,
+   conversation_id INT UNSIGNED NOT NULL,
+   sender_id INT UNSIGNED NOT NULL,
+   is_deleted_1 VARCHAR(1) DEFAULT "N",
+   is_deleted_2 VARCHAR(1) DEFAULT "N",
+   is_read      VARCHAR(1) DEFAULT "N",
    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
    content    VARCHAR(2000),
    FOREIGN KEY (sender_id) REFERENCES Users (id) ON DELETE CASCADE,
-   FOREIGN KEY (receiver_id) REFERENCES Users (id) ON DELETE CASCADE
+   FOREIGN KEY (sender_id) REFERENCES Users (id) ON DELETE CASCADE
   );
 DROP TABLE IF EXISTS Notifications;
 CREATE TABLE Notifications (
@@ -325,5 +343,14 @@ VALUES					 (1		 , "Lê Anh đã bình luận bài viết của bạn",2),
 						 (2		 , "Hạ Đông Xuân đã bình luận bài viết của bạn",3),
 						 (3		 , "Lê Anh đã bình luận bài viết của bạn",2),
 						 (3		 , "Lê Văn Anh đã thích bài viết của bạn",1);
-SET time_zone = '+07:00';               
+INSERT INTO Conversations (user_1_id, user_2_id)
+VALUES	
+						  (1,3),(1,4),(2,1);
+INSERT INTO Messages	  (conversation_id,sender_id,content)
+VALUES				
+						  (1,1,"Alo...Alo..."),
+						  (1,1,"1234...alo...."),
+                          (1,3,"What?"),
+                          (3,2,"Chào bạn!"),
+                          (2,1,"Ê m ơi...");
 
