@@ -36,5 +36,6 @@ export let logedInRoutes = (
     <Route path="/user/:username" element={<UserProfile />}></Route>
     {/* <Route path="/instavatar/logedIn/user/items" element={<UserItem />}></Route> */}
     <Route path="/*" element={<MainPageLogedIn />}></Route>
+    <Route path="/admin"></Route>
   </Routes>
 );
