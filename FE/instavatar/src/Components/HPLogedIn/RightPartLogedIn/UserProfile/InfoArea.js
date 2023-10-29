@@ -14,9 +14,8 @@ import {
 } from "../../../../Redux/Actions/ModalActions";
 import FollowsListModal from "../FollowsListModal";
 import FollowingsListModal from "../FollowingsListModal";
-import { useNavigate } from "react-router-dom";
+import LogOutButton from "../MainPageLogedIn/UserArea/LogOutButton";
 function InfoArea(props) {
-  let navigate = useNavigate();
   let dispatch = useDispatch();
   let userDetail = useSelector((state) => state.userDetail);
   let userLogedIn = useSelector((state) => state.userLogedIn);
@@ -74,15 +73,7 @@ function InfoArea(props) {
           <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
 
           <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <Button
-              onClick={() => {
-                navigate("/instavatar/logIn");
-                dispatch(setUserLogedIn({}));
-              }}
-              color="danger"
-            >
-              Đăng xuất
-            </Button>
+            <LogOutButton />
           </div>
         </div>
       );

@@ -9,7 +9,9 @@
   height: 60px;
   object-fit: cover;
 }
-#NextButton{background: none;}
+#NextButton {
+  background: none;
+}
 #UserText {
   overflow: hidden;
 }

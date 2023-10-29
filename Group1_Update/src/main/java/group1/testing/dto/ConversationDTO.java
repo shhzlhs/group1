@@ -16,9 +16,13 @@ public class ConversationDTO {
 
     private String user1Username;
 
+    private String user1FullName;
+
     private int user2Id;
 
     private String user2Username;
+
+    private String user2FullName;
 
     private String user1Avatar;
 

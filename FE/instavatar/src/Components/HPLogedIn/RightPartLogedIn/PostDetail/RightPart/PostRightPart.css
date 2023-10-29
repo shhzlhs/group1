@@ -28,6 +28,8 @@
 }
 #CommentText {
   text-align: start;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 .likeNumber{
   background: none;
@@ -56,6 +58,8 @@
 .ReplyText{color: Red;}
 #reply{
   text-align: justify;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 #input{
   width: 450px;

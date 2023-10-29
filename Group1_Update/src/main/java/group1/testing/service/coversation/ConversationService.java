@@ -23,6 +23,7 @@ public class ConversationService implements IConversationService {
         List<Conversation> conversations = new ArrayList<>();
         conversations.addAll(conversationRepository.findAllByUser1Id(id));
         conversations.addAll(conversationRepository.findAllByUser2Id(id));
+
         return conversations;
     }
 

@@ -67,3 +67,6 @@ export const getRandomElementsFromArray = (array, n) => {
 
   return shuffled.slice(0, n);
 };
+export const getFirstTenCharacters = (inputString) => {
+  return inputString.substring(0, 10);
+};

@@ -18,6 +18,13 @@ import {
 } from "./ModalReducers";
 import { commentReducer } from "./CommentReducer";
 import { noDelReducer, notificationReducer } from "./NotificationReducer";
+import {
+  conversationDetailReducer,
+  conversationsReducer,
+  hideConversationSearchReducer,
+  inputToSearchUserForWriteNewMessageReducer,
+} from "./ConversationReducer";
+import { lastMessageReducer, messagesReducer } from "./MessageReducer";
 const rootReducer = combineReducers({
   users: userReducer,
   posts: postReducer,
@@ -36,5 +43,12 @@ const rootReducer = combineReducers({
   showDelNo: showDelNoReducer,
   noDel: noDelReducer,
   showCreatePost: showCreatePostReducer,
+  inputToSearchUserForWriteNewMessage:
+    inputToSearchUserForWriteNewMessageReducer,
+  hideConversationSearch: hideConversationSearchReducer,
+  conversations: conversationsReducer,
+  conversationDetail: conversationDetailReducer,
+  lastMessages: lastMessageReducer,
+  messages: messagesReducer,
 });
 export { rootReducer };

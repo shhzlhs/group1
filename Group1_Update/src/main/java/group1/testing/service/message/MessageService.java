@@ -1,5 +1,6 @@
 package group1.testing.service.message;
 
+import group1.testing.entity.Conversation;
 import group1.testing.entity.Message;
 import group1.testing.form.item.CreatingItemForm;
 import group1.testing.form.message.CreateMessageForm;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -61,6 +63,28 @@ public class MessageService implements IMessageService {
         List<Message> messages = messageRepository.findAllByConversationId(id);
         messages.sort((m1, m2) -> m2.getCreatedAt().compareTo(m1.getCreatedAt()));
         return messages.get(0);
+    }
+
+    @Override
+    public int getNumberOfNotReadYetByUser(int userId) {
+        List<Conversation> conversations = new ArrayList<>();
+        List<Conversation> conversation1s = conversationRepository.findAllByUser1Id(userId);
+        List<Conversation> conversation2s = conversationRepository.findAllByUser2Id(userId);
+        conversations.addAll(conversation1s);
+        conversations.addAll(conversation2s);
+        List<Message> messages = new ArrayList<>();
+        conversations.forEach(conversation -> {
+            List<Message> messes = messageRepository.findAllByConversationId(conversation.getId());
+            messages.addAll(messes);
+        });
+        int count = 0;
+        for (Message message : messages) {
+            if (message.getIsRead().equals("N") && message.getSender().getId() != userId) {
+                count++;
+            }
+        }
+
+        return count;
     }
 
     @Override

@@ -8,7 +8,11 @@ function NotificationButton(props) {
   let nos = useSelector((state) => state.notifications);
   let nos1 = nos ? nos.filter((no) => no.isRead === "N") : [];
   let number =
-    nos1 && nos1.length > 0 ? <b className="No">{nos1.length}</b> : null;
+    nos1 && nos1.length > 0 && nos1.length < 100 ? (
+      <b className="No">{nos1.length}</b>
+    ) : nos1 && nos1.length > 99 ? (
+      <b className="No">{`${nos1.length}+`}</b>
+    ) : null;
   return (
     <div id="menu" className="row">
       <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">

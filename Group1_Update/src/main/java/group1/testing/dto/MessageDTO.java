@@ -28,4 +28,6 @@ public class MessageDTO {
     private String del1;
 
     private String del2;
+
+    private int conversationId;
 }

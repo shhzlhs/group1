@@ -17,6 +17,8 @@ public interface IMessageService {
 
     Message getLastMessageByConversation(int id);//Lấy ra tin nhắn mới nhất theo cuộc trò chuyện;
 
+    int getNumberOfNotReadYetByUser(int userId);//Lấy ra tổng số lượng tin nhắn chưa đọc theo User
+
     int getNumberOfNotReadYetByUserAndConversation(int userId, int conversationId); //Lấy ra số lượng tin nhắn chưa đọc theo cuộc trò chuyện
 
     void updateToDeleteByUser(int UserId,int messId); //Xoá tin nhắn từ 1 phía.

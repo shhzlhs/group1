@@ -1,0 +1,77 @@
+.BigMessAvatar {
+  width: 90px;
+  height: 90px;
+  border: red inset 2px;
+  border-radius: 50%;
+}
+#InfoBar {
+  height: 100px;
+  border-bottom: 1px solid black;
+}
+#NoneInfoBar {
+  height: 100px;
+}
+#LeftMessDiv {
+  text-align: left;
+}
+#RightMessDiv {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+#ReceiveMessage {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 5px;
+}
+#SendMessage {
+  margin-bottom: 5px;
+}
+.MessageAvatar {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: black inset 2px;
+}
+#ReceiveContent {
+  border-radius: 5px;
+  background-color: antiquewhite;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+#SendContent {
+  text-align: right;
+  border-radius: 5px;
+  background-color: rgb(55, 91, 236);
+  color: white;
+  word-wrap: break-word;
+  word-break: break-all;
+
+}
+#NoneMess {
+  height: 600px;
+  display: grid;
+  place-items: center;
+}
+.NoneMess {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+#ShowMessage {
+  height: 540px;
+  overflow-y: scroll;
+  padding-top: 20px;
+  
+}
+#GiftButton {
+  object-fit: cover;
+  background: none;
+}
+.GiftIcon {
+  width: 27px;
+  height: 27px;
+  object-fit: cover;
+}

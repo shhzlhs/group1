@@ -1,14 +1,18 @@
 package group1.testing.controller;
 
 import group1.testing.dto.MessageDTO;
+import group1.testing.entity.Conversation;
 import group1.testing.entity.Message;
 import group1.testing.form.message.CreateMessageForm;
+import group1.testing.repository.IConversationRepository;
+import group1.testing.service.coversation.IConversationService;
 import group1.testing.service.message.IMessageService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -21,6 +25,8 @@ public class MessageController {
 
     @Autowired
     IMessageService messageService;
+    @Autowired
+    IConversationService conversationService;
 
     @PostMapping
     public void createMessage(@RequestBody CreateMessageForm form) {
@@ -46,9 +52,15 @@ public class MessageController {
     }
 
     @GetMapping(value = "/last/{id}")
-    public MessageDTO getLastByConversation(@PathVariable int id) {
-        Message message = messageService.getLastMessageByConversation(id);
-        return modelMapper.map(message, MessageDTO.class);
+    public List<MessageDTO> getLastMessagesByUserId(@PathVariable int id) {
+        List<Conversation> conversations = conversationService.getByUserId(id);
+        List<Message> messages = new ArrayList<>();
+        conversations.forEach(conversation -> {
+            messages.add(messageService.getLastMessageByConversation(conversation.getId()));
+        });
+        List<MessageDTO> messageDTOS = modelMapper.map(messages, new TypeToken<List<MessageDTO>>() {
+        }.getType());
+        return messageDTOS;
     }
 
     @GetMapping(value = "/user/{userId}/convers/{conversationId}")
@@ -56,8 +68,13 @@ public class MessageController {
         return messageService.getNumberOfNotReadYetByUserAndConversation(userId, conversationId);
     }
 
-    @PutMapping(value = "/user/{userId}/convers/{conversationId}")
-    public void updateMessageToDel(@PathVariable int userId, @PathVariable int conversationId) {
-        messageService.updateToDeleteByUser(userId, conversationId);
+    @PutMapping(value = "/user/{userId}/message/{messId}")
+    public void updateMessageToDel(@PathVariable int userId, @PathVariable int messId) {
+        messageService.updateToDeleteByUser(userId, messId);
+    }
+
+    @GetMapping(value = "/notRead/user/{userId}")
+    public int getNumberOfNotReadYetByUser(@PathVariable int userId) {
+        return messageService.getNumberOfNotReadYetByUser(userId);
     }
 }

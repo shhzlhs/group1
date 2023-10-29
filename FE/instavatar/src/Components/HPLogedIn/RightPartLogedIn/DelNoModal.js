@@ -1,10 +1,7 @@
 import React from "react";
 import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  closeDelNoModal,
-  showNosModal,
-} from "../../../Redux/Actions/ModalActions";
+import { closeDelNoModal } from "../../../Redux/Actions/ModalActions";
 import { deleteNo, setNoDel } from "../../../Redux/Actions/NotificationActions";
 function DelNoModal(props) {
   let showDelNo = useSelector((state) => state.showDelNo);

@@ -6,6 +6,7 @@ import HPLogedIn from "../Pages/HPLogedIn";
 import MainPageLogedIn from "../Components/HPLogedIn/RightPartLogedIn/MainPageLogedIn";
 import UserProfile from "../Components/HPLogedIn/RightPartLogedIn/UserProfile";
 import PostDetail from "../Components/HPLogedIn/RightPartLogedIn/PostDetail";
+import MessagePage from "../Components/HPLogedIn/RightPartLogedIn/MessagePage";
 
 export let notLoginRoutes = (
   <Routes>
@@ -26,7 +27,7 @@ export let logedInRoutes = (
     <Route path="/post/:postId" element={<PostDetail />}></Route>
     <Route path="/main" element={<MainPageLogedIn />}></Route>
     <Route path="/user/:username" element={<UserProfile />}></Route>
-    {/* <Route path="/user/items" element={<UserItem />}></Route> */}
+    <Route path="/message" element={<MessagePage />}></Route>
     <Route path="/*" element={<MainPageLogedIn />}></Route>
   </Routes>
 );

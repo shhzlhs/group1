@@ -46,4 +46,9 @@ public class ConversationController {
     public void updateToDel(@PathVariable int userId, @PathVariable int conversationId) {
         conversationService.updateToDelByUser(userId, conversationId);
     }
+
+    @DeleteMapping(value = "/{id}")
+    public void delById(@PathVariable int id) {
+        conversationService.deleteConversation(id);
+    }
 }
