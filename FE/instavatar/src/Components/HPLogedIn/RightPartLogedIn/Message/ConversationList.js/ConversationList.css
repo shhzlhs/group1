@@ -28,8 +28,14 @@
   height: 630px;
   overflow-y: auto;
 }
-#EachConversation{
-  margin-bottom: 20px;
+#EachConversation1{
+  margin-bottom: 5px;
+  background-color:antiquewhite;
+  border-radius: 10px;
+}
+#EachConversation2{
+  margin-bottom: 5px;
+  border-radius: 10px;
 }
 #LeftDiv{
   text-align: left;
@@ -37,4 +43,7 @@
 #EachRowButton{
   width: 400px;
   background: none
+}
+.number{
+  color: red;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getConversationsByUserId,
@@ -12,13 +12,21 @@ import {
   parseDateString,
 } from "../../../../../Funtions";
 import { Button } from "reactstrap";
+import {
+  getListNumberOfNotReadMessageByUserAPI,
+  updateToReadCompleteByConversationAndUser,
+} from "../../../../../API/MessageAPI";
 function ConversationsListExists(props) {
   let dispatch = useDispatch();
   let userLogedIn = useSelector((state) => state.userLogedIn);
   let hideSearch = useSelector((state) => state.hideConversationSearch);
+  let [notReads, setNotReads] = useState([]);
   useEffect(() => {
     dispatch(getConversationsByUserId(userLogedIn.id));
     dispatch(getLastMessagesByUser(userLogedIn.id));
+    getListNumberOfNotReadMessageByUserAPI(userLogedIn.id).then((res) => {
+      setNotReads(res);
+    });
   }, [userLogedIn]);
 
   let baseConversations = useSelector((state) => state.conversations);
@@ -28,13 +36,18 @@ function ConversationsListExists(props) {
   let conversations =
     baseConversations &&
     lastMessages &&
+    notReads &&
+    notReads.length > 0 &&
     baseConversations.length > 0 &&
     lastMessages.length > 0
       ? baseConversations.map((element) => {
           let lastMessage = lastMessages.find(
             (lm) => lm.conversationId === element.id
           );
-          return { ...element, lastMessage: lastMessage };
+          let notRead = notReads.find(
+            (not) => not.conversationId === element.id
+          );
+          return { ...element, lastMessage: lastMessage, notRead: notRead };
         })
       : null;
   if (conversations && conversations.length > 1) {
@@ -47,7 +60,11 @@ function ConversationsListExists(props) {
     });
   }
   let viewConversation = (con) => {
-    dispatch(setCoversationDetail(con));
+    updateToReadCompleteByConversationAndUser(con.id, userLogedIn.id).then(
+      () => {
+        dispatch(setCoversationDetail(con));
+      }
+    );
   };
   let items =
     conversations && conversations.length > 0
@@ -68,13 +85,22 @@ function ConversationsListExists(props) {
                 };
 
           let lastMessageContent =
+            conversation.lastMessage &&
             conversation.lastMessage.senderId === userLogedIn.id
               ? `Bạn: ${getFirstTenCharacters(
                   conversation.lastMessage.content
                 )}...`
               : `${getFirstTenCharacters(conversation.lastMessage.content)}...`;
+          let number =
+            conversation.notRead && conversation.notRead.numberOfNotRead > 0
+              ? conversation.notRead.numberOfNotRead
+              : null;
+          let id =
+            conversation.notRead && conversation.notRead.numberOfNotRead > 0
+              ? "EachConversation1"
+              : "EachConversation2";
           return (
-            <div id="EachConversation" key={index} className="row">
+            <div id={id} key={index} className="row">
               <Button
                 onClick={() => {
                   viewConversation(conversation);
@@ -92,7 +118,8 @@ function ConversationsListExists(props) {
 
                   <div className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                     <div id="LeftDiv" className="row">
-                      <b>{user.fullName}</b>
+                      <b>{`${user.fullName} `}</b>
+                      <b className="number">{number}</b>
                     </div>
 
                     <div className="row">

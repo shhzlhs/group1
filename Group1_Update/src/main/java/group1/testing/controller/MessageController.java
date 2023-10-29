@@ -1,6 +1,7 @@
 package group1.testing.controller;
 
 import group1.testing.dto.MessageDTO;
+import group1.testing.dto.NotReadDTO;
 import group1.testing.entity.Conversation;
 import group1.testing.entity.Message;
 import group1.testing.form.message.CreateMessageForm;
@@ -46,9 +47,9 @@ public class MessageController {
         messageService.deleteById(id);
     }
 
-    @PutMapping(value = "/{ids}")
-    public void updateToReadComplete(@PathVariable List<Integer> ids) {
-        messageService.updateToReadCompleted(ids);
+    @PutMapping(value = "/convers/{id}/user/{userId}")
+    public void updateToReadComplete(@PathVariable int id, @PathVariable int userId) {
+        messageService.updateToReadCompletedByConversationAndUserId(id, userId);
     }
 
     @GetMapping(value = "/last/{id}")
@@ -63,9 +64,9 @@ public class MessageController {
         return messageDTOS;
     }
 
-    @GetMapping(value = "/user/{userId}/convers/{conversationId}")
-    public int getNumberOfNotReadYetByUserAndConversation(@PathVariable int userId, @PathVariable int conversationId) {
-        return messageService.getNumberOfNotReadYetByUserAndConversation(userId, conversationId);
+    @GetMapping(value = "/notReadList/user/{userId}")
+    public List<NotReadDTO> getListNumberOfNotReadByUser(@PathVariable int userId) {
+        return messageService.getListNumberOfNotReadYetByUser(userId);
     }
 
     @PutMapping(value = "/user/{userId}/message/{messId}")

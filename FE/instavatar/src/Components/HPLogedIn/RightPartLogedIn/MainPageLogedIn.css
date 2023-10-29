@@ -26,12 +26,11 @@
   object-fit: cover;
 }
 #N {
-  background-color: gray;
-  color: white;
+  background-color:antiquewhite;
   margin-bottom: 10px;
 }
 #Y {
-  background-color: blanchedalmond;
+  
   margin-bottom: 10px;
 }
 #Link {

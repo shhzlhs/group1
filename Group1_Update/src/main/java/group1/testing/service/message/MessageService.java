@@ -1,5 +1,6 @@
 package group1.testing.service.message;
 
+import group1.testing.dto.NotReadDTO;
 import group1.testing.entity.Conversation;
 import group1.testing.entity.Message;
 import group1.testing.form.item.CreatingItemForm;
@@ -50,10 +51,12 @@ public class MessageService implements IMessageService {
     }
 
     @Override
-    public void updateToReadCompleted(List<Integer> ids) {
-        List<Message> messages = messageRepository.findAllById(ids);
+    public void updateToReadCompletedByConversationAndUserId(int conId,int userId) {
+        List<Message> messages = messageRepository.findAllByConversationId(conId);
         messages.forEach(message -> {
-            message.setIsRead("Y");
+            if (message.getSender().getId()!=userId){
+                message.setIsRead("Y");
+            }
         });
         messageRepository.saveAll(messages);
     }
@@ -88,18 +91,29 @@ public class MessageService implements IMessageService {
     }
 
     @Override
-    public int getNumberOfNotReadYetByUserAndConversation(int userId, int conversationId) {
-        List<Message> messages = messageRepository.findAllByConversationId(conversationId);
-
-        int count = 0;
-
-        for (Message message : messages) {
-            if (message.getIsRead().equals("N") && message.getSender().getId() != userId) {
-                count++;
+    public List<NotReadDTO> getListNumberOfNotReadYetByUser(int userId) {
+        List<Conversation> conversations = new ArrayList<>();
+        List<Conversation> conversation1s = conversationRepository.findAllByUser1Id(userId);
+        List<Conversation> conversation2s = conversationRepository.findAllByUser2Id(userId);
+        conversations.addAll(conversation1s);
+        conversations.addAll(conversation2s);
+        List<NotReadDTO> notReadDTOS = new ArrayList<>();
+        conversations.forEach(conversation -> {
+            List<Message> messages = messageRepository.findAllByConversationId(conversation.getId());
+            int count = 0;
+            for (Message message : messages) {
+                if (message.getIsRead().equals("N") && message.getSender().getId() != userId) {
+                    count++;
+                }
             }
-        }
+            NotReadDTO notReadDTO = new NotReadDTO();
+            notReadDTO.setConversationId(conversation.getId());
+            notReadDTO.setNumberOfNotRead(count);
+            notReadDTOS.add(notReadDTO);
+        });
 
-        return count;
+
+        return notReadDTOS;
 
     }
 
