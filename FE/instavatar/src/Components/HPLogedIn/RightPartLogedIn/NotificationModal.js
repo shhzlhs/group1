@@ -34,7 +34,12 @@ function NotificationModal(props) {
 
   const items = () => {
     if (!notifications || notifications.length === 0) {
-      return "Chưa có thông báo nào";
+      return (
+        <div className="row">
+          <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5"></div>Chưa có
+          thông báo nào
+        </div>
+      );
     }
     return notifications.map((notification, index) => {
       let del =

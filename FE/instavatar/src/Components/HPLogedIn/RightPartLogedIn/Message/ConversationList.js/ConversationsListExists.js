@@ -1,55 +1,74 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getConversationsByUserId,
+  getListNumberOfNotReadYetMessagePerConversationByUser,
   setCoversationDetail,
 } from "../../../../../Redux/Actions/ConversationAction";
 import "./ConversationList.css";
-import { getLastMessagesByUser } from "../../../../../Redux/Actions/MessageActions";
+import {
+  getLastMessagesByUser,
+  getNumberOfNotReadYetMessage,
+} from "../../../../../Redux/Actions/MessageActions";
 import {
   formatRelativeTime,
   getFirstTenCharacters,
   parseDateString,
 } from "../../../../../Funtions";
 import { Button } from "reactstrap";
-import {
-  getListNumberOfNotReadMessageByUserAPI,
-  updateToReadCompleteByConversationAndUser,
-} from "../../../../../API/MessageAPI";
+import { updateToReadCompleteByConversationAndUserAPI } from "../../../../../API/MessageAPI";
 function ConversationsListExists(props) {
   let dispatch = useDispatch();
   let userLogedIn = useSelector((state) => state.userLogedIn);
   let hideSearch = useSelector((state) => state.hideConversationSearch);
-  let [notReads, setNotReads] = useState([]);
+
   useEffect(() => {
-    dispatch(getConversationsByUserId(userLogedIn.id));
-    dispatch(getLastMessagesByUser(userLogedIn.id));
-    getListNumberOfNotReadMessageByUserAPI(userLogedIn.id).then((res) => {
-      setNotReads(res);
-    });
-  }, [userLogedIn]);
+    if (userLogedIn) {
+      dispatch(getConversationsByUserId(userLogedIn.id));
+
+      dispatch(getLastMessagesByUser(userLogedIn.id));
+      dispatch(
+        getListNumberOfNotReadYetMessagePerConversationByUser(userLogedIn.id)
+      );
+    }
+  }, []);
 
   let baseConversations = useSelector((state) => state.conversations);
+  const baseConversation1s =
+    baseConversations && baseConversations.length > 0
+      ? baseConversations.filter((conversation) => {
+          if (conversation.user1Username === userLogedIn.username) {
+            return conversation.del1 !== "Y";
+          } else if (conversation.user2Username === userLogedIn.username) {
+            return conversation.del2 !== "Y";
+          }
+          return false;
+        })
+      : null;
 
   let lastMessages = useSelector((state) => state.lastMessages);
 
+  let notReads = useSelector((state) => state.listOfNotReads);
+
   let conversations =
-    baseConversations &&
+    baseConversation1s &&
     lastMessages &&
     notReads &&
     notReads.length > 0 &&
-    baseConversations.length > 0 &&
+    baseConversation1s.length > 0 &&
     lastMessages.length > 0
-      ? baseConversations.map((element) => {
+      ? baseConversation1s.map((element) => {
+          let notRead = notReads.find(
+            (notRead) => notRead.conversationId === element.id
+          );
           let lastMessage = lastMessages.find(
             (lm) => lm.conversationId === element.id
           );
-          let notRead = notReads.find(
-            (not) => not.conversationId === element.id
-          );
+
           return { ...element, lastMessage: lastMessage, notRead: notRead };
         })
       : null;
+
   if (conversations && conversations.length > 1) {
     conversations.sort((conA, conB) => {
       if (conA.lastMessage && conB.lastMessage) {
@@ -57,14 +76,27 @@ function ConversationsListExists(props) {
         const dateB = parseDateString(conB.lastMessage.createdAt);
         return dateB - dateA;
       }
+      return 0;
     });
   }
   let viewConversation = (con) => {
-    updateToReadCompleteByConversationAndUser(con.id, userLogedIn.id).then(
-      () => {
-        dispatch(setCoversationDetail(con));
-      }
-    );
+    if (con.notRead && con.notRead.numberOfNotRead > 0) {
+      updateToReadCompleteByConversationAndUserAPI(con.id, userLogedIn.id).then(
+        () => {
+          dispatch(getLastMessagesByUser(userLogedIn.id));
+          dispatch(
+            getListNumberOfNotReadYetMessagePerConversationByUser(
+              userLogedIn.id
+            )
+          );
+          dispatch(getNumberOfNotReadYetMessage(userLogedIn.id));
+
+          dispatch(setCoversationDetail(con));
+        }
+      );
+    } else {
+      dispatch(setCoversationDetail(con));
+    }
   };
   let items =
     conversations && conversations.length > 0
@@ -86,14 +118,25 @@ function ConversationsListExists(props) {
 
           let lastMessageContent =
             conversation.lastMessage &&
+            conversation.lastMessage.content &&
             conversation.lastMessage.senderId === userLogedIn.id
               ? `Bạn: ${getFirstTenCharacters(
                   conversation.lastMessage.content
                 )}...`
-              : `${getFirstTenCharacters(conversation.lastMessage.content)}...`;
+              : conversation.lastMessage &&
+                conversation.lastMessage.content &&
+                conversation.lastMessage.senderId !== userLogedIn.id
+              ? `${getFirstTenCharacters(conversation.lastMessage.content)}...`
+              : null;
           let number =
             conversation.notRead && conversation.notRead.numberOfNotRead > 0
               ? conversation.notRead.numberOfNotRead
+              : null;
+          let timestamp =
+            conversation.lastMessage && conversation.lastMessage.createdAt
+              ? formatRelativeTime(
+                  parseDateString(conversation.lastMessage.createdAt)
+                )
               : null;
           let id =
             conversation.notRead && conversation.notRead.numberOfNotRead > 0
@@ -133,11 +176,7 @@ function ConversationsListExists(props) {
                         id="LeftDiv"
                         className="col-xs-4 col-sm-4 col-md-4 col-lg-4"
                       >
-                        <small>
-                          {formatRelativeTime(
-                            parseDateString(conversation.lastMessage.createdAt)
-                          )}
-                        </small>
+                        <small>{timestamp}</small>
                       </div>
                     </div>
                   </div>

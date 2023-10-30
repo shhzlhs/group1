@@ -51,10 +51,10 @@ public class MessageService implements IMessageService {
     }
 
     @Override
-    public void updateToReadCompletedByConversationAndUserId(int conId,int userId) {
+    public void updateToReadCompletedByConversationAndUserId(int conId, int userId) {
         List<Message> messages = messageRepository.findAllByConversationId(conId);
         messages.forEach(message -> {
-            if (message.getSender().getId()!=userId){
+            if (message.getSender().getId() != userId) {
                 message.setIsRead("Y");
             }
         });
@@ -65,7 +65,17 @@ public class MessageService implements IMessageService {
     public Message getLastMessageByConversation(int id) {
         List<Message> messages = messageRepository.findAllByConversationId(id);
         messages.sort((m1, m2) -> m2.getCreatedAt().compareTo(m1.getCreatedAt()));
-        return messages.get(0);
+        if (messages.size() > 0) {
+            return messages.get(0);
+        } else {
+            Message message1 = new Message();
+            message1.setConversation(conversationRepository.findById(id));
+            message1.setContent("Chưa có tin nhắn nào");
+            message1.setCreatedAt(conversationRepository.findById(id).getCreatedAt());
+            message1.setIsRead("Y");
+            message1.setSender(conversationRepository.findById(id).getUser1());
+            return message1;
+        }
     }
 
     @Override
@@ -82,11 +92,18 @@ public class MessageService implements IMessageService {
         });
         int count = 0;
         for (Message message : messages) {
-            if (message.getIsRead().equals("N") && message.getSender().getId() != userId) {
-                count++;
+            if (message.getConversation().getUser1().getId() == userId) {
+                if (message.getIsRead().equals("N") && message.getDel1().equals("N") && message.getConversation().getDel1().equals("N") && message.getSender().getId() != userId) {
+                    count++;
+                }
+            } else {
+                if (message.getIsRead().equals("N") && message.getDel2().equals("N") && message.getConversation().getDel2().equals("N") && message.getSender().getId() != userId) {
+                    count++;
+                }
             }
-        }
 
+
+        }
         return count;
     }
 
@@ -102,8 +119,14 @@ public class MessageService implements IMessageService {
             List<Message> messages = messageRepository.findAllByConversationId(conversation.getId());
             int count = 0;
             for (Message message : messages) {
-                if (message.getIsRead().equals("N") && message.getSender().getId() != userId) {
-                    count++;
+                if (message.getConversation().getUser1().getId() == userId) {
+                    if (message.getIsRead().equals("N") && message.getSender().getId() != userId && message.getDel1().equals("N") && message.getConversation().getDel1().equals("N")) {
+                        count++;
+                    }
+                } else {
+                    if (message.getIsRead().equals("N") && message.getSender().getId() != userId && message.getDel2().equals("N") && message.getConversation().getDel2().equals("N")) {
+                        count++;
+                    }
                 }
             }
             NotReadDTO notReadDTO = new NotReadDTO();
@@ -126,5 +149,18 @@ public class MessageService implements IMessageService {
             message.setDel2("Y");
         }
         messageRepository.save(message);
+    }
+
+    @Override
+    public void updateAllToDellByUserAndConversation(int userId, int conversationId) {
+        List<Message> messages = messageRepository.findAllByConversationId(conversationId);
+        messages.forEach(message -> {
+            if (message.getConversation().getUser1().getId() == userId) {
+                message.setDel1("Y");
+            } else {
+                message.setDel2("Y");
+            }
+        });
+        messageRepository.saveAll(messages);
     }
 }

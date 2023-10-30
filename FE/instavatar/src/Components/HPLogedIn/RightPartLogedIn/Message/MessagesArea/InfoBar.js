@@ -1,10 +1,14 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "./MessagesArea.css";
 import { formatRelativeTime, parseDateString } from "../../../../../Funtions";
 import { Button } from "reactstrap";
+import { Link } from "react-router-dom";
+import { setConversationToDel } from "../../../../../Redux/Actions/ConversationAction";
+import { showDelConModal } from "../../../../../Redux/Actions/ModalActions";
 
 function InfoBar(props) {
+  let dispatch = useDispatch();
   const conversationDetail = useSelector((state) => state.conversationDetail);
   const userLogedIn = useSelector((state) => state.userLogedIn);
 
@@ -32,7 +36,10 @@ function InfoBar(props) {
 
     return otherUser;
   };
-
+  let onClickDelConversation = () => {
+    dispatch(setConversationToDel(conversationDetail));
+    dispatch(showDelConModal());
+  };
   const user = getUser();
   let history =
     conversationDetail &&
@@ -53,17 +60,21 @@ function InfoBar(props) {
   let items = user ? (
     <div>
       <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-        <img
-          className="BigMessAvatar"
-          alt={user.username}
-          src={user.avatar}
-        ></img>
+        <Link to={`/instavatar/logedIn/user/${user.username}`}>
+          <img
+            className="BigMessAvatar"
+            alt={user.username}
+            src={user.avatar}
+          ></img>
+        </Link>
       </div>
 
       <div className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
         <div className="row">
           <div id="LeftMessDiv" className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-            <h2>{user.fullName}</h2>
+            <Link to={`/instavatar/logedIn/user/${user.username}`}>
+              <h2>{user.fullName}</h2>
+            </Link>
           </div>
 
           <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1">
@@ -77,7 +88,9 @@ function InfoBar(props) {
           </div>
 
           <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-            <Button color="danger">Xoá cuộc trò chuyện</Button>
+            <Button onClick={onClickDelConversation} color="danger">
+              Xoá cuộc trò chuyện
+            </Button>
           </div>
         </div>
         <div id="LeftMessDiv" className="row">

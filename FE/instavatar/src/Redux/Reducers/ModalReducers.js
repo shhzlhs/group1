@@ -1,6 +1,8 @@
 import {
   CLOSE_COMMENT_LIKES_MODAL,
   CLOSE_CREATE_POST_MODAL,
+  CLOSE_DEL_CON_CONFIRM_MODAL,
+  CLOSE_DEL_CON_MODAL,
   CLOSE_DEL_NO,
   CLOSE_FOLLOWINGS_LIST_MODAL,
   CLOSE_FOLLOWS_LIST_MODAL,
@@ -9,6 +11,8 @@ import {
   CLOSE_REPLIES,
   SHOW_COMMENT_LIKES_MODAL,
   SHOW_CREATE_POST_MODAL,
+  SHOW_DEL_CON_CONFIRM_MODAL,
+  SHOW_DEL_CON_MODAL,
   SHOW_DEL_NO,
   SHOW_FOLLOWINGS_LIST_MODAL,
   SHOW_FOLLOWS_LIST_MODAL,
@@ -98,6 +102,26 @@ const showCreatePostReducer = (state = false, action) => {
       return state;
   }
 };
+const showDelConReducer = (state = false, action) => {
+  switch (action.type) {
+    case SHOW_DEL_CON_MODAL:
+      return true;
+    case CLOSE_DEL_CON_MODAL:
+      return false;
+    default:
+      return state;
+  }
+};
+const showDelConConfirmReducer = (state = false, action) => {
+  switch (action.type) {
+    case SHOW_DEL_CON_CONFIRM_MODAL:
+      return true;
+    case CLOSE_DEL_CON_CONFIRM_MODAL:
+      return false;
+    default:
+      return state;
+  }
+};
 export {
   showFollowingsListModalReducer,
   showFollowsListModalReducer,
@@ -107,4 +131,6 @@ export {
   showNosReducer,
   showDelNoReducer,
   showCreatePostReducer,
+  showDelConConfirmReducer,
+  showDelConReducer,
 };

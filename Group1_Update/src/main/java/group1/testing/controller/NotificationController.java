@@ -33,12 +33,13 @@ public class NotificationController {
         notificationService.createNotification(form);
     }
 
-    @PutMapping(value = "/{id}")
+    @PutMapping(value = "/{id}") //Sửa tình trạng thông báo thành đã đọc
     public void updateNotificationToReadCompleted(@PathVariable int id) {
         notificationService.setNotificationToReadCompleted(id);
     }
+
     @DeleteMapping(value = "/{id}")
-    public void deleteById(@PathVariable int id){
+    public void deleteById(@PathVariable int id) {
         notificationService.deleteById(id);
     }
 }

@@ -6,6 +6,8 @@ import group1.testing.form.post.CreatePostForm;
 import group1.testing.form.post.EditPostForm;
 import group1.testing.form.user.CreateUserForm;
 import group1.testing.repository.IPostRepository;
+import group1.testing.repository.IUserRepository;
+import group1.testing.service.user.IUserService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 import org.modelmapper.TypeMap;
@@ -25,6 +27,8 @@ public class PostService implements IPostService {
     ModelMapper modelMapper;
     @Autowired
     IPostRepository postRepository;
+    @Autowired
+    IUserRepository userRepository;
 
     @Override
     public List<Post> getAllPost() {
@@ -38,16 +42,10 @@ public class PostService implements IPostService {
 
     @Override
     public void createPost(CreatePostForm form) {
-        TypeMap<CreatePostForm, Post> typeMap = modelMapper.getTypeMap(CreatePostForm.class, Post.class);
-        if (typeMap == null) {
-            modelMapper.addMappings(new PropertyMap<CreateUserForm, User>() {
-                @Override
-                protected void configure() {
-                    skip(destination.getId());
-                }
-            });
-        }
-        Post post = modelMapper.map(form, Post.class);
+        Post post = new Post();
+        post.setContent(form.getContent());
+        post.setImage(form.getImage());
+        post.setUser(userRepository.findById(form.getUserId()));
         postRepository.save(post);
     }
 
@@ -72,9 +70,9 @@ public class PostService implements IPostService {
     @Override
     public List<Post> getByFollowings(List<String> usernames) {
         List<Post> posts = new ArrayList<>();
-        usernames.forEach(username->{
-          List<Post> posts1 = postRepository.findAllByUserUsername(username);
-          posts.addAll(posts1);
+        usernames.forEach(username -> {
+            List<Post> posts1 = postRepository.findAllByUserUsername(username);
+            posts.addAll(posts1);
         });
         return posts;
     }

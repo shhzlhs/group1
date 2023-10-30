@@ -34,7 +34,7 @@ public class MessageController {
         messageService.createMessage(form);
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/{id}") //Hiển thị danh sách tin nhắn theo cuộc hội thoại
     public List<MessageDTO> getByConversation(@PathVariable int id) {
         List<Message> messages = messageService.getByConversation(id);
         List<MessageDTO> messageDTOS = modelMapper.map(messages, new TypeToken<List<MessageDTO>>() {
@@ -42,17 +42,17 @@ public class MessageController {
         return messageDTOS;
     }
 
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "/{id}")//Xoá vĩnh viễn tin nhắn
     public void deleteById(@PathVariable int id) {
         messageService.deleteById(id);
     }
 
-    @PutMapping(value = "/convers/{id}/user/{userId}")
+    @PutMapping(value = "/convers/{id}/user/{userId}")//Sửa tình trạng tin nhắn thành đã xem
     public void updateToReadComplete(@PathVariable int id, @PathVariable int userId) {
         messageService.updateToReadCompletedByConversationAndUserId(id, userId);
     }
 
-    @GetMapping(value = "/last/{id}")
+    @GetMapping(value = "/last/{id}")//Lấy ra danh sách các tin nhắn mới nhất theo danh sách cuộc hội thoại của user
     public List<MessageDTO> getLastMessagesByUserId(@PathVariable int id) {
         List<Conversation> conversations = conversationService.getByUserId(id);
         List<Message> messages = new ArrayList<>();
@@ -65,16 +65,23 @@ public class MessageController {
     }
 
     @GetMapping(value = "/notReadList/user/{userId}")
+    //Lấy ra số lượng tin nhắn chưa đọc tương ứng với các cuộc hội thoại của user
     public List<NotReadDTO> getListNumberOfNotReadByUser(@PathVariable int userId) {
         return messageService.getListNumberOfNotReadYetByUser(userId);
     }
 
-    @PutMapping(value = "/user/{userId}/message/{messId}")
+    @PutMapping(value = "/user/{userId}/message/{messId}")//Xoá 1 tin nhắn từ 1 phía
     public void updateMessageToDel(@PathVariable int userId, @PathVariable int messId) {
         messageService.updateToDeleteByUser(userId, messId);
     }
 
-    @GetMapping(value = "/notRead/user/{userId}")
+    @PutMapping(value = "/delAll/user/{userId}/convers/{conversationId}")
+    //Xoá toàn bộ tin nhắn trong 1 cuộc hội thoại từ 1 phía
+    public void delAllByUserAndConversationId(@PathVariable int userId, @PathVariable int conversationId) {
+        messageService.updateAllToDellByUserAndConversation(userId, conversationId);
+    }
+
+    @GetMapping(value = "/notRead/user/{userId}") //Lấy ra tổng số lượng tin nhắn chưa đọc của user
     public int getNumberOfNotReadYetByUser(@PathVariable int userId) {
         return messageService.getNumberOfNotReadYetByUser(userId);
     }

@@ -7,6 +7,10 @@ const getUserByUsernameAPI = (username) => {
   const url = `users/username=${username}`;
   return api("GET", url, null);
 };
+const getUserByEmailAPI = (email) => {
+  const url = `users/email=${email}`;
+  return api("GET", url, null);
+};
 const getUserIdAPI = (id) => {
   const url = `users/${id}`;
   return api("GET", url, null);
@@ -30,4 +34,5 @@ export {
   editUserAPI,
   deleteUsersAPI,
   getUserIdAPI,
+  getUserByEmailAPI,
 };

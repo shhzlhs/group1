@@ -9,6 +9,8 @@ import { postReducer, potsDetailReducer } from "./PostReducer";
 import {
   showCommentLikesModalReducer,
   showCreatePostReducer,
+  showDelConConfirmReducer,
+  showDelConReducer,
   showDelNoReducer,
   showFollowingsListModalReducer,
   showFollowsListModalReducer,
@@ -20,11 +22,17 @@ import { commentReducer } from "./CommentReducer";
 import { noDelReducer, notificationReducer } from "./NotificationReducer";
 import {
   conversationDetailReducer,
+  conversationToDelReducer,
   conversationsReducer,
   hideConversationSearchReducer,
   inputToSearchUserForWriteNewMessageReducer,
+  listNumberOfNotReadMessagesReducer,
 } from "./ConversationReducer";
-import { lastMessageReducer, messagesReducer } from "./MessageReducer";
+import {
+  lastMessageReducer,
+  messagesReducer,
+  numberOfNotReadReducer,
+} from "./MessageReducer";
 const rootReducer = combineReducers({
   users: userReducer,
   posts: postReducer,
@@ -50,5 +58,10 @@ const rootReducer = combineReducers({
   conversationDetail: conversationDetailReducer,
   lastMessages: lastMessageReducer,
   messages: messagesReducer,
+  numberOfNotRead: numberOfNotReadReducer,
+  listOfNotReads: listNumberOfNotReadMessagesReducer,
+  conversationToDel: conversationToDelReducer,
+  showDelCon: showDelConReducer,
+  showDelConConfirm: showDelConConfirmReducer,
 });
 export { rootReducer };

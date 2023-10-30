@@ -16,4 +16,6 @@ public interface IConversationService {
     void createConversation(CreateConversationForm form);
 
     void updateToDelByUser(int userId, int conversationId);//Xoá hội thoại từ 1 phía
+
+    void recoverByUserAndConversationId(int userId,int conversationId); //Tạo mới cuộc hội thoại mà trước đấy đã xoá;
 }

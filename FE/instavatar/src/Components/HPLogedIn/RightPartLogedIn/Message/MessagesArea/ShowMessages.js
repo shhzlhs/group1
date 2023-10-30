@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getMessagesByConversation } from "../../../../../Redux/Actions/MessageActions";
+import {
+  getLastMessagesByUser,
+  getMessagesByConversation,
+} from "../../../../../Redux/Actions/MessageActions";
 import CreateConversationButton from "../ConversationList.js/CreateConversationButton";
-import { formatRelativeTime, parseDateString } from "../../../../../Funtions";
 import "./MessagesArea.css";
 import None from "./None";
 import { Button, Input } from "reactstrap";
 import { createMessageAPI } from "../../../../../API/MessageAPI";
+import { formatRelativeTime, parseDateString } from "../../../../../Funtions";
 function ShowMessages(props) {
   let dispatch = useDispatch();
   let conversation = useSelector((state) => state.conversationDetail);
@@ -16,23 +19,38 @@ function ShowMessages(props) {
       dispatch(getMessagesByConversation(conversation.id));
     }
   }, [conversation]);
-  let messages = useSelector((state) => state.messages);
+  let baseMessages = useSelector((state) => state.messages);
+
+  let messages =
+    baseMessages && baseMessages.length > 0
+      ? baseMessages.filter((mess) => {
+          if (mess.conversationUser1Username === userLogedIn.username) {
+            return mess.del1 !== "Y";
+          } else if (mess.conversationUser2Username === userLogedIn.username) {
+            return mess.del2 !== "Y";
+          }
+          return false;
+        })
+      : null;
+
   if (messages && messages.length > 1) {
     messages.sort((messA, messB) => {
       const dateA = parseDateString(messA.createdAt);
       const dateB = parseDateString(messB.createdAt);
-      return dateB - dateA;
+      return dateA - dateB;
     });
   }
   let [input, setInput] = useState("");
   let sendMessage = () => {
-    if (input.trim() !== "") {
+    if (input.trim() !== "" && Object.keys(conversation).length !== 0) {
       createMessageAPI({
         senderId: userLogedIn.id,
         conversationId: conversation.id,
         content: input,
       }).then(() => {
         dispatch(getMessagesByConversation(conversation.id));
+        dispatch(getLastMessagesByUser(userLogedIn.id));
+        setInput("");
       });
     }
   };
@@ -60,7 +78,14 @@ function ShowMessages(props) {
                     src={`/imgs/avatars/${message.senderAvatar}`}
                   ></img>
                 </div>
-                <div id="ReceiveContent">{message.content}</div>
+                <div id="ReceiveContent">{message.content}</div>{" "}
+                <div>
+                  <small>
+                    <i>
+                      {formatRelativeTime(parseDateString(message.createdAt))}
+                    </i>
+                  </small>
+                </div>
               </div>
             ) : (
               <div id="SendMessage" className="row">
@@ -70,6 +95,13 @@ function ShowMessages(props) {
                   id="RightMessDiv"
                   className="col-xs-8 col-sm-8 col-md-8 col-lg-8"
                 >
+                  <div>
+                    <small>
+                      <i>
+                        {formatRelativeTime(parseDateString(message.createdAt))}
+                      </i>
+                    </small>
+                  </div>{" "}
                   <div id="SendContent">{message.content}</div>
                 </div>
               </div>

@@ -22,7 +22,7 @@ public class ConversationController {
     @Autowired
     ModelMapper modelMapper;
 
-    @GetMapping(value = "/user/{id}")
+    @GetMapping(value = "/user/{id}") //Hiển thị danh sách hội thoại theo User
     public List<ConversationDTO> getAllByUser(@PathVariable int id) {
         List<Conversation> conversations = conversationService.getByUserId(id);
         List<ConversationDTO> conversationDTOS = modelMapper.map(conversations, new TypeToken<List<ConversationDTO>>() {
@@ -31,23 +31,28 @@ public class ConversationController {
         return conversationDTOS;
     }
 
-    @GetMapping(value = "/users/{id1}/{id2}")
+    @GetMapping(value = "/users/{id1}/{id2}")//Tìm cuộc hội thoại giữa 2 người
     public ConversationDTO getByUserId(@PathVariable int id1, @PathVariable int id2) {
         Conversation conversation = conversationService.getByUser1AndUser2(id1, id2);
         return modelMapper.map(conversation, ConversationDTO.class);
     }
 
-    @PostMapping
+    @PostMapping //Tạo cuộc hội thoại mới
     public void createConversation(@RequestBody CreateConversationForm form) {
         conversationService.createConversation(form);
     }
 
-    @PutMapping(value = "/user/{userId}/convers/{conversationId}")
+    @PutMapping(value = "/user/{userId}/convers/{conversationId}")//Xoá cuộc hội thoại từ 1 phía
     public void updateToDel(@PathVariable int userId, @PathVariable int conversationId) {
         conversationService.updateToDelByUser(userId, conversationId);
     }
 
-    @DeleteMapping(value = "/{id}")
+    @PutMapping(value = "/recover/user/{userId}/convers/{conversationId}")//Tạo mới cuộc hội thoại đã xoá từ 1 phía (không khôi phục tin nhắn cũ)
+    public void recoverConversationByUser(@PathVariable int userId, @PathVariable int conversationId) {
+        conversationService.recoverByUserAndConversationId(userId, conversationId);
+    }
+
+    @DeleteMapping(value = "/{id}")//Xoá vĩnh viễn cuộc hội thoại
     public void delById(@PathVariable int id) {
         conversationService.deleteConversation(id);
     }

@@ -7,7 +7,7 @@ import group1.testing.form.user.UserFilterForm;
 
 import java.util.List;
 
-public interface IUserService  {
+public interface IUserService {
     List<User> getAllUsers(UserFilterForm form);
 
     //create
@@ -22,4 +22,6 @@ public interface IUserService  {
     User getUserById(int id);
 
     User getUserByUsername(String username);
+
+    User getUserByEmail(String email);
 }

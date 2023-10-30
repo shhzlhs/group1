@@ -7,6 +7,7 @@ import MainPageLogedIn from "../Components/HPLogedIn/RightPartLogedIn/MainPageLo
 import UserProfile from "../Components/HPLogedIn/RightPartLogedIn/UserProfile";
 import PostDetail from "../Components/HPLogedIn/RightPartLogedIn/PostDetail";
 import MessagePage from "../Components/HPLogedIn/RightPartLogedIn/MessagePage";
+import RegisterPage from "../Pages/RegisterPage";
 
 export let notLoginRoutes = (
   <Routes>
@@ -18,6 +19,7 @@ export let bigRoutes = (
   <Routes>
     <Route path="/instavatar/welcome" element={<HPNotLogIn />}></Route>
     <Route path="/instavatar/logIn" element={<LogInPage />}></Route>
+    <Route path="/instavatar/register" element={<RegisterPage />}></Route>
     <Route path="/instavatar/logedIn/*" element={<HPLogedIn />}></Route>
     <Route path="/*" element={<HPNotLogIn />}></Route>
   </Routes>

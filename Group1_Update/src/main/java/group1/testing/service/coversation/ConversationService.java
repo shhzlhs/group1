@@ -64,4 +64,15 @@ public class ConversationService implements IConversationService {
 
         conversationRepository.save(conversation);
     }
+
+    @Override
+    public void recoverByUserAndConversationId(int userId, int conversationId) {
+        Conversation conversation = conversationRepository.findById(conversationId);
+        if (conversation.getUser1().getId() == userId) {
+            conversation.setDel1("N");
+        } else {
+            conversation.setDel2("N");
+        }
+    }
+
 }

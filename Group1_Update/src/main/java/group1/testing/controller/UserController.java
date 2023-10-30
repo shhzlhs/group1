@@ -58,4 +58,10 @@ public class UserController {
         User user = userService.getUserByUsername(username);
         return modelMapper.map(user, UserDTO.class);
     }
+
+    @GetMapping(value = "/email={email}")
+    public UserDTO getUserByEmail(@PathVariable String email) {
+        User user = userService.getUserByEmail(email);
+        return modelMapper.map(user, UserDTO.class);
+    }
 }

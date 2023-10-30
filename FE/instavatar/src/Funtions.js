@@ -32,7 +32,6 @@ export const parseDateString = (dateString) => {
   const [hour, minute, second] = timePart.split(":").map(Number);
 
   const parsedDate = new Date(year, month - 1, day, hour, minute, second);
-  // parsedDate.setHours(parsedDate.getHours() + 7);
 
   return parsedDate;
 };

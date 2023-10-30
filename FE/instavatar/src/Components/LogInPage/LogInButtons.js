@@ -1,9 +1,9 @@
 import React from "react";
 import { Button } from "reactstrap";
-
+import { useNavigate } from "react-router-dom";
 function LogInButtons(props) {
   let { password, username, login } = props;
-
+  let navigate = useNavigate();
   return (
     <div>
       <div className="row">
@@ -16,7 +16,14 @@ function LogInButtons(props) {
       </div>
 
       <div className="row">
-        <Button color="success">Đăng ký</Button>
+        <Button
+          onClick={() => {
+            navigate("/instavatar/register");
+          }}
+          color="success"
+        >
+          Đăng ký
+        </Button>
 
         <Button
           className="LogInButton"
