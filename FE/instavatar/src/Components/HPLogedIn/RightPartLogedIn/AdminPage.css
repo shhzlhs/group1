@@ -1,0 +1,28 @@
+.Admin{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.AdminPage{
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 20%;
+    padding-left: 17%;
+}
+#MenuButton{
+    display: flex;
+    flex-direction: column;
+}
+.AdminIcon{
+    height: 100px;
+    width: 100%;
+
+}
+.AdminIconParent{
+    height: 100%;
+    width: 100%;
+}
+.title{
+    padding-top: 30%;
+
+}
