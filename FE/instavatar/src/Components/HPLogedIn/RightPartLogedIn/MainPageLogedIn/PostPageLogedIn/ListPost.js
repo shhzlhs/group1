@@ -14,6 +14,8 @@ import { getAllUsers } from "../../../../../Redux/Actions/UserActions";
 import { addCommentAPI } from "../../../../../API/CommentAPI";
 import { Link } from "react-router-dom";
 import { createNotificationAPI } from "../../../../../API/NotificationAPI";
+import { setPostReportAction } from "../../../../../Redux/Actions/ReportAction";
+import { showReportModalAction } from "../../../../../Redux/Actions/ModalActions";
 function ListPost(props) {
   let [posts, setPosts] = useState([]);
   let [comment, setComment] = useState("");
@@ -48,6 +50,10 @@ function ListPost(props) {
       return dateB - dateA;
     });
   }
+  let report = (post) => {
+    dispatch(setPostReportAction(post));
+    dispatch(showReportModalAction());
+  };
   let likeDisLike = (like, post) => {
     if (like) {
       disLikeAPI(like.id).then(() => {
@@ -184,7 +190,14 @@ function ListPost(props) {
                 <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
 
                 <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                  <Button>Báo cáo</Button>
+                  <Button
+                    onClick={() => {
+                      report(post);
+                    }}
+                    id="PostButton"
+                  >
+                    Báo cáo
+                  </Button>
                 </div>
               </div>
 

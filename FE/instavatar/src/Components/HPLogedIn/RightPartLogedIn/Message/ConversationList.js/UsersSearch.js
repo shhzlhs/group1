@@ -12,7 +12,11 @@ import {
 } from "../../../../../Redux/Actions/ConversationAction";
 import { useNavigate } from "react-router-dom";
 import { updateToReadCompleteByConversationAndUserAPI } from "../../../../../API/MessageAPI";
-import { getNumberOfNotReadYetMessage } from "../../../../../Redux/Actions/MessageActions";
+import {
+  getLastMessagesByUser,
+  getNumberOfNotReadYetMessage,
+} from "../../../../../Redux/Actions/MessageActions";
+import { recoverConversationByUserAPI } from "../../../../../API/CoversationAPI";
 function UsersSearch(props) {
   let navigate = useNavigate();
   let userLogedIn = useSelector((state) => state.userLogedIn);
@@ -41,6 +45,16 @@ function UsersSearch(props) {
         (con.user1Id === user.id && con.user2Id === userLogedIn.id)
     );
     if (conversation) {
+      if (
+        (conversation.user1Id && conversation.del1 === "Y") ||
+        (conversation.user2Id && conversation.del2 === "Y")
+      ) {
+        recoverConversationByUserAPI(userLogedIn.id, conversation.id).then(
+          () => {
+            dispatch(getConversationsByUserId(userLogedIn.id));
+          }
+        );
+      }
       let notRead = listOfNotReads.find(
         (not) =>
           not.conversationId === conversation.id && not.numberOfNotRead > 0
@@ -60,6 +74,7 @@ function UsersSearch(props) {
             )
           );
           dispatch(getConversationsByUserId(userLogedIn.id));
+          dispatch(getLastMessagesByUser(userLogedIn.id));
           dispatch(hideConversationSearch());
           navigate("/instavatar/logedIn/message");
         });
@@ -76,6 +91,7 @@ function UsersSearch(props) {
         (con) => con.user1Id === userLogedIn.id && con.user2Id === user.id
       );
       dispatch(setCoversationDetail(conver));
+      dispatch(getLastMessagesByUser(userLogedIn.id));
       dispatch(hideConversationSearch());
     }
   };

@@ -8,10 +8,14 @@ import { disLikeAPI, likeAPI } from "../../../../../API/LikeAPI";
 import { getPostById } from "../../../../../Redux/Actions/PostAction";
 import { Link } from "react-router-dom";
 import CommentLikesModal from "../../CommentLikesModal";
-import { showCommentLikesModal } from "../../../../../Redux/Actions/ModalActions";
+import {
+  showCommentLikesModal,
+  showReportModalAction,
+} from "../../../../../Redux/Actions/ModalActions";
 import { setCommentDetail } from "../../../../../Redux/Actions/CommentActions";
 import { createNotificationAPI } from "../../../../../API/NotificationAPI";
 import { addCommentAPI } from "../../../../../API/CommentAPI";
+import { setCommentReportAction } from "../../../../../Redux/Actions/ReportAction";
 function PostBody(props) {
   let [ids, setIds] = useState([]);
   let [input, setInput] = useState("");
@@ -26,6 +30,10 @@ function PostBody(props) {
       return dateB - dateA;
     });
   }
+  let report = (cm) => {
+    dispatch(setCommentReportAction(cm));
+    dispatch(showReportModalAction());
+  };
   let items = () => {
     if (comments && comments.length === 0) {
       return "Chưa có bình luận";
@@ -138,7 +146,12 @@ function PostBody(props) {
               };
               let reportReplyButton =
                 reply.userUsername !== userLogedIn.username ? (
-                  <Button className="likeNumber">
+                  <Button
+                    onClick={() => {
+                      report(reply);
+                    }}
+                    className="likeNumber"
+                  >
                     <small>Báo cáo</small>
                   </Button>
                 ) : null;
@@ -223,7 +236,14 @@ function PostBody(props) {
         };
         let reportButton =
           comment.userUsername !== userLogedIn.username ? (
-            <Button className="likeNumber">Báo cáo</Button>
+            <Button
+              onClick={() => {
+                report(comment);
+              }}
+              className="likeNumber"
+            >
+              Báo cáo
+            </Button>
           ) : null;
 
         return (

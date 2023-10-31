@@ -1,0 +1,55 @@
+#ToolsBar{
+    padding-top: 20px;
+}
+.AvatarRowAdmin{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 2px red inset;
+}
+.AvatarOfBeReport{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 2px solid black;
+}
+.EachAvatarReportInfo{ width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid red;}
+.ReportModal{
+    max-height: 500px;
+    overflow-y: auto;
+}
+#EachUserRow{
+    margin-bottom: 10px;
+    border: 1px solid rosybrown;
+}
+ .EachAdmin{ 
+    padding-top: 10px;
+    height: 585px;
+    width: 1250px;
+    overflow-y: auto;
+} 
+#Left{
+    text-align: left;
+}
+#beReport{
+    background-color: black;
+    color: white;
+}
+.tinyIcon{
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+}
+#tinyButton{
+background: none;
+}
+.ReportFullName{
+    color: red;
+}
+#EachReportInfo{
+    margin-bottom: 5px;
+    border: 1px black solid;
+}

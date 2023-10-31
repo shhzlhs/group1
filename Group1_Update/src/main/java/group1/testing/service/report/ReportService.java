@@ -4,7 +4,10 @@ import group1.testing.entity.Report;
 import group1.testing.entity.User;
 import group1.testing.form.report.AddReportForm;
 import group1.testing.form.user.CreateUserForm;
+import group1.testing.repository.ICommentRepository;
+import group1.testing.repository.IPostRepository;
 import group1.testing.repository.IReportRepository;
+import group1.testing.repository.IUserRepository;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 import org.modelmapper.TypeMap;
@@ -21,20 +24,30 @@ public class ReportService implements IReportService {
     @Autowired
     IReportRepository reportRepository;
 
+    @Autowired
+    IUserRepository userRepository;
+
+    @Autowired
+    ICommentRepository commentRepository;
+
+    @Autowired
+    IPostRepository postRepository;
+
     @Override
     public void addReport(AddReportForm form) {
-        TypeMap<AddReportForm, Report> typeMap = modelMapper.getTypeMap(AddReportForm.class, Report.class);
-        if (typeMap == null) {
-            modelMapper.addMappings(new PropertyMap<CreateUserForm, User>() {
-                @Override
-                protected void configure() {
-                    skip(destination.getId());
-                }
-            });
+        Report report = new Report();
+        report.setContent(form.getContent());
+        report.setReporter(userRepository.findById(form.getReporterId()));
+        if (form.getReportToId() != null) {
+            int id = form.getReportToId();
+            report.setReportTo(userRepository.findById(id));
+        } else if (form.getCommentId() != null) {
+            int id = form.getCommentId();
+            report.setComment(commentRepository.findById(id));
+        } else if (form.getPostId() != null) {
+            int id = form.getPostId();
+            report.setPost(postRepository.findById(id));
         }
-        System.out.println("form: " + form);
-        Report report = modelMapper.map(form, Report.class);
-
         reportRepository.save(report);
     }
 

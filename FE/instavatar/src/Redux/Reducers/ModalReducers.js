@@ -1,6 +1,7 @@
 import {
   CLOSE_COMMENT_LIKES_MODAL,
   CLOSE_CREATE_POST_MODAL,
+  CLOSE_CREATE_REPORT_CONFIRM,
   CLOSE_DEL_CON_CONFIRM_MODAL,
   CLOSE_DEL_CON_MODAL,
   CLOSE_DEL_NO,
@@ -9,8 +10,10 @@ import {
   CLOSE_NOS,
   CLOSE_POST_LIKES_MODAL,
   CLOSE_REPLIES,
+  CLOSE_REPORT_MODAL,
   SHOW_COMMENT_LIKES_MODAL,
   SHOW_CREATE_POST_MODAL,
+  SHOW_CREATE_REPORT_CONFIRM,
   SHOW_DEL_CON_CONFIRM_MODAL,
   SHOW_DEL_CON_MODAL,
   SHOW_DEL_NO,
@@ -19,6 +22,7 @@ import {
   SHOW_NOS,
   SHOW_POST_LIKES_MODAL,
   SHOW_REPLIES,
+  SHOW_REPORT_MODAL,
 } from "../ActionType/ModalActionTypes";
 
 const showFollowsListModalReducer = (state = false, action) => {
@@ -122,6 +126,26 @@ const showDelConConfirmReducer = (state = false, action) => {
       return state;
   }
 };
+const showReportReducer = (state = false, action) => {
+  switch (action.type) {
+    case SHOW_REPORT_MODAL:
+      return true;
+    case CLOSE_REPORT_MODAL:
+      return false;
+    default:
+      return state;
+  }
+};
+const showCreateReportConfirmReducer = (state = false, action) => {
+  switch (action.type) {
+    case SHOW_CREATE_REPORT_CONFIRM:
+      return true;
+    case CLOSE_CREATE_REPORT_CONFIRM:
+      return false;
+    default:
+      return state;
+  }
+};
 export {
   showFollowingsListModalReducer,
   showFollowsListModalReducer,
@@ -133,4 +157,6 @@ export {
   showCreatePostReducer,
   showDelConConfirmReducer,
   showDelConReducer,
+  showCreateReportConfirmReducer,
+  showReportReducer,
 };

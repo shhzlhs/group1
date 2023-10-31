@@ -9,6 +9,7 @@ import {
   delelteConversation,
   updateToDelByUser,
 } from "../../../Redux/Actions/ConversationAction";
+import { delMessesAllByUserAndConverAPI } from "../../../API/MessageAPI";
 function DelConModal(props) {
   let dispatch = useDispatch();
   let userLogedIn = useSelector((state) => state.userLogedIn);
@@ -28,6 +29,7 @@ function DelConModal(props) {
         dispatch(delelteConversation(conToDel));
       } else {
         dispatch(updateToDelByUser(userLogedIn.id, conToDel));
+        delMessesAllByUserAndConverAPI(userLogedIn.id, conToDel.id);
       }
       dispatch(showDelConConfirmModal());
     } else {
@@ -35,6 +37,7 @@ function DelConModal(props) {
         dispatch(delelteConversation(conToDel));
       } else {
         dispatch(updateToDelByUser(userLogedIn.id, conToDel));
+        delMessesAllByUserAndConverAPI(userLogedIn.id, conToDel.id);
       }
       dispatch(showDelConConfirmModal());
     }

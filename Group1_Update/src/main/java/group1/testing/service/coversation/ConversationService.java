@@ -73,6 +73,7 @@ public class ConversationService implements IConversationService {
         } else {
             conversation.setDel2("N");
         }
+        conversationRepository.save(conversation);
     }
 
 }

@@ -11,10 +11,12 @@ import { getUserByUsernameAPI } from "../../../../API/UserAPI";
 import {
   showFollowingsListModal,
   showFollowsListModal,
+  showReportModalAction,
 } from "../../../../Redux/Actions/ModalActions";
 import FollowsListModal from "../FollowsListModal";
 import FollowingsListModal from "../FollowingsListModal";
 import LogOutButton from "../MainPageLogedIn/UserArea/LogOutButton";
+import { setUserReportAction } from "../../../../Redux/Actions/ReportAction";
 function InfoArea(props) {
   let dispatch = useDispatch();
   let userDetail = useSelector((state) => state.userDetail);
@@ -46,6 +48,10 @@ function InfoArea(props) {
       });
     }
   };
+  let report = () => {
+    dispatch(setUserReportAction(userDetail));
+    dispatch(showReportModalAction());
+  };
   let text = () => {
     if (userDetail.posts) {
       if (userDetail.posts.length === 0) {
@@ -66,7 +72,7 @@ function InfoArea(props) {
   let button = () => {
     if (userDetail.username === userLogedIn.username) {
       return (
-        <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+        <div className="col-xs-7 col-sm-7 col-md-7 col-lg-7">
           <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
             <Button color="primary">Chỉnh sửa trang cá nhân</Button>
           </div>
@@ -82,19 +88,35 @@ function InfoArea(props) {
         <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
           <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8"></div>
           <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <Button color="danger">Báo cáo</Button>
+            <Button onClick={report} color="danger">
+              Báo cáo
+            </Button>
           </div>
         </div>
       );
     }
   };
   let followButton = () => {
-    if (userDetail.username !== userLogedIn.username) {
+    if (userDetail && userDetail.username !== userLogedIn.username) {
       return (
         <Button id={id} onClick={followUnfollow}>
           {buttonText}
         </Button>
       );
+    }
+  };
+  let genderIcon = () => {
+    if (userDetail) {
+      switch (userDetail.gender) {
+        case "MALE":
+          return "MALE.png";
+        case "FEMALE":
+          return "FEMALE.png";
+        case "OTHER":
+          return "OTHER.png";
+        default:
+          return "UN_KNOWN.png";
+      }
     }
   };
   return (
@@ -117,6 +139,13 @@ function InfoArea(props) {
         <div className="row">
           <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
             <h3>{userDetail.username}</h3>
+          </div>
+          <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+            <img
+              className="MediumIcon"
+              alt={userDetail.gender}
+              src={`/imgs/icons/${genderIcon()}`}
+            ></img>
           </div>
 
           {button()}

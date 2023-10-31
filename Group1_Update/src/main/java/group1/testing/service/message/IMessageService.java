@@ -16,7 +16,7 @@ public interface IMessageService {
 
     void updateToReadCompletedByConversationAndUserId(int conId, int userId);//Sửa tình trạng thành đã xem theo đoạn hội thoại;
 
-    Message getLastMessageByConversation(int id);//Lấy ra tin nhắn mới nhất theo cuộc trò chuyện;
+    Message getLastMessageByUserAndConversation(int userId,int conId);//Lấy ra tin nhắn mới nhất theo cuộc trò chuyện;
 
     int getNumberOfNotReadYetByUser(int userId);//Lấy ra tổng số lượng tin nhắn chưa đọc theo User
 

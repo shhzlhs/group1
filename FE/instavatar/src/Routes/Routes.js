@@ -8,6 +8,8 @@ import UserProfile from "../Components/HPLogedIn/RightPartLogedIn/UserProfile";
 import PostDetail from "../Components/HPLogedIn/RightPartLogedIn/PostDetail";
 import MessagePage from "../Components/HPLogedIn/RightPartLogedIn/MessagePage";
 import RegisterPage from "../Pages/RegisterPage";
+import AdminPage from "../Components/HPLogedIn/RightPartLogedIn/AdminPage";
+import UsersAdmin from "../Components/HPLogedIn/RightPartLogedIn/AdminPage/UsersAdmin";
 
 export let notLoginRoutes = (
   <Routes>
@@ -30,6 +32,8 @@ export let logedInRoutes = (
     <Route path="/main" element={<MainPageLogedIn />}></Route>
     <Route path="/user/:username" element={<UserProfile />}></Route>
     <Route path="/message" element={<MessagePage />}></Route>
+    <Route path="/admin" element={<AdminPage />}></Route>
+    <Route path="/usersAdmin" element={<UsersAdmin />}></Route>
     <Route path="/*" element={<MainPageLogedIn />}></Route>
   </Routes>
 );

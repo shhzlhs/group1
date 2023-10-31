@@ -18,8 +18,11 @@ export const getListNumberOfNotReadMessageByUserAPI = (userId) => {
 export const delMessageById = (id) => {
   return api("DELETE", `messages/${id}/`, null);
 };
-export const delByUserIdAndMessageIdAPI = (userId, messId) => {
+export const delMessByUserIdAndMessageIdAPI = (userId, messId) => {
   return api("PUT", `messages/user/${userId}/message/${messId}/`, null);
+};
+export const delMessesAllByUserAndConverAPI = (userId, conId) => {
+  return api("PUT", `messages/delAll/user/${userId}/convers/${conId}`, null);
 };
 export const updateToReadCompleteByConversationAndUserAPI = (conId, userId) => {
   return api("PUT", `messages/convers/${conId}/user/${userId}`, null);

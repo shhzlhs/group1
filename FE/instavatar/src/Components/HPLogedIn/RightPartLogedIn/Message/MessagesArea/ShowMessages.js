@@ -10,6 +10,7 @@ import None from "./None";
 import { Button, Input } from "reactstrap";
 import { createMessageAPI } from "../../../../../API/MessageAPI";
 import { formatRelativeTime, parseDateString } from "../../../../../Funtions";
+import { recoverConversationByUserAPI } from "../../../../../API/CoversationAPI";
 function ShowMessages(props) {
   let dispatch = useDispatch();
   let conversation = useSelector((state) => state.conversationDetail);
@@ -48,6 +49,17 @@ function ShowMessages(props) {
         conversationId: conversation.id,
         content: input,
       }).then(() => {
+        if (
+          conversation.user1Username === userLogedIn.username &&
+          conversation.del2 === "Y"
+        ) {
+          recoverConversationByUserAPI(conversation.user2Id, conversation.id);
+        } else if (
+          conversation.user2Username === userLogedIn.username &&
+          conversation.del1 === "Y"
+        ) {
+          recoverConversationByUserAPI(conversation.user1Id, conversation.id);
+        }
         dispatch(getMessagesByConversation(conversation.id));
         dispatch(getLastMessagesByUser(userLogedIn.id));
         setInput("");

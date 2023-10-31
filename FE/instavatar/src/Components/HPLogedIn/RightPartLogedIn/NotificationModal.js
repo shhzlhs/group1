@@ -104,6 +104,7 @@ function NotificationModal(props) {
       <ModalBody className="ModalBody">{items()}</ModalBody>
       <ModalFooter>
         <Button
+          color="danger"
           onClick={() => {
             dispatch(closeNosModal());
           }}

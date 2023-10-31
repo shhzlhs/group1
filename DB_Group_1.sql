@@ -97,7 +97,7 @@ CREATE TABLE Messages (
    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
    content    VARCHAR(2000),
    FOREIGN KEY (sender_id) REFERENCES Users (id) ON DELETE CASCADE,
-   FOREIGN KEY (sender_id) REFERENCES Users (id) ON DELETE CASCADE
+   FOREIGN KEY (conversation_id) REFERENCES Conversations (id) ON DELETE CASCADE
   );
 DROP TABLE IF EXISTS Notifications;
 CREATE TABLE Notifications (

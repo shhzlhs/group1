@@ -40,3 +40,8 @@
 #PostContentInput{
   height: 500px;
 }
+#ReportInput{
+  height: 500px;
+  word-wrap: break-word;
+  word-break: break-all;
+}

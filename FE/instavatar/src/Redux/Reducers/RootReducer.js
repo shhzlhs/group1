@@ -9,6 +9,7 @@ import { postReducer, potsDetailReducer } from "./PostReducer";
 import {
   showCommentLikesModalReducer,
   showCreatePostReducer,
+  showCreateReportConfirmReducer,
   showDelConConfirmReducer,
   showDelConReducer,
   showDelNoReducer,
@@ -17,6 +18,7 @@ import {
   showNosReducer,
   showPostLikesModalReducer,
   showRepliesReducer,
+  showReportReducer,
 } from "./ModalReducers";
 import { commentReducer } from "./CommentReducer";
 import { noDelReducer, notificationReducer } from "./NotificationReducer";
@@ -33,6 +35,16 @@ import {
   messagesReducer,
   numberOfNotReadReducer,
 } from "./MessageReducer";
+import {
+  commentReportReducer,
+  postReportReducer,
+  userReportReducer,
+} from "./ReportReducer";
+import {
+  inputForSearchUserAdminReducer,
+  lengthOfReportsForSearchUserReducer,
+  statusForSearchUserReducer,
+} from "./AdminReducer";
 const rootReducer = combineReducers({
   users: userReducer,
   posts: postReducer,
@@ -63,5 +75,13 @@ const rootReducer = combineReducers({
   conversationToDel: conversationToDelReducer,
   showDelCon: showDelConReducer,
   showDelConConfirm: showDelConConfirmReducer,
+  userReport: userReportReducer,
+  postReport: postReportReducer,
+  commentReport: commentReportReducer,
+  showReport: showReportReducer,
+  showCreateReportConfirm: showCreateReportConfirmReducer,
+  inputForSearchUserAdmin: inputForSearchUserAdminReducer,
+  statusForSearchUser: statusForSearchUserReducer,
+  lengthOfReportsUser: lengthOfReportsForSearchUserReducer,
 });
 export { rootReducer };

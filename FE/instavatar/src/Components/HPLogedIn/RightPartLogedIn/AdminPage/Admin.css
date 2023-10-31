@@ -1,0 +1,28 @@
+.AdminAvatar{
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border: red 2px inset;
+    border-radius: 50%;
+}
+.AdminMenu{
+    width: 250px;
+    object-fit: cover;
+    border: black 5px inset;
+    border-radius: 20px;
+}
+#AdminMenuBox{
+    margin-top: 200px;
+}
+#center{
+    text-align: center;
+}
+.EachAdminPage{
+    padding-top: 30px;
+}
+#Wrong{
+    padding-top: 300px;
+}
+#EachAdminPage{
+    padding-left: 50px;
+}

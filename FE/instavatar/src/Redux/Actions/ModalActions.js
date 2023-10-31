@@ -1,6 +1,7 @@
 import {
   CLOSE_COMMENT_LIKES_MODAL,
   CLOSE_CREATE_POST_MODAL,
+  CLOSE_CREATE_REPORT_CONFIRM,
   CLOSE_DEL_CON_CONFIRM_MODAL,
   CLOSE_DEL_CON_MODAL,
   CLOSE_DEL_NO,
@@ -9,8 +10,10 @@ import {
   CLOSE_NOS,
   CLOSE_POST_LIKES_MODAL,
   CLOSE_REPLIES,
+  CLOSE_REPORT_MODAL,
   SHOW_COMMENT_LIKES_MODAL,
   SHOW_CREATE_POST_MODAL,
+  SHOW_CREATE_REPORT_CONFIRM,
   SHOW_DEL_CON_CONFIRM_MODAL,
   SHOW_DEL_CON_MODAL,
   SHOW_DEL_NO,
@@ -19,6 +22,7 @@ import {
   SHOW_NOS,
   SHOW_POST_LIKES_MODAL,
   SHOW_REPLIES,
+  SHOW_REPORT_MODAL,
 } from "../ActionType/ModalActionTypes";
 
 const showFollowsListModal = () => {
@@ -83,6 +87,18 @@ const showDelConConfirmModal = () => {
 const closeDelConConfirmModal = () => {
   return { type: CLOSE_DEL_CON_CONFIRM_MODAL };
 };
+const showReportModalAction = () => {
+  return { type: SHOW_REPORT_MODAL };
+};
+const closeReportModalAction = () => {
+  return { type: CLOSE_REPORT_MODAL };
+};
+const showCreateReportConfirmModalAction = () => {
+  return { type: SHOW_CREATE_REPORT_CONFIRM };
+};
+const closeCreateReportConfirmModalAction = () => {
+  return { type: CLOSE_CREATE_REPORT_CONFIRM };
+};
 export {
   closeFollowingsListModal,
   closeFollowsListModal,
@@ -104,4 +120,8 @@ export {
   closeDelConConfirmModal,
   closeDelConModal,
   showDelConModal,
+  showCreateReportConfirmModalAction,
+  showReportModalAction,
+  closeCreateReportConfirmModalAction,
+  closeReportModalAction,
 };

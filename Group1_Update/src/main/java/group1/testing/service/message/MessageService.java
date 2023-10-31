@@ -62,18 +62,29 @@ public class MessageService implements IMessageService {
     }
 
     @Override
-    public Message getLastMessageByConversation(int id) {
-        List<Message> messages = messageRepository.findAllByConversationId(id);
+    public Message getLastMessageByUserAndConversation(int userId, int conId) {
+        List<Message> messages = messageRepository.findAllByConversationId(conId);
         messages.sort((m1, m2) -> m2.getCreatedAt().compareTo(m1.getCreatedAt()));
         if (messages.size() > 0) {
-            return messages.get(0);
+            if ((messages.get(0).getConversation().getUser1().getId() == userId && messages.get(0).getDel1().equals("N")) ||
+                    (messages.get(0).getConversation().getUser2().getId() == userId && messages.get(0).getDel2().equals("N"))) {
+                return messages.get(0);
+            } else {
+                Message message1 = new Message();
+                message1.setConversation(conversationRepository.findById(conId));
+                message1.setContent("Chưa có tin nhắn nào");
+                message1.setCreatedAt(conversationRepository.findById(conId).getCreatedAt());
+                message1.setIsRead("Y");
+                message1.setSender(conversationRepository.findById(conId).getUser1());
+                return message1;
+            }
         } else {
             Message message1 = new Message();
-            message1.setConversation(conversationRepository.findById(id));
+            message1.setConversation(conversationRepository.findById(conId));
             message1.setContent("Chưa có tin nhắn nào");
-            message1.setCreatedAt(conversationRepository.findById(id).getCreatedAt());
+            message1.setCreatedAt(conversationRepository.findById(conId).getCreatedAt());
             message1.setIsRead("Y");
-            message1.setSender(conversationRepository.findById(id).getUser1());
+            message1.setSender(conversationRepository.findById(conId).getUser1());
             return message1;
         }
     }

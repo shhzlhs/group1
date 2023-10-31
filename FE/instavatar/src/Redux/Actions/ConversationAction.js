@@ -4,7 +4,10 @@ import {
   deleteConversationByIdAPI,
   getConversationsByUserIdAPI,
 } from "../../API/CoversationAPI";
-import { getListNumberOfNotReadMessageByUserAPI } from "../../API/MessageAPI";
+import {
+  getLastMessageByUserIdAPI,
+  getListNumberOfNotReadMessageByUserAPI,
+} from "../../API/MessageAPI";
 import {
   DELETE_CONVERSATION,
   GET_CONVERSATIONS_BY_USER_ID,
@@ -15,6 +18,7 @@ import {
   SET_INPUT_TO_SEARCH_USER_FOR_WRITE_NEW_MESSAGE,
   SHOW_CONVERSATION_SEARCH,
 } from "../ActionType/ConversationActionType";
+import { getLastMessageByUserRedux } from "./MessageActions";
 
 export const setInputToSearchUserForWriteNewMessage = (input) => {
   return {
@@ -65,6 +69,9 @@ export const createConversationRedux = (con, userId) => {
       return getConversationsByUserIdAPI(userId).then((res) => {
         dispatch(getConversationsByUserIdRedux(res));
       });
+    });
+    getLastMessageByUserIdAPI(userId).then((res) => {
+      dispatch(getLastMessageByUserRedux(res));
     });
   };
 };

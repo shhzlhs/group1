@@ -117,6 +117,10 @@ public class UserDTO {
 
         private int id;
 
+        private String reporterAvatar;
+
+        private String reporterUsername;
+
         private String content;
 
         @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Bangkok")

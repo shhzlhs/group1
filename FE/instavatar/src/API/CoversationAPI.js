@@ -12,6 +12,13 @@ export const getConversationByUser1AndUser2API = (userId1, userId2) => {
 export const delConversationByUserAPI = (userId, conId) => {
   return api("PUT", `conversations/user/${userId}/convers/${conId}`, null);
 };
+export const recoverConversationByUserAPI = (userId, conId) => {
+  return api(
+    "PUT",
+    `conversations/recover/user/${userId}/convers/${conId}`,
+    null
+  );
+};
 export const deleteConversationByIdAPI = (id) => {
   return api("DELETE", `conversations/${id}`, null);
 };
