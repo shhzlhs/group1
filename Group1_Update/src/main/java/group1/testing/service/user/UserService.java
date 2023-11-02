@@ -74,6 +74,14 @@ public class UserService implements IUserService {
         return userRepository.findByEmail(email);
     }
 
+    @Override
+    public void changeCoinGoldByUser(int userId, int coinChanged, int goldChanged) {
+        User user = userRepository.findById(userId);
+        user.setCoin(user.getCoin() + coinChanged);
+        user.setGold(user.getGold() + goldChanged);
+        userRepository.save(user);
+    }
+
 //    @Override
 //    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 //        User user = userRepository.findByUsername(username);

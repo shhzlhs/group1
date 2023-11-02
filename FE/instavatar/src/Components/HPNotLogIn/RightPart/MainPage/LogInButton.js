@@ -7,7 +7,7 @@ function LogInButton(props) {
     <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
       <Link to={"instavatar/logIn"}>
         {" "}
-        <Button>Đăng nhập</Button>{" "}
+        <Button color="primary">Đăng nhập</Button>{" "}
       </Link>
       <br></br>
       <br></br>Top Follows<br></br>

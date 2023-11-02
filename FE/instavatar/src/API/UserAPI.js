@@ -26,6 +26,10 @@ const deleteUsersAPI = (ids) => {
   const url = `users/${ids}`;
   return api("DELETE", url, null);
 };
+const changeMoneyByUserAPI = (userId, coinChanged, goldChanged) => {
+  const url = `users/changeMoney/${userId}/${coinChanged}/${goldChanged}`;
+  return api("PUT", url, null);
+};
 
 export {
   getAllUsersAPI,
@@ -35,4 +39,5 @@ export {
   deleteUsersAPI,
   getUserIdAPI,
   getUserByEmailAPI,
+  changeMoneyByUserAPI,
 };

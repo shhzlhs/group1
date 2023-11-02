@@ -2,7 +2,9 @@ import React from "react";
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import "./UsersAdmin.css";
 import { formatRelativeTime, parseDateString } from "../../../../../Funtions";
+import { useNavigate } from "react-router-dom";
 function ListReportUserModal(props) {
+  let navigate = useNavigate();
   let { showReports, setShowReports, userToShowReports } = props;
   console.log("rp", userToShowReports.beReports);
   let items = userToShowReports.beReports
@@ -43,6 +45,12 @@ function ListReportUserModal(props) {
         <div className="row">
           <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
             <img
+              onClick={() => {
+                navigate(
+                  `/instavatar/logedIn/user/${userToShowReports.username}`
+                );
+                setShowReports(false);
+              }}
               className="AvatarOfBeReport"
               src={`/imgs/avatars/${userToShowReports.avatar}`}
               alt={userToShowReports.username}
@@ -51,7 +59,17 @@ function ListReportUserModal(props) {
 
           <div className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
             Danh sách báo cáo tài khoản của{" "}
-            <b className="ReportFullName">{userToShowReports.fullName}</b>
+            <b
+              onClick={() => {
+                navigate(
+                  `/instavatar/logedIn/user/${userToShowReports.username}`
+                );
+                setShowReports(false);
+              }}
+              className="ReportFullName"
+            >
+              {userToShowReports.fullName}
+            </b>
           </div>
         </div>
       </ModalHeader>

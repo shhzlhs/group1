@@ -1,0 +1,23 @@
+.GameLogo{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border: 5px inset skyblue;
+    border-radius: 20px;
+}
+.GameList{
+    padding-top: 100px;
+}
+.price{
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+}
+.Play{
+    height: 30px;
+    object-fit: cover;
+}
+#Play{
+    background: none;
+    object-fit: cover;
+}

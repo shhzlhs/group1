@@ -1,0 +1,17 @@
+.EachUserItemImg{
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border: 5px yellow inset;
+}
+#UserItemsBottom{
+    border-top: 1px solid black;
+    padding-top: 100px;
+    height: 530px;
+    overflow-y: auto;
+    margin-top: 50px;
+}
+#EachUserItemButton{
+    object-fit: cover;
+    background: none;
+}

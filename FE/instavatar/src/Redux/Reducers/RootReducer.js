@@ -1,9 +1,11 @@
 import { combineReducers } from "redux";
 import {
   followsBarReducer,
+  inputForSearchUserReducer,
   userDetailReducer,
   userLogedInReducer,
   userReducer,
+  userToShowItemsReducer,
 } from "./UserReducer";
 import { postReducer, potsDetailReducer } from "./PostReducer";
 import {
@@ -13,6 +15,7 @@ import {
   showDelConConfirmReducer,
   showDelConReducer,
   showDelNoReducer,
+  showDeleteUserItemReducer,
   showFollowingsListModalReducer,
   showFollowsListModalReducer,
   showNosReducer,
@@ -45,6 +48,9 @@ import {
   lengthOfReportsForSearchUserReducer,
   statusForSearchUserReducer,
 } from "./AdminReducer";
+import { userItemDetailReducer } from "./UserItemReducer";
+import { gamesReducer } from "./GameReducer";
+import { gameSlotsReducer } from "./GameSlotReducer";
 const rootReducer = combineReducers({
   users: userReducer,
   posts: postReducer,
@@ -83,5 +89,11 @@ const rootReducer = combineReducers({
   inputForSearchUserAdmin: inputForSearchUserAdminReducer,
   statusForSearchUser: statusForSearchUserReducer,
   lengthOfReportsUser: lengthOfReportsForSearchUserReducer,
+  userToShowItems: userToShowItemsReducer,
+  userItemDetail: userItemDetailReducer,
+  showDeleteUserItem: showDeleteUserItemReducer,
+  inputForSearchUserInSearchPage: inputForSearchUserReducer,
+  games: gamesReducer,
+  gameSlots: gameSlotsReducer,
 });
 export { rootReducer };

@@ -45,3 +45,16 @@
   word-wrap: break-word;
   word-break: break-all;
 }
+#delNoButton{
+  color: red;
+  background: none;
+}
+.ItemDeleteImage{
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border: 2px yellow inset;
+}
+#SearchPage{
+  padding-left: 50px;
+}

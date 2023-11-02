@@ -1,0 +1,1 @@
+export const SET_USER_ITEM_DETAIL = "SET_USER_ITEM_DETAIL";

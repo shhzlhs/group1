@@ -12,7 +12,7 @@ function WebInfo(props) {
         <Link>Điều khoản</Link>
 
         <p>
-          <br></br>© 2023 INSTAVATAR FROM GROUP 1
+          <br></br>© 2023 INSTAVATAR FROM GROUP 1 THANKS FOR @DAONQ
         </p>
       </div>
     </div>

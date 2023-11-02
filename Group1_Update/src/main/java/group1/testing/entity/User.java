@@ -63,6 +63,10 @@ public class User {
     @CreationTimestamp
     private Date createdAt;
 
+    @OneToMany(mappedBy = "user")
+    @JsonBackReference
+    private List<TransactionHistory> transactions;
+
     //posts
     @OneToMany(mappedBy = "user")
     @JsonBackReference

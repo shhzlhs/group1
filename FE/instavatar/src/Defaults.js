@@ -145,3 +145,4 @@ export const defaultPosts = [
     reports: [],
   },
 ];
+export const defaultItem = { name: "Chưa chọn Item", image: "Items.png" };

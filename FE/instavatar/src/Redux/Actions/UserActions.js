@@ -2,8 +2,10 @@ import { getAllUsersAPI, getUserByUsernameAPI } from "../../API/UserAPI";
 import {
   GET_ALL_USERS,
   SET_FOLLOWS_BAR,
+  SET_INPUT_TO_SEARCH_USER,
   SET_USER_DETAIL,
   SET_USER_LOGEDIN,
+  SET_USER_TO_SHOW_ITEMS,
 } from "../ActionType/UserActionTypes";
 const setUserLogedIn = (user) => {
   return { type: SET_USER_LOGEDIN, payload: user };
@@ -37,10 +39,27 @@ const getAllUsers = () => {
     });
   };
 };
+const setUserToShowItemsRedux = (user) => {
+  return { type: SET_USER_TO_SHOW_ITEMS, payload: user };
+};
+const setUserToShowItemsAction = (username) => {
+  return (dispatch) => {
+    return getUserByUsernameAPI(username).then((res) => {
+      dispatch(setUserToShowItemsRedux(res));
+    });
+  };
+};
+const setInputToSearchUserAction = (input) => {
+  return { type: SET_INPUT_TO_SEARCH_USER, payload: input };
+};
 export {
   getAllUsers,
   getAllUsersRedux,
   setFollowsBar,
   setUserDetail,
   setUserLogedIn,
+  setUserDetailRedux,
+  setUserToShowItemsAction,
+  setUserToShowItemsRedux,
+  setInputToSearchUserAction,
 };

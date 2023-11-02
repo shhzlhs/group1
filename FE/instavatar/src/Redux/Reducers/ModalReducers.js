@@ -2,6 +2,7 @@ import {
   CLOSE_COMMENT_LIKES_MODAL,
   CLOSE_CREATE_POST_MODAL,
   CLOSE_CREATE_REPORT_CONFIRM,
+  CLOSE_DELETE_USER_ITEM_MODAL,
   CLOSE_DEL_CON_CONFIRM_MODAL,
   CLOSE_DEL_CON_MODAL,
   CLOSE_DEL_NO,
@@ -14,6 +15,7 @@ import {
   SHOW_COMMENT_LIKES_MODAL,
   SHOW_CREATE_POST_MODAL,
   SHOW_CREATE_REPORT_CONFIRM,
+  SHOW_DELETE_USER_ITEM_MODAL,
   SHOW_DEL_CON_CONFIRM_MODAL,
   SHOW_DEL_CON_MODAL,
   SHOW_DEL_NO,
@@ -146,6 +148,16 @@ const showCreateReportConfirmReducer = (state = false, action) => {
       return state;
   }
 };
+const showDeleteUserItemReducer = (state = false, action) => {
+  switch (action.type) {
+    case SHOW_DELETE_USER_ITEM_MODAL:
+      return true;
+    case CLOSE_DELETE_USER_ITEM_MODAL:
+      return false;
+    default:
+      return state;
+  }
+};
 export {
   showFollowingsListModalReducer,
   showFollowsListModalReducer,
@@ -159,4 +171,5 @@ export {
   showDelConReducer,
   showCreateReportConfirmReducer,
   showReportReducer,
+  showDeleteUserItemReducer,
 };

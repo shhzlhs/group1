@@ -27,4 +27,9 @@ public class UserItemController {
     public void deleteByUserIdAndItemId(@PathVariable int userId, @PathVariable int itemId) {
         userItemService.deleteByUserIdAndItemId(userId, itemId);
     }
+
+    @PostMapping(value = "/{userId}/{itemId}")
+    public void addUserItem(@PathVariable int userId, @PathVariable int itemId) {
+        userItemService.addUserItem(userId, itemId);
+    }
 }

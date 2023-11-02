@@ -75,6 +75,7 @@ function UsersSearch(props) {
           );
           dispatch(getConversationsByUserId(userLogedIn.id));
           dispatch(getLastMessagesByUser(userLogedIn.id));
+          dispatch(setCoversationDetail(conversation));
           dispatch(hideConversationSearch());
           navigate("/instavatar/logedIn/message");
         });

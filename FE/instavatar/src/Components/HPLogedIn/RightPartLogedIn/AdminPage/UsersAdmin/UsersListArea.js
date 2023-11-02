@@ -27,8 +27,9 @@ function UsersListArea(props) {
           baseUser.beReports.length >= length
       )
     : null;
-  let items = users
-    ? users.map((user, index) => {
+  let items =
+    users && users.length > 0 ? (
+      users.map((user, index) => {
         let button =
           user.beReports && user.beReports.length > 0 ? (
             <Button
@@ -38,7 +39,7 @@ function UsersListArea(props) {
               }}
               id="beReport"
             >
-              Xem danh sách báo cáo
+              {`Xem danh sách báo cáo (${user.beReports.length})`}
             </Button>
           ) : null;
         let avatar = "/imgs/avatars/" + user.avatar;
@@ -106,7 +107,9 @@ function UsersListArea(props) {
           </div>
         );
       })
-    : null;
+    ) : (
+      <div className="row">Không tìm thấy kết quả nào</div>
+    );
   return (
     <div className="EachAdmin">
       {items}

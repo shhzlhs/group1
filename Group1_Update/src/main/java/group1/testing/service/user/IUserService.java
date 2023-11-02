@@ -24,4 +24,6 @@ public interface IUserService {
     User getUserByUsername(String username);
 
     User getUserByEmail(String email);
+
+    void changeCoinGoldByUser(int userId, int coinChanged, int goldChanged);
 }

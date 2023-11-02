@@ -51,7 +51,7 @@ function NotificationModal(props) {
               dispatch(setNoDel(notification));
               dispatch(showDelNoModal());
             }}
-            color="danger"
+            id="delNoButton"
           >
             Xoá
           </Button>

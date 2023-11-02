@@ -1,0 +1,30 @@
+.CloseImgButton {
+  width: 25px;
+  height: 25px;
+  object-fit: cover;
+}
+#CloseButton {
+  object-fit: cover;
+  background: none;
+}
+.EachUserSearchAvatar {
+  width: 65px;
+  height:65px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px inset red;
+}
+#EachUserSearchText{
+    text-align: left;
+}
+#UserSearchList{
+    border-top: 1px solid black;
+    height: 650px;
+    overflow-y: auto;
+    padding-top: 30px;
+}
+#EachSearchRow{
+    margin-bottom: 5px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}

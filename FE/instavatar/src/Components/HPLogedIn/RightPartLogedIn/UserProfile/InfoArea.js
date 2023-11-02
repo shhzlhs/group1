@@ -17,7 +17,11 @@ import FollowsListModal from "../FollowsListModal";
 import FollowingsListModal from "../FollowingsListModal";
 import LogOutButton from "../MainPageLogedIn/UserArea/LogOutButton";
 import { setUserReportAction } from "../../../../Redux/Actions/ReportAction";
+import { useNavigate } from "react-router-dom";
+import { setUserItemDetail } from "../../../../Redux/Actions/UserItemActions";
+import { defaultItem } from "../../../../Defaults";
 function InfoArea(props) {
+  let navigate = useNavigate();
   let dispatch = useDispatch();
   let userDetail = useSelector((state) => state.userDetail);
   let userLogedIn = useSelector((state) => state.userLogedIn);
@@ -132,7 +136,15 @@ function InfoArea(props) {
         <br></br>
         {followButton()}
         <div className="row">
-          <br></br>
+          <Button
+            onClick={() => {
+              dispatch(setUserItemDetail(defaultItem));
+              navigate(`/instavatar/logedIn/userItems/${userDetail.username}`);
+            }}
+            color="primary"
+          >
+            Xem kho đồ
+          </Button>
         </div>
       </div>
       <div id="Info" className="col-xs-8 col-sm-8 col-md-8 col-lg-8">

@@ -1,0 +1,23 @@
+.OfficialAvatar{
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px inset red;
+}
+.CoinGoldIcon{
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+}
+#left{
+    text-align: left;
+}
+#NoneButton{
+    object-fit: cover;
+    background: none;
+}
+#MID{
+    display: flex; 
+    align-items: center;
+}

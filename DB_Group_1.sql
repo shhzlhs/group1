@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS group_1;
-CREATE DATABASE group_1;
-USE group_1;
+-- DROP DATABASE IF EXISTS group_1;
+-- CREATE DATABASE group_1;
+ -- USE group_1;-- 
 CREATE TABLE Users (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) NOT NULL UNIQUE KEY,
@@ -18,7 +18,7 @@ CREATE TABLE Users (
 
 CREATE TABLE Posts (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    user_id INT UNSIGNED,
+    user_id INT UNSIGNED NOT NULL,
     image VARCHAR(255) NOT NULL,
     content VARCHAR(2000),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -28,7 +28,7 @@ CREATE TABLE Comments (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     post_id INT UNSIGNED,
     reply_to INT UNSIGNED,
-    user_id INT UNSIGNED,
+    user_id INT UNSIGNED NOT NULL,
     content VARCHAR(2000) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (post_id) REFERENCES Posts(id) ON DELETE CASCADE,
@@ -37,11 +37,11 @@ CREATE TABLE Comments (
 );
 CREATE TABLE Reports(
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    reporter_id INT UNSIGNED,
+    reporter_id INT UNSIGNED NOT NULL,
     report_to_user INT UNSIGNED,
     post_id INT UNSIGNED,
     comment_id INT UNSIGNED,
-    content VARCHAR(200),
+    content VARCHAR(200) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (reporter_id) REFERENCES Users(id) ON DELETE CASCADE,
     FOREIGN KEY (report_to_user) REFERENCES users (id) ON DELETE CASCADE,
@@ -78,8 +78,8 @@ CREATE TABLE Conversations(
 	id	INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     user_1_id INT UNSIGNED NOT NULL,
     user_2_id INT UNSIGNED NOT NULL,
-    is_deleted_1 VARCHAR(1) DEFAULT "N",
-    is_deleted_2 VARCHAR(1) DEFAULT "N",
+    is_deleted_1 ENUM("N","Y") DEFAULT "N",
+    is_deleted_2 ENUM("N","Y") DEFAULT "N",
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UNIQUE KEY (user_1_id,user_2_id),
     FOREIGN KEY (user_1_id) REFERENCES Users(id) ,
@@ -91,9 +91,9 @@ CREATE TABLE Messages (
    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
    conversation_id INT UNSIGNED NOT NULL,
    sender_id INT UNSIGNED NOT NULL,
-   is_deleted_1 VARCHAR(1) DEFAULT "N",
-   is_deleted_2 VARCHAR(1) DEFAULT "N",
-   is_read      VARCHAR(1) DEFAULT "N",
+   is_deleted_1 ENUM("N","Y") DEFAULT "N",
+   is_deleted_2 ENUM("N","Y") DEFAULT "N",
+   is_read      ENUM("N","Y") DEFAULT "N",
    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
    content    VARCHAR(2000),
    FOREIGN KEY (sender_id) REFERENCES Users (id) ON DELETE CASCADE,
@@ -104,7 +104,7 @@ CREATE TABLE Notifications (
    id 			INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
    user_id 		INT UNSIGNED NOT NULL,
    content     	VARCHAR(255) NOT NULL,
-   is_read     	VARCHAR(2) DEFAULT "N",
+   is_read     	ENUM("N","Y") DEFAULT "N",
    creator_id   INT UNSIGNED NOT NULL,
    post_id		INT UNSIGNED,
    comment_id	INT UNSIGNED,
@@ -133,7 +133,7 @@ CREATE TABLE User_item(
 CREATE TABLE Transaction_History(
 id 			INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 coin_or_gold ENUM ("C","G") NOT NULL,
-`type`      ENUM ("UP","DOWN") NOT NULL,
+`type`       ENUM ("UP","DOWN") NOT NULL,
 changed_number INT UNSIGNED NOT NULL,
 last_balance   BIGINT,
 created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -141,11 +141,15 @@ user_id		INT UNSIGNED,
 FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE
 );
 -- Games: -- 
+DROP TABLE IF EXISTS Games;
 CREATE TABLE Games (
 id     TINYINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 `name` VARCHAR(255) NOT NULL,
-slot_price INT NOT NULL
+logo   VARCHAR(50) NOT NULL,
+slot_coin_price INT NOT NULL,
+slot_gold_price INT NOT NULL
 );
+DROP TABLE IF EXISTS Game_slot;
 CREATE TABLE Game_slot (
 id         INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 user_id INT UNSIGNED NOT NULL,
@@ -164,7 +168,7 @@ CREATE TABLE Answers(
 id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
 content VARCHAR(500) NOT NULL,
 q_id INT UNSIGNED NOT NULL,
-is_true VARCHAR(2),
+is_true ENUM("N","Y"),
 FOREIGN KEY (q_id) REFERENCES Questions(id) ON DELETE CASCADE
 );
 INSERT INTO Users (username ,full_name,  email,gender              ,`password`													 ,`role` ,`status`,avatar)

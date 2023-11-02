@@ -64,4 +64,9 @@ public class UserController {
         User user = userService.getUserByEmail(email);
         return modelMapper.map(user, UserDTO.class);
     }
+
+    @PutMapping(value = "/changeMoney/{userId}/{coin}/{gold}")
+    public void changeCoinAndGoldByUser(@PathVariable int userId, @PathVariable int coin, @PathVariable int gold) {
+        userService.changeCoinGoldByUser(userId, coin, gold);
+    }
 }
