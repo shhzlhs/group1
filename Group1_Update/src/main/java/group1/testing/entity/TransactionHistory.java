@@ -13,6 +13,7 @@ import java.util.Date;
 @Entity
 @Data
 @NoArgsConstructor
+@Table(name = "Transaction_History")
 public class TransactionHistory {
 
     @Id
@@ -27,6 +28,9 @@ public class TransactionHistory {
     @Column(name = "`type`", nullable = false)
     @Enumerated(EnumType.STRING)
     private TranType type;
+
+    @Column
+    private String content;
 
     @Column(name = "changed_number", nullable = false)
     private int changedNumber;

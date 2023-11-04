@@ -36,6 +36,7 @@ public class TransactionHistoryService implements ITransactionHistoryService {
         transactionHistory.setType(form.getType());
         transactionHistory.setChangedNumber(form.getChangedNumber());
         transactionHistory.setLastBalance(form.getLastBalance());
+        transactionHistory.setContent(form.getContent());
         transactionHistoryRepository.save(transactionHistory);
 
     }

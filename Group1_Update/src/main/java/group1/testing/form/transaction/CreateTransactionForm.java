@@ -22,6 +22,8 @@ public class CreateTransactionForm {
     @Enumerated(EnumType.STRING)
     private TranType type;
 
+    private String content;
+
     private int changedNumber;
 
     private int lastBalance;

@@ -1,0 +1,22 @@
+.ChoosePayMent{
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border: 1px inset white;
+    border-radius: 20px;
+}
+#ChoosePayMent{
+    object-fit: cover;
+    background: none;
+}
+#Payments{
+    border-top: 1px solid black;
+    padding-top: 30px;
+    margin-top: 20px;
+    padding-bottom: 30px;
+}
+.miniIcon{
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+}

@@ -25,5 +25,5 @@ public interface IUserService {
 
     User getUserByEmail(String email);
 
-    void changeCoinGoldByUser(int userId, int coinChanged, int goldChanged);
+    User changeCoinGoldByUser(int userId, int coinChanged, int goldChanged);
 }

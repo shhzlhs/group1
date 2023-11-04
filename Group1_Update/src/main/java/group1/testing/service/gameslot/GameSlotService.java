@@ -38,6 +38,7 @@ public class GameSlotService implements IGameSlotService {
         List<Game> games = gameRepository.findAll();
         User user = userRepository.findById(userId);
         List<GameSlot> gameSlots = gameSlotRepository.findAllByUserId(userId);
+
         for (Game game : games) {
             if (gameSlots.stream().noneMatch(slot -> slot.getGame().getId() == game.getId())) {
                 GameSlot gameSlot = new GameSlot();

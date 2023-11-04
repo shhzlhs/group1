@@ -62,7 +62,7 @@ public class MessageService implements IMessageService {
     }
 
     @Override
-    public Message getLastMessageByUserAndConversation(int userId, int conId) {
+    public Message getLastMessagesByUserAndConversation(int userId, int conId) {
         List<Message> messages = messageRepository.findAllByConversationId(conId);
         messages.sort((m1, m2) -> m2.getCreatedAt().compareTo(m1.getCreatedAt()));
         if (messages.size() > 0) {

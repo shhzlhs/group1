@@ -129,13 +129,15 @@ CREATE TABLE User_item(
     FOREIGN KEY (user_id) REFERENCES Users(id),
     FOREIGN KEY (item_id) REFERENCES Items(id)
     );
-
+USE group_1;
+DROP TABLE IF EXISTS Transaction_History;
 CREATE TABLE Transaction_History(
 id 			INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 coin_or_gold ENUM ("C","G") NOT NULL,
 `type`       ENUM ("UP","DOWN") NOT NULL,
-changed_number INT UNSIGNED NOT NULL,
-last_balance   BIGINT,
+changed_number INT NOT NULL,
+last_balance   BIGINT NOT NULL,
+content      VARCHAR(100),
 created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 user_id		INT UNSIGNED,
 FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE

@@ -51,6 +51,14 @@ import {
 import { userItemDetailReducer } from "./UserItemReducer";
 import { gamesReducer } from "./GameReducer";
 import { gameSlotsReducer } from "./GameSlotReducer";
+import {
+  coinOrGoldReducer,
+  inputToSearchTranReducer,
+  maxDateReducer,
+  minDateReducer,
+  tranTypeReducer,
+  transactionsReducer,
+} from "./TransactionReducer";
 const rootReducer = combineReducers({
   users: userReducer,
   posts: postReducer,
@@ -95,5 +103,11 @@ const rootReducer = combineReducers({
   inputForSearchUserInSearchPage: inputForSearchUserReducer,
   games: gamesReducer,
   gameSlots: gameSlotsReducer,
+  inputForSearchTransaction: inputToSearchTranReducer,
+  coinOrGold: coinOrGoldReducer,
+  tranType: tranTypeReducer,
+  minDate: minDateReducer,
+  maxDate: maxDateReducer,
+  transactions: transactionsReducer,
 });
 export { rootReducer };

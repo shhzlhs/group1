@@ -39,7 +39,7 @@ public class TransactionHistoryController {
     }
 
     @PostMapping
-    public void createTran(CreateTransactionForm form) {
+    public void createTran(@RequestBody CreateTransactionForm form) {
         transactionHistoryService.createTransaction(form);
     }
 }

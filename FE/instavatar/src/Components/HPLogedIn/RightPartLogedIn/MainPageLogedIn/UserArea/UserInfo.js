@@ -1,8 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "./UserArea.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "reactstrap";
+import { setUserToShowItemsAction } from "../../../../../Redux/Actions/UserActions";
 function UserInfo(props) {
+  let navigate = useNavigate();
+  let dispatch = useDispatch();
   let userLogedIn = useSelector((state) => state.userLogedIn);
   let avatar = userLogedIn ? `/imgs/avatars/${userLogedIn.avatar}` : "";
   return (
@@ -47,18 +51,34 @@ function UserInfo(props) {
         <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
           <br></br>
           <div className="row">
-            <img
-              className="MiniIcon"
-              src="/imgs/icons/add.png"
-              alt="Add Coin"
-            ></img>
+            <Button
+              id="AddButton"
+              onClick={() => {
+                dispatch(setUserToShowItemsAction(userLogedIn.username));
+                navigate("/instavatar/logedIn/addCoin");
+              }}
+            >
+              <img
+                className="MiniIcon"
+                src="/imgs/icons/add.png"
+                alt="Add Coin"
+              ></img>
+            </Button>
           </div>
           <div className="row">
-            <img
-              className="MiniIcon"
-              src="/imgs/icons/add.png"
-              alt="Add Gold"
-            ></img>
+            <Button
+              id="AddButton"
+              onClick={() => {
+                dispatch(setUserToShowItemsAction(userLogedIn.username));
+                navigate("/instavatar/logedIn/addCoin");
+              }}
+            >
+              <img
+                className="MiniIcon"
+                src="/imgs/icons/add.png"
+                alt="Add Gold"
+              ></img>
+            </Button>
           </div>
         </div>
       </div>

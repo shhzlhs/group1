@@ -2,7 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import "./UserLogedInInfoArea.css";
 import { Button } from "reactstrap";
+import { useNavigate } from "react-router-dom";
 function UserLogedInInfoArea(props) {
+  let navigate = useNavigate();
   let userLogedIn = useSelector((state) => state.userLogedIn);
   return (
     <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
@@ -32,7 +34,12 @@ function UserLogedInInfoArea(props) {
           </div>
 
           <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-            <Button id="NoneButton">
+            <Button
+              onClick={() => {
+                navigate("/instavatar/logedIn/addCoin");
+              }}
+              id="NoneButton"
+            >
               <img
                 className="CoinGoldIcon"
                 alt="addCoin"
@@ -54,7 +61,12 @@ function UserLogedInInfoArea(props) {
           </div>
 
           <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-            <Button id="NoneButton">
+            <Button
+              onClick={() => {
+                navigate("/instavatar/logedIn/addGold");
+              }}
+              id="NoneButton"
+            >
               <img
                 className="CoinGoldIcon"
                 alt="addGold"

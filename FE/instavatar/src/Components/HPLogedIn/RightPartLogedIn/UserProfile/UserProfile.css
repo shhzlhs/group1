@@ -27,11 +27,19 @@
   max-height: 400px;
   overflow-y: auto;
 }
-#Follow{
-  background:none;
+#Follow {
+  background: none;
   color: blue;
 }
-#UnFollow{
-  background:none;
+#UnFollow {
+  background: none;
   color: red;
+}
+#ADDButton {
+  background: none;
+  object-fit: cover;
+}
+#midRow {
+  display: flex;
+  align-items: center;
 }

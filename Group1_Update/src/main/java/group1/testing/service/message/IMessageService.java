@@ -14,9 +14,9 @@ public interface IMessageService {
 
     void deleteById(int id);
 
-    void updateToReadCompletedByConversationAndUserId(int conId, int userId);//Sửa tình trạng thành đã xem theo đoạn hội thoại;
+    void updateToReadCompletedByConversationAndUserId(int conId, int userId);//Sửa tình trạng thành đã xem theo cuộc trò chuyện;
 
-    Message getLastMessageByUserAndConversation(int userId,int conId);//Lấy ra tin nhắn mới nhất theo cuộc trò chuyện;
+    Message getLastMessagesByUserAndConversation(int userId,int conId);//Lấy ra tin nhắn mới nhất theo cuộc trò chuyện;
 
     int getNumberOfNotReadYetByUser(int userId);//Lấy ra tổng số lượng tin nhắn chưa đọc theo User
 
@@ -24,7 +24,7 @@ public interface IMessageService {
 
     void updateToDeleteByUser(int UserId, int messId); //Xoá 1 tin nhắn từ 1 phía.
 
-    void updateAllToDellByUserAndConversation(int UserId, int conversationId);
+    void updateAllToDellByUserAndConversation(int UserId, int conversationId);//Xoá toàn bộ tin nhắn theo cuộc trò chuyện từ 1 phía
 
 
 }

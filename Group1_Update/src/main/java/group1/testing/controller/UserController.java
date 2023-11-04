@@ -66,7 +66,7 @@ public class UserController {
     }
 
     @PutMapping(value = "/changeMoney/{userId}/{coin}/{gold}")
-    public void changeCoinAndGoldByUser(@PathVariable int userId, @PathVariable int coin, @PathVariable int gold) {
-        userService.changeCoinGoldByUser(userId, coin, gold);
+    public UserDTO changeCoinAndGoldByUser(@PathVariable int userId, @PathVariable int coin, @PathVariable int gold) {
+        return modelMapper.map(userService.changeCoinGoldByUser(userId, coin, gold), UserDTO.class);
     }
 }

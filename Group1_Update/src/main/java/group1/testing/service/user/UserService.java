@@ -75,11 +75,12 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void changeCoinGoldByUser(int userId, int coinChanged, int goldChanged) {
+    public User changeCoinGoldByUser(int userId, int coinChanged, int goldChanged) {
         User user = userRepository.findById(userId);
         user.setCoin(user.getCoin() + coinChanged);
         user.setGold(user.getGold() + goldChanged);
         userRepository.save(user);
+        return user;
     }
 
 //    @Override

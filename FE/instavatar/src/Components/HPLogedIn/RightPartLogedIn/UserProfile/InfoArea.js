@@ -6,6 +6,7 @@ import { addFollowAPI, unFollowAPI } from "../../../../API/FollowAPI";
 import {
   setUserDetail,
   setUserLogedIn,
+  setUserToShowItemsAction,
 } from "../../../../Redux/Actions/UserActions";
 import { getUserByUsernameAPI } from "../../../../API/UserAPI";
 import {
@@ -167,7 +168,7 @@ function InfoArea(props) {
             <h4>{userDetail.fullName}</h4>
           </div>
         </div>
-        <div className="row">
+        <div id="midRow" className="row">
           <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1">
             <img
               className="MediumIcon"
@@ -178,15 +179,26 @@ function InfoArea(props) {
           <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1">
             {userDetail.coin}
           </div>
-          <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-            <img
-              className="MediumIcon"
-              src="/imgs/icons/add.png"
-              alt="add"
-            ></img>
+          <div
+            hidden={userLogedIn.id !== userDetail.id}
+            className="col-xs-1 col-sm-1 col-md-1 col-lg-1"
+          >
+            <Button
+              onClick={() => {
+                dispatch(setUserToShowItemsAction(userLogedIn.username));
+                navigate("/instavatar/logedIn/addCoin");
+              }}
+              id="ADDButton"
+            >
+              <img
+                className="MediumIcon"
+                src="/imgs/icons/add.png"
+                alt="add"
+              ></img>
+            </Button>
           </div>
         </div>
-        <div className="row">
+        <div id="midRow" className="row">
           <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1">
             <img
               className="MediumIcon"
@@ -197,12 +209,23 @@ function InfoArea(props) {
           <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1">
             {userDetail.gold}
           </div>
-          <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-            <img
-              className="MediumIcon"
-              src="/imgs/icons/add.png"
-              alt="add"
-            ></img>
+          <div
+            hidden={userLogedIn.id !== userDetail.id}
+            className="col-xs-1 col-sm-1 col-md-1 col-lg-1"
+          >
+            <Button
+              onClick={() => {
+                dispatch(setUserToShowItemsAction(userLogedIn.username));
+                navigate("/instavatar/logedIn/addCoin");
+              }}
+              id="ADDButton"
+            >
+              <img
+                className="MediumIcon"
+                src="/imgs/icons/add.png"
+                alt="add"
+              ></img>
+            </Button>
           </div>
         </div>
 

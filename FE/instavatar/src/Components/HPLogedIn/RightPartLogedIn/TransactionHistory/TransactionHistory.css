@@ -1,0 +1,32 @@
+#TitleBox{
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid black;
+}
+#Table{
+    margin-top:40px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#allFund{
+    background-color: cyan
+}
+#coinStyle{
+    background-color: chocolate;
+}
+#goldStyle{
+    background-color: gold;
+}
+#coinId{
+    text-align: left;
+}
+#goldId{
+    text-align: left;
+    background-color: rgb(245, 234, 173);
+}
+#DarkHead{
+    background-color: blue;
+    color: white;
+}
+#green{color: rgb(20, 209, 20);}
+#red{color: red;}

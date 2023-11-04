@@ -1,4 +1,8 @@
-import { getAllUsersAPI, getUserByUsernameAPI } from "../../API/UserAPI";
+import {
+  changeMoneyByUserAPI,
+  getAllUsersAPI,
+  getUserByUsernameAPI,
+} from "../../API/UserAPI";
 import {
   GET_ALL_USERS,
   SET_FOLLOWS_BAR,
@@ -52,6 +56,14 @@ const setUserToShowItemsAction = (username) => {
 const setInputToSearchUserAction = (input) => {
   return { type: SET_INPUT_TO_SEARCH_USER, payload: input };
 };
+const updateCoinGoldUserLogedIn = (userId, coin, gold) => {
+  return (dispatch) => {
+    return changeMoneyByUserAPI(userId, coin, gold).then((res) => {
+      dispatch(setUserLogedIn(res));
+      dispatch(setUserToShowItemsRedux(res));
+    });
+  };
+};
 export {
   getAllUsers,
   getAllUsersRedux,
@@ -62,4 +74,5 @@ export {
   setUserToShowItemsAction,
   setUserToShowItemsRedux,
   setInputToSearchUserAction,
+  updateCoinGoldUserLogedIn,
 };

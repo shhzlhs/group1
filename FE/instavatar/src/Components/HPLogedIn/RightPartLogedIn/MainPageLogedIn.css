@@ -58,3 +58,13 @@
 #SearchPage{
   padding-left: 50px;
 }
+.MoneyChoices {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 20px;
+  border: 5px inset rgba(223, 220, 11, 0.562);
+}
+.topPadding200{
+  padding-top: 200px;
+}

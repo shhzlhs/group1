@@ -40,7 +40,7 @@ public class UserDTO {
 
     private String avatar;
 
-    @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss")
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Bangkok")
     private Date createdAt;
 
     private List<ItemDTO> items;

@@ -2,8 +2,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 import "./UserItemsTop.css";
 import { Button } from "reactstrap";
+import { useNavigate } from "react-router-dom";
 function MoneyInfo(props) {
+  let navigate = useNavigate();
   let user = useSelector((state) => state.userToShowItems);
+  let userLogedIn = useSelector((state) => state.userLogedIn);
   let coin = user ? user.coin : null;
   let gold = user ? user.gold : null;
   return (
@@ -21,8 +24,16 @@ function MoneyInfo(props) {
           {coin}
         </div>
 
-        <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-          <Button id="NoneBGButton">
+        <div
+          hidden={user.id !== userLogedIn.id}
+          className="col-xs-2 col-sm-2 col-md-2 col-lg-2"
+        >
+          <Button
+            onClick={() => {
+              navigate("/instavatar/logedIn/addCoin");
+            }}
+            id="NoneBGButton"
+          >
             <img
               className="tinyItemIcon"
               alt="addCoin"
@@ -44,8 +55,16 @@ function MoneyInfo(props) {
           {gold}
         </div>
 
-        <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-          <Button id="NoneBGButton">
+        <div
+          hidden={user.id !== userLogedIn.id}
+          className="col-xs-2 col-sm-2 col-md-2 col-lg-2"
+        >
+          <Button
+            onClick={() => {
+              navigate("/instavatar/logedIn/addGold");
+            }}
+            id="NoneBGButton"
+          >
             <img
               className="tinyItemIcon"
               alt="addGold"

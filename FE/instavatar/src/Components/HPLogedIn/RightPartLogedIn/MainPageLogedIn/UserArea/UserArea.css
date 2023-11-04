@@ -19,14 +19,23 @@
   border-radius: 50%;
   border: inset 1px red;
 }
-#SugguestBox{
-    margin-top: 20px;
-    margin-bottom: 20px;
+#SugguestBox {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
-#SugguestRow{
-    margin-top: 5px;
-    margin-bottom: 5px;
+#SugguestRow {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
-#Username{
-    text-align: left;
+#Username {
+  text-align: left;
+}
+#AddButton {
+  background: none;
+  object-fit: cover;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  /* object-fit: cover; */
 }

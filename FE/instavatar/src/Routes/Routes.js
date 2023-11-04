@@ -13,6 +13,11 @@ import UsersAdmin from "../Components/HPLogedIn/RightPartLogedIn/AdminPage/Users
 import UserItems from "../Components/HPLogedIn/RightPartLogedIn/UserItems";
 import SearchUserPage from "../Components/HPLogedIn/RightPartLogedIn/SearchUserPage";
 import GamePage from "../Components/HPLogedIn/RightPartLogedIn/GamePage";
+import AddMoney from "../Components/HPLogedIn/RightPartLogedIn/AddMoney";
+import AddCoinPage from "../Components/HPLogedIn/RightPartLogedIn/AddMoney/AddCoinPage";
+import AddGoldPage from "../Components/HPLogedIn/RightPartLogedIn/AddMoney/AddGoldPage";
+import MoneyPage from "../Components/HPLogedIn/RightPartLogedIn/MoneyPage";
+import TransactionHistory from "../Components/HPLogedIn/RightPartLogedIn/TransactionHistory";
 
 export let notLoginRoutes = (
   <Routes>
@@ -40,6 +45,11 @@ export let logedInRoutes = (
     <Route path="/userItems/:username" element={<UserItems />}></Route>
     <Route path="/search" element={<SearchUserPage />}></Route>
     <Route path="/game" element={<GamePage />}></Route>
+    <Route path="/addCash" element={<AddMoney />}></Route>
+    <Route path="/addCoin" element={<AddCoinPage />}></Route>
+    <Route path="/addGold" element={<AddGoldPage />}></Route>
+    <Route path="/money" element={<MoneyPage />}></Route>
+    <Route path="/transactionHistory" element={<TransactionHistory />}></Route>
     <Route path="/*" element={<MainPageLogedIn />}></Route>
   </Routes>
 );

@@ -20,10 +20,12 @@ public class TransactionDTO {
 
     private int lastBalance;
 
-    private int userid;
+    private String content;
+
+    private int userId;
 
     private String userUsername;
 
-    @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss")
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Bangkok")
     private Date createdAt;
 }

@@ -57,7 +57,7 @@ public class MessageController {
         List<Conversation> conversations = conversationService.getByUserId(id);
         List<Message> messages = new ArrayList<>();
         conversations.forEach(conversation -> {
-            messages.add(messageService.getLastMessageByUserAndConversation(id, conversation.getId()));
+            messages.add(messageService.getLastMessagesByUserAndConversation(id, conversation.getId()));
         });
         List<MessageDTO> messageDTOS = modelMapper.map(messages, new TypeToken<List<MessageDTO>>() {
         }.getType());
