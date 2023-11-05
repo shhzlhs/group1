@@ -47,10 +47,8 @@ export const minDateReducer = (state = new Date("2022-01-01"), action) => {
       return state;
   }
 };
-let today = new Date();
-let tomorrow = new Date(today);
-tomorrow.setDate(today.getDate() + 1);
-export const maxDateReducer = (state = tomorrow, action) => {
+
+export const maxDateReducer = (state = new Date(), action) => {
   switch (action.type) {
     case SET_MAX_DATE:
       return action.payload;

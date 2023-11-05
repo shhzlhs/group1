@@ -9,7 +9,9 @@ import {
 } from "./UserReducer";
 import { postReducer, potsDetailReducer } from "./PostReducer";
 import {
+  showBuyItemModalReducer,
   showCommentLikesModalReducer,
+  showConfirmGiveItemReducer,
   showCreatePostReducer,
   showCreateReportConfirmReducer,
   showDelConConfirmReducer,
@@ -18,6 +20,8 @@ import {
   showDeleteUserItemReducer,
   showFollowingsListModalReducer,
   showFollowsListModalReducer,
+  showGiveItemModalReducer,
+  showListToGiveReducer,
   showNosReducer,
   showPostLikesModalReducer,
   showRepliesReducer,
@@ -61,8 +65,10 @@ import {
 } from "./TransactionReducer";
 import {
   coinOrGoldStoreToFilterReducer,
+  itemToBuyReducer,
   itemTypeStoreReducer,
   itemsReducer,
+  userToGiveItemReducer,
 } from "./ItemsReducer";
 const rootReducer = combineReducers({
   users: userReducer,
@@ -117,5 +123,11 @@ const rootReducer = combineReducers({
   items: itemsReducer,
   coinOrGoldStore: coinOrGoldStoreToFilterReducer,
   itemType: itemTypeStoreReducer,
+  showBuyItem: showBuyItemModalReducer,
+  showGiveItem: showGiveItemModalReducer,
+  showListToGive: showListToGiveReducer,
+  itemToBuy: itemToBuyReducer,
+  userToGive: userToGiveItemReducer,
+  showConfirmGive: showConfirmGiveItemReducer,
 });
 export { rootReducer };

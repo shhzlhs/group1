@@ -2,7 +2,9 @@ import { getAllItemsAPI } from "../../API/ItemAPI";
 import {
   GET_ALL_ITEMS,
   SET_COIN_GOLD_STORE,
+  SET_ITEM_TO_BUY,
   SET_ITEM_TYPE_STORE,
+  SET_USER_TO_GIVE,
 } from "../ActionType/StoreActionTypes";
 
 export const getAllItemsRedux = (items) => {
@@ -20,4 +22,10 @@ export const setCoinGoldStoreToFilterAction = (coinOrGold) => {
 };
 export const setItemTypeToFilterAction = (type) => {
   return { type: SET_ITEM_TYPE_STORE, payload: type };
+};
+export const setItemToBuyAction = (item) => {
+  return { type: SET_ITEM_TO_BUY, payload: item };
+};
+export const setUserToGiveItemAction = (user) => {
+  return { type: SET_USER_TO_GIVE, payload: user };
 };

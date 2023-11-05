@@ -65,14 +65,16 @@ public class NotificationService implements INotificationService {
                     notification.setUser(comment.getUser());
                 }
             } else {
-                int commentId = form.getCommentId();
-                Comment comment = commentRepository.findById(commentId);
-                if(comment.getComment()==null){
-                    notification.setPost(comment.getPost());
-                    notification.setUser(comment.getUser());
-                }else {
-                    notification.setPost(comment.getComment().getPost());
-                    notification.setUser(comment.getUser());
+                if (form.getCommentId()!=null){
+                    int commentId = form.getCommentId();
+                    Comment comment = commentRepository.findById(commentId);
+                    if(comment.getComment()==null){
+                        notification.setPost(comment.getPost());
+                        notification.setUser(comment.getUser());
+                    }else {
+                        notification.setPost(comment.getComment().getPost());
+                        notification.setUser(comment.getUser());
+                    }
                 }
 
             }

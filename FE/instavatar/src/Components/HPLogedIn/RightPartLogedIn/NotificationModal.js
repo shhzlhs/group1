@@ -13,6 +13,7 @@ import {
 } from "../../../Redux/Actions/NotificationActions";
 import { useNavigate } from "react-router-dom";
 import { updateToReadCompleteAPI } from "../../../API/NotificationAPI";
+import { setUserToShowItemsAction } from "../../../Redux/Actions/UserActions";
 function NotificationModal(props) {
   let navigate = useNavigate();
   const reduxStore = useSelector((state) => state);
@@ -73,8 +74,12 @@ function NotificationModal(props) {
                 dispatch(closeNosModal());
                 updateToReadCompleteAPI(notification.id).then(() => {
                   dispatch(getNoByUserId(userLogedIn.id));
-                  if (notification.postId) {
+                  if (notification.postId !== 0) {
                     navigate(`/instavatar/logedIn/post/${notification.postId}`);
+                  } else {
+                    navigate(
+                      `/instavatar/logedIn/userItems/${userLogedIn.username}`
+                    );
                   }
                 });
               }}

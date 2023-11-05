@@ -15,16 +15,14 @@ import {
 function TransactionHistory(props) {
   let dispatch = useDispatch();
   let user = useSelector((state) => state.userLogedIn);
-  const today = new Date();
-  const tomorrow = new Date(today);
-  tomorrow.setDate(today.getDate() + 1);
+
   useEffect(() => {
     dispatch(getTransByUserAction(user.id));
     dispatch(setInputToSearchTran(""));
     dispatch(setCoinOrGold(""));
     dispatch(setTranType(""));
     dispatch(setMinDate(new Date("2022-01-01")));
-    dispatch(setMaxDate(tomorrow));
+    dispatch(setMaxDate(new Date()));
   }, []);
   return (
     <div className="MainPageLogedIn">

@@ -1,4 +1,5 @@
 import {
+  CLOSE_BUY_ITEM_MODAL,
   CLOSE_COMMENT_LIKES_MODAL,
   CLOSE_CREATE_POST_MODAL,
   CLOSE_CREATE_REPORT_CONFIRM,
@@ -8,10 +9,14 @@ import {
   CLOSE_DEL_NO,
   CLOSE_FOLLOWINGS_LIST_MODAL,
   CLOSE_FOLLOWS_LIST_MODAL,
+  CLOSE_GIVE_ITEM_MODAL,
+  CLOSE_LIST_FOLLOWINGS_TO_GIVE_ITEM,
+  CLOSE_MODAL_TO_CONFIRM_GIVE_ITEM,
   CLOSE_NOS,
   CLOSE_POST_LIKES_MODAL,
   CLOSE_REPLIES,
   CLOSE_REPORT_MODAL,
+  SHOW_BUY_ITEM_MODAL,
   SHOW_COMMENT_LIKES_MODAL,
   SHOW_CREATE_POST_MODAL,
   SHOW_CREATE_REPORT_CONFIRM,
@@ -21,6 +26,9 @@ import {
   SHOW_DEL_NO,
   SHOW_FOLLOWINGS_LIST_MODAL,
   SHOW_FOLLOWS_LIST_MODAL,
+  SHOW_GIVE_ITEM_MODAL,
+  SHOW_LIST_FOLLOWINGS_TO_GIVE_ITEM,
+  SHOW_MODAL_TO_CONFIRM_GIVE_ITEM,
   SHOW_NOS,
   SHOW_POST_LIKES_MODAL,
   SHOW_REPLIES,
@@ -158,6 +166,46 @@ const showDeleteUserItemReducer = (state = false, action) => {
       return state;
   }
 };
+const showBuyItemModalReducer = (state = false, action) => {
+  switch (action.type) {
+    case SHOW_BUY_ITEM_MODAL:
+      return true;
+    case CLOSE_BUY_ITEM_MODAL:
+      return false;
+    default:
+      return state;
+  }
+};
+const showGiveItemModalReducer = (state = false, action) => {
+  switch (action.type) {
+    case SHOW_GIVE_ITEM_MODAL:
+      return true;
+    case CLOSE_GIVE_ITEM_MODAL:
+      return false;
+    default:
+      return state;
+  }
+};
+const showListToGiveReducer = (state = false, action) => {
+  switch (action.type) {
+    case SHOW_LIST_FOLLOWINGS_TO_GIVE_ITEM:
+      return true;
+    case CLOSE_LIST_FOLLOWINGS_TO_GIVE_ITEM:
+      return false;
+    default:
+      return state;
+  }
+};
+const showConfirmGiveItemReducer = (state = false, action) => {
+  switch (action.type) {
+    case SHOW_MODAL_TO_CONFIRM_GIVE_ITEM:
+      return true;
+    case CLOSE_MODAL_TO_CONFIRM_GIVE_ITEM:
+      return false;
+    default:
+      return state;
+  }
+};
 export {
   showFollowingsListModalReducer,
   showFollowsListModalReducer,
@@ -172,4 +220,8 @@ export {
   showCreateReportConfirmReducer,
   showReportReducer,
   showDeleteUserItemReducer,
+  showBuyItemModalReducer,
+  showGiveItemModalReducer,
+  showListToGiveReducer,
+  showConfirmGiveItemReducer,
 };

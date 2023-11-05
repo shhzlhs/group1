@@ -1,4 +1,5 @@
 import {
+  CLOSE_BUY_ITEM_MODAL,
   CLOSE_COMMENT_LIKES_MODAL,
   CLOSE_CREATE_POST_MODAL,
   CLOSE_CREATE_REPORT_CONFIRM,
@@ -8,10 +9,14 @@ import {
   CLOSE_DEL_NO,
   CLOSE_FOLLOWINGS_LIST_MODAL,
   CLOSE_FOLLOWS_LIST_MODAL,
+  CLOSE_GIVE_ITEM_MODAL,
+  CLOSE_LIST_FOLLOWINGS_TO_GIVE_ITEM,
+  CLOSE_MODAL_TO_CONFIRM_GIVE_ITEM,
   CLOSE_NOS,
   CLOSE_POST_LIKES_MODAL,
   CLOSE_REPLIES,
   CLOSE_REPORT_MODAL,
+  SHOW_BUY_ITEM_MODAL,
   SHOW_COMMENT_LIKES_MODAL,
   SHOW_CREATE_POST_MODAL,
   SHOW_CREATE_REPORT_CONFIRM,
@@ -21,6 +26,9 @@ import {
   SHOW_DEL_NO,
   SHOW_FOLLOWINGS_LIST_MODAL,
   SHOW_FOLLOWS_LIST_MODAL,
+  SHOW_GIVE_ITEM_MODAL,
+  SHOW_LIST_FOLLOWINGS_TO_GIVE_ITEM,
+  SHOW_MODAL_TO_CONFIRM_GIVE_ITEM,
   SHOW_NOS,
   SHOW_POST_LIKES_MODAL,
   SHOW_REPLIES,
@@ -107,6 +115,30 @@ const showDeleteUserItemModal = () => {
 const closeDeleteUserItemModal = () => {
   return { type: CLOSE_DELETE_USER_ITEM_MODAL };
 };
+const showBuyItemModal = () => {
+  return { type: SHOW_BUY_ITEM_MODAL };
+};
+const closeBuyItemModal = () => {
+  return { type: CLOSE_BUY_ITEM_MODAL };
+};
+const showGiveItemModal = () => {
+  return { type: SHOW_GIVE_ITEM_MODAL };
+};
+const closeGiveItemModal = () => {
+  return { type: CLOSE_GIVE_ITEM_MODAL };
+};
+const showListToGive = () => {
+  return { type: SHOW_LIST_FOLLOWINGS_TO_GIVE_ITEM };
+};
+const closeListToGive = () => {
+  return { type: CLOSE_LIST_FOLLOWINGS_TO_GIVE_ITEM };
+};
+const showConfirmGiveItemAction = () => {
+  return { type: SHOW_MODAL_TO_CONFIRM_GIVE_ITEM };
+};
+const closeConfirmGiveItemAction = () => {
+  return { type: CLOSE_MODAL_TO_CONFIRM_GIVE_ITEM };
+};
 export {
   closeFollowingsListModal,
   closeFollowsListModal,
@@ -134,4 +166,12 @@ export {
   closeReportModalAction,
   showDeleteUserItemModal,
   closeDeleteUserItemModal,
+  showBuyItemModal,
+  closeBuyItemModal,
+  showGiveItemModal,
+  closeGiveItemModal,
+  showListToGive,
+  closeListToGive,
+  showConfirmGiveItemAction,
+  closeConfirmGiveItemAction,
 };

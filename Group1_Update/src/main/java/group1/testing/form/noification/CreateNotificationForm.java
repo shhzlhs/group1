@@ -9,7 +9,7 @@ public class CreateNotificationForm {
 
     private int id;
 
-    private int UserId;
+    private int userId;
 
     private int creatorId;
 

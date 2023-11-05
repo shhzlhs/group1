@@ -8,6 +8,8 @@ function TableBody(props) {
   let type = useSelector((state) => state.tranType);
   let minDate = useSelector((state) => state.minDate);
   let maxDate = useSelector((state) => state.maxDate);
+  const nextDay = new Date(maxDate);
+  nextDay.setDate(nextDay.getDate() + 1);
   let baseTransactions = useSelector((state) => state.transactions);
   let transactions =
     baseTransactions && baseTransactions.length > 0
@@ -19,7 +21,7 @@ function TableBody(props) {
             parseDateString(tran.createdAt) >=
               parseDateString(formatDate(minDate)) &&
             parseDateString(tran.createdAt) <=
-              parseDateString(formatDate(maxDate))
+              parseDateString(formatDate(nextDay))
         )
       : null;
   if (transactions && transactions.length > 1) {

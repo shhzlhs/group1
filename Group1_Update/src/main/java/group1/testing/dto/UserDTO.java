@@ -95,8 +95,23 @@ public class UserDTO {
         private String gender;
 
         private String avatar;
+        
+        private List<ItemDTO1> items;
 
         private List<UserDTO2> followings;
+
+        @Data
+        @NoArgsConstructor
+        static class ItemDTO1 {
+
+            private int id;
+
+            private String name;
+
+            private String image;
+
+            private String type;
+        }
 
         @Data
         @NoArgsConstructor
