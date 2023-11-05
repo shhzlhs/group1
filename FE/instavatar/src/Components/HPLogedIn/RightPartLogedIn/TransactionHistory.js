@@ -12,17 +12,19 @@ import {
   setMinDate,
   setTranType,
 } from "../../../Redux/ActionType/TransactionActions";
-import { parseDateString } from "../../../Funtions";
 function TransactionHistory(props) {
   let dispatch = useDispatch();
   let user = useSelector((state) => state.userLogedIn);
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
   useEffect(() => {
     dispatch(getTransByUserAction(user.id));
     dispatch(setInputToSearchTran(""));
     dispatch(setCoinOrGold(""));
     dispatch(setTranType(""));
-    dispatch(setMinDate(parseDateString("01/01/2023 05:13:51")));
-    dispatch(setMaxDate(new Date()));
+    dispatch(setMinDate(new Date("2022-01-01")));
+    dispatch(setMaxDate(tomorrow));
   }, []);
   return (
     <div className="MainPageLogedIn">

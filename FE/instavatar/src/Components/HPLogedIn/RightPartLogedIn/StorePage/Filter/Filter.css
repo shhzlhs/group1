@@ -1,0 +1,10 @@
+.StoreFilterImg{
+    width: 100px;
+    object-fit: cover;
+    border: 5px inset black;
+    border-radius: 10px;
+}
+#StoreFilterButton{
+    object-fit: cover;
+    background: none;
+}

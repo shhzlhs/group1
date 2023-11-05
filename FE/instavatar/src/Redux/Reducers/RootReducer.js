@@ -59,6 +59,11 @@ import {
   tranTypeReducer,
   transactionsReducer,
 } from "./TransactionReducer";
+import {
+  coinOrGoldStoreToFilterReducer,
+  itemTypeStoreReducer,
+  itemsReducer,
+} from "./ItemsReducer";
 const rootReducer = combineReducers({
   users: userReducer,
   posts: postReducer,
@@ -109,5 +114,8 @@ const rootReducer = combineReducers({
   minDate: minDateReducer,
   maxDate: maxDateReducer,
   transactions: transactionsReducer,
+  items: itemsReducer,
+  coinOrGoldStore: coinOrGoldStoreToFilterReducer,
+  itemType: itemTypeStoreReducer,
 });
 export { rootReducer };

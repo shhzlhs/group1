@@ -18,6 +18,7 @@ import AddCoinPage from "../Components/HPLogedIn/RightPartLogedIn/AddMoney/AddCo
 import AddGoldPage from "../Components/HPLogedIn/RightPartLogedIn/AddMoney/AddGoldPage";
 import MoneyPage from "../Components/HPLogedIn/RightPartLogedIn/MoneyPage";
 import TransactionHistory from "../Components/HPLogedIn/RightPartLogedIn/TransactionHistory";
+import StorePage from "../Components/HPLogedIn/RightPartLogedIn/StorePage";
 
 export let notLoginRoutes = (
   <Routes>
@@ -43,6 +44,7 @@ export let logedInRoutes = (
     <Route path="/admin" element={<AdminPage />}></Route>
     <Route path="/usersAdmin" element={<UsersAdmin />}></Route>
     <Route path="/userItems/:username" element={<UserItems />}></Route>
+    <Route path="/store" element={<StorePage />}></Route>
     <Route path="/search" element={<SearchUserPage />}></Route>
     <Route path="/game" element={<GamePage />}></Route>
     <Route path="/addCash" element={<AddMoney />}></Route>

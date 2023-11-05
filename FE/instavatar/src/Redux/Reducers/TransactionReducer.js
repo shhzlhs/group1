@@ -1,4 +1,3 @@
-import { parseDateString } from "../../Funtions";
 import {
   GET_TRANS_BY_USER,
   SET_COIN_OR_GOLD,
@@ -40,10 +39,7 @@ export const tranTypeReducer = (state = "", action) => {
       return state;
   }
 };
-export const minDateReducer = (
-  state = parseDateString("01/01/2023 05:13:51"),
-  action
-) => {
+export const minDateReducer = (state = new Date("2022-01-01"), action) => {
   switch (action.type) {
     case SET_MIN_DATE:
       return action.payload;
@@ -51,7 +47,10 @@ export const minDateReducer = (
       return state;
   }
 };
-export const maxDateReducer = (state = new Date(), action) => {
+let today = new Date();
+let tomorrow = new Date(today);
+tomorrow.setDate(today.getDate() + 1);
+export const maxDateReducer = (state = tomorrow, action) => {
   switch (action.type) {
     case SET_MAX_DATE:
       return action.payload;
