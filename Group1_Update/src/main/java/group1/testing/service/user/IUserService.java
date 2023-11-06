@@ -14,7 +14,7 @@ public interface IUserService {
     void createUser(CreateUserForm form);
 
     //update
-    void updateUser(UpdateUserForm form);
+    User updateUser(UpdateUserForm form);
 
     //delete
     void deleteUserByIds(List<Integer> ids);

@@ -44,13 +44,18 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void updateUser(UpdateUserForm form) {
-        User user1 = userRepository.findById(form.getId());
-        User user = modelMapper.map(form, User.class);
-        user.setFollows(user1.getFollows());
-        user.setFollowings(user1.getFollowings());
-        user.setItems(user1.getItems());
+    public User updateUser(UpdateUserForm form) {
+        User user = userRepository.findById(form.getId());
+
+        if (form.getPassword() != null) {
+            user.setPassword(form.getPassword());
+        } else {
+            user.setUsername(form.getUsername());
+            user.setFullName(form.getFullName());
+            user.setAvatar(form.getAvatar());
+        }
         userRepository.save(user);
+        return user;
     }
 
     @Override

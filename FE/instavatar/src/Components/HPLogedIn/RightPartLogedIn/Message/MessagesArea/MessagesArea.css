@@ -77,3 +77,22 @@
   height: 27px;
   object-fit: cover;
 }
+.ItemImg{
+  width: 149px;
+  height: 149px;
+  object-fit: cover;
+  border: 2px inset yellow;
+}
+#MarginTop{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#ModalBody{
+  height: 530px;
+  overflow-y: auto;
+}
+#noneButton{
+  background: none;
+  object-fit: cover;
+  padding: 0px;
+}

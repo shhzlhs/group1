@@ -18,8 +18,8 @@ const getUserIdAPI = (id) => {
 const addUserAPI = (user) => {
   return api("POST", "users/", user);
 };
-const editUserAPI = (user) => {
-  const url = `users/${user.id}`;
+const editUserAPI = (id, user) => {
+  const url = `users/${id}`;
   return api("PUT", url, user);
 };
 const deleteUsersAPI = (ids) => {

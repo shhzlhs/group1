@@ -16,21 +16,7 @@ public class UpdateUserForm {
 
     private String fullName;
 
-    private String email;
-
     private String password;
 
-    private Gender gender;
-
-    private String role;
-
-    private String status;
-
-    private int coin;
-
-    private int gold;
-
     private String avatar;
-
-    private Date createdAt;
 }

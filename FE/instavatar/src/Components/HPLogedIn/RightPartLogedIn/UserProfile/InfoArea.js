@@ -10,6 +10,7 @@ import {
 } from "../../../../Redux/Actions/UserActions";
 import { getUserByUsernameAPI } from "../../../../API/UserAPI";
 import {
+  showEditProfileModal,
   showFollowingsListModal,
   showFollowsListModal,
   showReportModalAction,
@@ -21,6 +22,7 @@ import { setUserReportAction } from "../../../../Redux/Actions/ReportAction";
 import { useNavigate } from "react-router-dom";
 import { setUserItemDetail } from "../../../../Redux/Actions/UserItemActions";
 import { defaultItem } from "../../../../Defaults";
+import EditProfileModal from "./EditProfileModal";
 function InfoArea(props) {
   let navigate = useNavigate();
   let dispatch = useDispatch();
@@ -79,7 +81,14 @@ function InfoArea(props) {
       return (
         <div className="col-xs-7 col-sm-7 col-md-7 col-lg-7">
           <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            <Button color="primary">Chỉnh sửa trang cá nhân</Button>
+            <Button
+              onClick={() => {
+                dispatch(showEditProfileModal());
+              }}
+              color="primary"
+            >
+              Chỉnh sửa trang cá nhân
+            </Button>
           </div>
           <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
 
@@ -254,6 +263,7 @@ function InfoArea(props) {
       </div>
       <FollowsListModal />
       <FollowingsListModal />
+      <EditProfileModal />
     </div>
   );
 }

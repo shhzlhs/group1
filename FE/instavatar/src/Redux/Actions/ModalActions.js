@@ -8,9 +8,11 @@ import {
   CLOSE_DEL_CON_CONFIRM_MODAL,
   CLOSE_DEL_CON_MODAL,
   CLOSE_DEL_NO,
+  CLOSE_EDIT_PROFILE_MODAL,
   CLOSE_FOLLOWINGS_LIST_MODAL,
   CLOSE_FOLLOWS_LIST_MODAL,
   CLOSE_GIVE_ITEM_MODAL,
+  CLOSE_GIVE_ITEM_MODAL_IN_MESSAGE,
   CLOSE_LIST_FOLLOWINGS_TO_GIVE_ITEM,
   CLOSE_MODAL_TO_CONFIRM_GIVE_ITEM,
   CLOSE_NOS,
@@ -26,9 +28,11 @@ import {
   SHOW_DEL_CON_CONFIRM_MODAL,
   SHOW_DEL_CON_MODAL,
   SHOW_DEL_NO,
+  SHOW_EDIT_PROFILE_MODAL,
   SHOW_FOLLOWINGS_LIST_MODAL,
   SHOW_FOLLOWS_LIST_MODAL,
   SHOW_GIVE_ITEM_MODAL,
+  SHOW_GIVE_ITEM_MODAL_IN_MESSAGE,
   SHOW_LIST_FOLLOWINGS_TO_GIVE_ITEM,
   SHOW_MODAL_TO_CONFIRM_GIVE_ITEM,
   SHOW_NOS,
@@ -147,6 +151,18 @@ const showBuyGameSlotModalAction = () => {
 const closeBuyGameSlotModalAction = () => {
   return { type: CLOSE_BUY_GAME_SLOT_MODAL };
 };
+const showEditProfileModal = () => {
+  return { type: SHOW_EDIT_PROFILE_MODAL };
+};
+const closeEditProfileModal = () => {
+  return { type: CLOSE_EDIT_PROFILE_MODAL };
+};
+const showGiveInMessageAction = () => {
+  return { type: SHOW_GIVE_ITEM_MODAL_IN_MESSAGE };
+};
+const closeGiveInMessageAction = () => {
+  return { type: CLOSE_GIVE_ITEM_MODAL_IN_MESSAGE };
+};
 export {
   closeFollowingsListModal,
   closeFollowsListModal,
@@ -184,4 +200,8 @@ export {
   closeConfirmGiveItemAction,
   closeBuyGameSlotModalAction,
   showBuyGameSlotModalAction,
+  showEditProfileModal,
+  closeEditProfileModal,
+  showGiveInMessageAction,
+  closeGiveInMessageAction,
 };

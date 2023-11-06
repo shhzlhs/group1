@@ -1,5 +1,6 @@
 import {
   changeMoneyByUserAPI,
+  editUserAPI,
   getAllUsersAPI,
   getUserByUsernameAPI,
 } from "../../API/UserAPI";
@@ -64,6 +65,14 @@ const updateCoinGoldUserLogedIn = (userId, coin, gold) => {
     });
   };
 };
+const editUserProfileAction = (userId, user) => {
+  return (dispatch) => {
+    return editUserAPI(userId, user).then((res) => {
+      dispatch(setUserLogedIn(res));
+      dispatch(setUserDetailRedux(res));
+    });
+  };
+};
 export {
   getAllUsers,
   getAllUsersRedux,
@@ -75,4 +84,5 @@ export {
   setUserToShowItemsRedux,
   setInputToSearchUserAction,
   updateCoinGoldUserLogedIn,
+  editUserProfileAction,
 };

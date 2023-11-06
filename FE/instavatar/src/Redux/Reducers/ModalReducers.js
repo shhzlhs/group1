@@ -8,9 +8,11 @@ import {
   CLOSE_DEL_CON_CONFIRM_MODAL,
   CLOSE_DEL_CON_MODAL,
   CLOSE_DEL_NO,
+  CLOSE_EDIT_PROFILE_MODAL,
   CLOSE_FOLLOWINGS_LIST_MODAL,
   CLOSE_FOLLOWS_LIST_MODAL,
   CLOSE_GIVE_ITEM_MODAL,
+  CLOSE_GIVE_ITEM_MODAL_IN_MESSAGE,
   CLOSE_LIST_FOLLOWINGS_TO_GIVE_ITEM,
   CLOSE_MODAL_TO_CONFIRM_GIVE_ITEM,
   CLOSE_NOS,
@@ -26,9 +28,11 @@ import {
   SHOW_DEL_CON_CONFIRM_MODAL,
   SHOW_DEL_CON_MODAL,
   SHOW_DEL_NO,
+  SHOW_EDIT_PROFILE_MODAL,
   SHOW_FOLLOWINGS_LIST_MODAL,
   SHOW_FOLLOWS_LIST_MODAL,
   SHOW_GIVE_ITEM_MODAL,
+  SHOW_GIVE_ITEM_MODAL_IN_MESSAGE,
   SHOW_LIST_FOLLOWINGS_TO_GIVE_ITEM,
   SHOW_MODAL_TO_CONFIRM_GIVE_ITEM,
   SHOW_NOS,
@@ -218,6 +222,26 @@ const showBuyGameSlotReducer = (state = false, action) => {
       return state;
   }
 };
+const showEditProfileReducer = (state = false, action) => {
+  switch (action.type) {
+    case SHOW_EDIT_PROFILE_MODAL:
+      return true;
+    case CLOSE_EDIT_PROFILE_MODAL:
+      return false;
+    default:
+      return state;
+  }
+};
+const showGiveItemInMessageReducer = (state = false, action) => {
+  switch (action.type) {
+    case SHOW_GIVE_ITEM_MODAL_IN_MESSAGE:
+      return true;
+    case CLOSE_GIVE_ITEM_MODAL_IN_MESSAGE:
+      return false;
+    default:
+      return state;
+  }
+};
 export {
   showFollowingsListModalReducer,
   showFollowsListModalReducer,
@@ -237,4 +261,6 @@ export {
   showListToGiveReducer,
   showConfirmGiveItemReducer,
   showBuyGameSlotReducer,
+  showEditProfileReducer,
+  showGiveItemInMessageReducer,
 };

@@ -5,12 +5,17 @@ import { formatRelativeTime, parseDateString } from "../../../../../Funtions";
 import { Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import { setConversationToDel } from "../../../../../Redux/Actions/ConversationAction";
-import { showDelConModal } from "../../../../../Redux/Actions/ModalActions";
+import {
+  showDelConModal,
+  showGiveInMessageAction,
+} from "../../../../../Redux/Actions/ModalActions";
+import { setUserToGiveItemAction } from "../../../../../Redux/Actions/StoreActions";
 
 function InfoBar(props) {
   let dispatch = useDispatch();
   const conversationDetail = useSelector((state) => state.conversationDetail);
   const userLogedIn = useSelector((state) => state.userLogedIn);
+  let users = useSelector((state) => state.users);
 
   const getUser = () => {
     if (Object.keys(conversationDetail).length === 0) {
@@ -78,7 +83,19 @@ function InfoBar(props) {
           </div>
 
           <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-            <Button id="GiftButton">
+            <Button
+              onClick={() => {
+                let username =
+                  userLogedIn.username === conversationDetail.user1Username
+                    ? conversationDetail.user2Username
+                    : conversationDetail.user1Username;
+                let userToGive = users.find((us) => us.username === username);
+
+                dispatch(setUserToGiveItemAction(userToGive));
+                dispatch(showGiveInMessageAction());
+              }}
+              id="GiftButton"
+            >
               <img
                 className="GiftIcon"
                 alt="Tặng quà"

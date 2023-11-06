@@ -43,3 +43,27 @@
   display: flex;
   align-items: center;
 }
+#midRow1 {
+  display: flex;
+  justify-content: center;
+}
+#mid{
+  text-align: center;
+}
+#BigModal{
+  width: 700px;
+}
+#ChangePass{
+  background-color: #85827a;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  
+}
+#right1{
+  margin-top: 10px;
+  margin-left: 150px;
+}
+#right2{
+  margin-top: 10px;
+  margin-left: 10px;
+}

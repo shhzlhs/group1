@@ -17,6 +17,8 @@ import SettingButton from "./SettingButton";
 import DeleteUserItemModal from "../RightPartLogedIn/DeleteUserItemModal";
 import GameButton from "./GameButton";
 import MoneyButton from "./MoneyButton";
+import ConfirmGiveModal from "../RightPartLogedIn/StorePage/BuyOrGive/Give/ConfirmGiveModal";
+import GiveItemModal from "../RightPartLogedIn/Message/MessagesArea/GiveItemModal";
 function LeftPartLogedIn(props) {
   let userLogedIn = useSelector((state) => state.userLogedIn);
   let adminButton =
@@ -40,6 +42,8 @@ function LeftPartLogedIn(props) {
       <ReportModal />
       <CreateReportConfirmModal />
       <DeleteUserItemModal />
+      <ConfirmGiveModal />
+      <GiveItemModal />
     </div>
   );
 }

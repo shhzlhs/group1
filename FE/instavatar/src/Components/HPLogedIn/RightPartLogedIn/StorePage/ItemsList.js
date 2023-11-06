@@ -101,7 +101,6 @@ function ItemsList(props) {
       {showItems}
       <BuyModal />
       <ListFollowingsToGiveItems />
-      <ConfirmGiveModal />
     </div>
   );
 }

@@ -36,9 +36,8 @@ function NotificationModal(props) {
   const items = () => {
     if (!notifications || notifications.length === 0) {
       return (
-        <div className="row">
-          <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5"></div>Chưa có
-          thông báo nào
+        <div id="mid" className="row">
+          Chưa có thông báo nào
         </div>
       );
     }
@@ -102,10 +101,7 @@ function NotificationModal(props) {
 
   return (
     <Modal isOpen={showNos} fade={false}>
-      <ModalHeader>
-        <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5" />
-        Danh sách thông báo
-      </ModalHeader>
+      <ModalHeader id="mid">Danh sách thông báo</ModalHeader>
       <ModalBody className="ModalBody">{items()}</ModalBody>
       <ModalFooter>
         <Button

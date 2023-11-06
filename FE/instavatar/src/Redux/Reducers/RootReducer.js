@@ -19,8 +19,10 @@ import {
   showDelConReducer,
   showDelNoReducer,
   showDeleteUserItemReducer,
+  showEditProfileReducer,
   showFollowingsListModalReducer,
   showFollowsListModalReducer,
+  showGiveItemInMessageReducer,
   showGiveItemModalReducer,
   showListToGiveReducer,
   showNosReducer,
@@ -132,5 +134,7 @@ const rootReducer = combineReducers({
   showConfirmGive: showConfirmGiveItemReducer,
   gameToBuySlot: gameToBuySlotReducer,
   showBuyGameSlot: showBuyGameSlotReducer,
+  showEditProfile: showEditProfileReducer,
+  showGiveInMessage: showGiveItemInMessageReducer,
 });
 export { rootReducer };

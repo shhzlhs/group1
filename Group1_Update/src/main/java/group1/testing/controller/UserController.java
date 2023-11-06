@@ -37,9 +37,10 @@ public class UserController {
     }
 
     @PutMapping(value = "/{id}")
-    public void updateUser(@PathVariable(name = "id") int id, @RequestBody UpdateUserForm form) {
+    public UserDTO updateUser(@PathVariable(name = "id") int id, @RequestBody UpdateUserForm form) {
         form.setId(id);
-        userService.updateUser(form);
+        User user = userService.updateUser(form);
+        return modelMapper.map(user, UserDTO.class);
     }
 
     @DeleteMapping(value = "/{ids}")

@@ -2,23 +2,26 @@ import React from "react";
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import "./Give.css";
-import { closeConfirmGiveItemAction } from "../../../../../../Redux/Actions/ModalActions";
+import {
+  closeConfirmGiveItemAction,
+  closeGiveInMessageAction,
+} from "../../../../../../Redux/Actions/ModalActions";
 import { addUserItemAPI } from "../../../../../../API/UserItemAPI";
+import { getUserByUsernameAPI } from "../../../../../../API/UserAPI";
 import {
-  changeMoneyByUserAPI,
-  getUserByUsernameAPI,
-} from "../../../../../../API/UserAPI";
-import {
+  getAllUsers,
   setUserLogedIn,
   updateCoinGoldUserLogedIn,
 } from "../../../../../../Redux/Actions/UserActions";
 import { addTranAPI } from "../../../../../../API/TransactionAPI";
 import { createNotificationAPI } from "../../../../../../API/NotificationAPI";
+import { setUserToGiveItemAction } from "../../../../../../Redux/Actions/StoreActions";
 function ConfirmGiveModal(props) {
   let dispatch = useDispatch();
   let show = useSelector((state) => state.showConfirmGive);
   let itemToGive = useSelector((state) => state.itemToBuy);
   let userToGive = useSelector((state) => state.userToGive);
+  let users = useSelector((state) => state.users);
   let userLogedIn = useSelector((state) => state.userLogedIn);
   let price =
     itemToGive.coinCost > 0
@@ -34,7 +37,7 @@ function ConfirmGiveModal(props) {
           createNotificationAPI({
             userId: userToGive.id,
             creatorId: userLogedIn.id,
-            content: `${userLogedIn} đã tặng ${itemToGive.name} cho bạn`,
+            content: `${userLogedIn.fullName} đã tặng ${itemToGive.name} cho bạn`,
           });
           addTranAPI({
             userId: userLogedIn.id,
@@ -50,6 +53,10 @@ function ConfirmGiveModal(props) {
             getUserByUsernameAPI(userLogedIn.username).then((res) => {
               dispatch(setUserLogedIn(res));
               dispatch(closeConfirmGiveItemAction());
+
+              dispatch(getAllUsers());
+              dispatch(closeGiveInMessageAction());
+
               alert("Bạn đã tặng món đồ thành công!");
             });
           });
@@ -79,6 +86,8 @@ function ConfirmGiveModal(props) {
             getUserByUsernameAPI(userLogedIn.username).then((res) => {
               dispatch(setUserLogedIn(res));
               dispatch(closeConfirmGiveItemAction());
+              dispatch(getAllUsers());
+              dispatch(closeGiveInMessageAction());
               alert("Bạn đã tặng món đồ thành công!");
             });
           });
