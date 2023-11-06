@@ -1,1 +1,2 @@
 export const GET_ALL_GAMES = "GET_ALL_GAME";
+export const SET_GAME_TO_BUY_SLOT = "SET_GAME_TO_BUY_SLOT";

@@ -50,7 +50,7 @@ function Choices(props) {
         </div>
         <div className="row">
           <Link to={"/instavatar/logedIn/addGold"}>
-            <h3>Nạp Vàng</h3>
+            <h3>Nạp Lượng</h3>
           </Link>
         </div>
       </div>

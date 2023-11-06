@@ -9,6 +9,7 @@ import {
 } from "./UserReducer";
 import { postReducer, potsDetailReducer } from "./PostReducer";
 import {
+  showBuyGameSlotReducer,
   showBuyItemModalReducer,
   showCommentLikesModalReducer,
   showConfirmGiveItemReducer,
@@ -53,7 +54,7 @@ import {
   statusForSearchUserReducer,
 } from "./AdminReducer";
 import { userItemDetailReducer } from "./UserItemReducer";
-import { gamesReducer } from "./GameReducer";
+import { gameToBuySlotReducer, gamesReducer } from "./GameReducer";
 import { gameSlotsReducer } from "./GameSlotReducer";
 import {
   coinOrGoldReducer,
@@ -129,5 +130,7 @@ const rootReducer = combineReducers({
   itemToBuy: itemToBuyReducer,
   userToGive: userToGiveItemReducer,
   showConfirmGive: showConfirmGiveItemReducer,
+  gameToBuySlot: gameToBuySlotReducer,
+  showBuyGameSlot: showBuyGameSlotReducer,
 });
 export { rootReducer };

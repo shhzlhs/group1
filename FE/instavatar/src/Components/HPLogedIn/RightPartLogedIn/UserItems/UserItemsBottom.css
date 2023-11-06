@@ -6,7 +6,7 @@
 }
 #UserItemsBottom{
     border-top: 1px solid black;
-    padding-top: 100px;
+    padding-top: 20px;
     height: 530px;
     overflow-y: auto;
     margin-top: 50px;

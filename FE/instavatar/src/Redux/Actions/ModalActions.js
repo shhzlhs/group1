@@ -1,4 +1,5 @@
 import {
+  CLOSE_BUY_GAME_SLOT_MODAL,
   CLOSE_BUY_ITEM_MODAL,
   CLOSE_COMMENT_LIKES_MODAL,
   CLOSE_CREATE_POST_MODAL,
@@ -16,6 +17,7 @@ import {
   CLOSE_POST_LIKES_MODAL,
   CLOSE_REPLIES,
   CLOSE_REPORT_MODAL,
+  SHOW_BUY_GAME_SLOT_MODAL,
   SHOW_BUY_ITEM_MODAL,
   SHOW_COMMENT_LIKES_MODAL,
   SHOW_CREATE_POST_MODAL,
@@ -139,6 +141,12 @@ const showConfirmGiveItemAction = () => {
 const closeConfirmGiveItemAction = () => {
   return { type: CLOSE_MODAL_TO_CONFIRM_GIVE_ITEM };
 };
+const showBuyGameSlotModalAction = () => {
+  return { type: SHOW_BUY_GAME_SLOT_MODAL };
+};
+const closeBuyGameSlotModalAction = () => {
+  return { type: CLOSE_BUY_GAME_SLOT_MODAL };
+};
 export {
   closeFollowingsListModal,
   closeFollowsListModal,
@@ -174,4 +182,6 @@ export {
   closeListToGive,
   showConfirmGiveItemAction,
   closeConfirmGiveItemAction,
+  closeBuyGameSlotModalAction,
+  showBuyGameSlotModalAction,
 };

@@ -1,4 +1,5 @@
 import {
+  CLOSE_BUY_GAME_SLOT_MODAL,
   CLOSE_BUY_ITEM_MODAL,
   CLOSE_COMMENT_LIKES_MODAL,
   CLOSE_CREATE_POST_MODAL,
@@ -16,6 +17,7 @@ import {
   CLOSE_POST_LIKES_MODAL,
   CLOSE_REPLIES,
   CLOSE_REPORT_MODAL,
+  SHOW_BUY_GAME_SLOT_MODAL,
   SHOW_BUY_ITEM_MODAL,
   SHOW_COMMENT_LIKES_MODAL,
   SHOW_CREATE_POST_MODAL,
@@ -206,6 +208,16 @@ const showConfirmGiveItemReducer = (state = false, action) => {
       return state;
   }
 };
+const showBuyGameSlotReducer = (state = false, action) => {
+  switch (action.type) {
+    case SHOW_BUY_GAME_SLOT_MODAL:
+      return true;
+    case CLOSE_BUY_GAME_SLOT_MODAL:
+      return false;
+    default:
+      return state;
+  }
+};
 export {
   showFollowingsListModalReducer,
   showFollowsListModalReducer,
@@ -224,4 +236,5 @@ export {
   showGiveItemModalReducer,
   showListToGiveReducer,
   showConfirmGiveItemReducer,
+  showBuyGameSlotReducer,
 };

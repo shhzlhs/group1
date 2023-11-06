@@ -2,7 +2,11 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./GamePage.css";
 import { Button } from "reactstrap";
+import BuyGameSlotModal from "./BuyGameSlotModal";
+import { setGameToBySlotAction } from "../../../../Redux/Actions/GameActions";
+import { showBuyGameSlotModalAction } from "../../../../Redux/Actions/ModalActions";
 function GameList(props) {
+  let dispatch = useDispatch();
   let baseGames = useSelector((state) => state.games);
   let gameSlots = useSelector((state) => state.gameSlots);
   let games =
@@ -56,7 +60,13 @@ function GameList(props) {
 
             <div className="row">
               {slot}
-              <Button id="Play">
+              <Button
+                onClick={() => {
+                  dispatch(setGameToBySlotAction(game));
+                  dispatch(showBuyGameSlotModalAction());
+                }}
+                id="Play"
+              >
                 <img
                   alt="addSlot"
                   src="/imgs/icons/add.png"
@@ -78,7 +88,12 @@ function GameList(props) {
         );
       })
     : null;
-  return <div className="GameList">{items}</div>;
+  return (
+    <div className="GameList">
+      {items}
+      <BuyGameSlotModal />
+    </div>
+  );
 }
 
 export default GameList;

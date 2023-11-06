@@ -33,8 +33,10 @@ function UsersSearch(props) {
       : null;
   let usersForUse =
     followings && followings.length > 0
-      ? followings.filter((following) =>
-          following.username.includes(inputForSearch)
+      ? followings.filter(
+          (following) =>
+            following.username.includes(inputForSearch) ||
+            following.fullName.includes(inputForSearch)
         )
       : null;
 
