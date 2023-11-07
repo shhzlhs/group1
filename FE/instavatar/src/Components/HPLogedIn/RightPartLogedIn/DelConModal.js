@@ -44,12 +44,8 @@ function DelConModal(props) {
   };
   return (
     <Modal isOpen={showDelCon} fade={false}>
-      <ModalHeader>
-        <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5"></div>
-        Xoá cuộc trò chuyện
-      </ModalHeader>
-      <ModalBody>
-        <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
+      <ModalHeader id="mid">Xoá cuộc trò chuyện</ModalHeader>
+      <ModalBody id="mid">
         {`Xác nhận xoá toàn bộ tin nhắn với ${fullName}`}
       </ModalBody>
       <ModalFooter>

@@ -9,7 +9,7 @@ function DelNoModal(props) {
   let dispatch = useDispatch();
   return (
     <Modal isOpen={showDelNo} fade={false}>
-      <ModalBody>Bạn chắc chắn muốn xoá thông báo?</ModalBody>
+      <ModalBody id="mid">Bạn chắc chắn muốn xoá thông báo?</ModalBody>
       <ModalFooter>
         <Button
           onClick={() => {

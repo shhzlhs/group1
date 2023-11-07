@@ -65,7 +65,7 @@ function ReportModal(props) {
   };
   return (
     <Modal isOpen={showReport} fade={false}>
-      <ModalHeader>Cho chúng tôi biết vì sao bạn báo cáo</ModalHeader>
+      <ModalHeader id="mid">Cho chúng tôi biết vì sao bạn báo cáo</ModalHeader>
       <ModalBody>
         <Input
           placeholder="Ex: Nội dung xấu, độc..."

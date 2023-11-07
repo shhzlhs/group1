@@ -16,10 +16,7 @@ function DelConComfirmModal(props) {
   };
   return (
     <Modal isOpen={showDelConConfirm} fade={false}>
-      <ModalBody>
-        <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5"></div>
-        Xoá thành công
-      </ModalBody>
+      <ModalBody id="mid">Xoá thành công</ModalBody>
       <ModalFooter>
         <Button onClick={onClose} color="success">
           Đóng

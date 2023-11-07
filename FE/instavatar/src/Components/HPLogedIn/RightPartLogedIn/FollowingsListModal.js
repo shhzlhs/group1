@@ -112,11 +112,12 @@ function FollowingsListModal(props) {
 
   return (
     <Modal isOpen={showFollowings} fade={false}>
-      <ModalHeader>
-        <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5"></div>Đang theo dõi
+      <ModalHeader id="mid">
+        Đang theo dõi
         <ModalBody className="ModalBody">{items}</ModalBody>
         <ModalFooter>
           <Button
+            color="danger"
             onClick={() => {
               dispatch(closeFollowingsListModal());
             }}

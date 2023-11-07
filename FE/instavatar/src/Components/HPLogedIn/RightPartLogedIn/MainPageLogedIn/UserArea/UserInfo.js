@@ -23,7 +23,7 @@ function UserInfo(props) {
           </Link>
         </div>
 
-        <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
           <div className="row">
             <Link to={`/instavatar/logedIn/user/${userLogedIn.username}`}>
               <b>{userLogedIn.username}</b>

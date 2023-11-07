@@ -114,9 +114,7 @@ function CommentLikesModal(props) {
       : null;
   return (
     <Modal isOpen={showCommentLikes} fade={false}>
-      <ModalHeader>
-        <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5"></div>Lượt thích
-      </ModalHeader>
+      <ModalHeader id="mid">Lượt thích</ModalHeader>
       <ModalBody className="ModalBody">{items}</ModalBody>
       <ModalFooter>
         <Button

@@ -112,13 +112,11 @@ function FollowsListModal(props) {
       : "Chưa có người theo dõi";
   return (
     <Modal isOpen={showFollows} fade={false}>
-      <ModalHeader>
-        <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4"></div>
-        Danh sách người theo dõi
-      </ModalHeader>
+      <ModalHeader id="mid">Danh sách người theo dõi</ModalHeader>
       <ModalBody className="ModalBody">{items}</ModalBody>
       <ModalFooter>
         <Button
+          color="danger"
           onClick={() => {
             dispatch(closeFollowsListModal());
           }}
