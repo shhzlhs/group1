@@ -29,7 +29,7 @@ function UserLogedInInfoArea(props) {
               src="/imgs/icons/coin.png"
             ></img>
           </div>
-          <div id="left" className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+          <div id="left" className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
             {userLogedIn.coin}
           </div>
 
@@ -56,7 +56,7 @@ function UserLogedInInfoArea(props) {
               src="/imgs/icons/gold.png"
             ></img>
           </div>
-          <div id="left" className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+          <div id="left" className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
             {userLogedIn.gold}
           </div>
 

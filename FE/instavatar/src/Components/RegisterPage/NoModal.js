@@ -18,7 +18,7 @@ function NoModal(props) {
   };
   return (
     <Modal isOpen={showNo} fade={false}>
-      <ModalBody>{no}</ModalBody>
+      <ModalBody id="mid">{no}</ModalBody>
       <ModalFooter>
         <Button color="danger" onClick={close}>
           Đóng
