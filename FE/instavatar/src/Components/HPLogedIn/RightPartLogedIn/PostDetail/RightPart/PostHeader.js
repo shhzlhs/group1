@@ -9,6 +9,7 @@ import { showReportModalAction } from "../../../../../Redux/Actions/ModalActions
 function PostHeader(props) {
   let dispatch = useDispatch();
   let post = useSelector((state) => state.postDetail);
+  let userLogedIn = useSelector((state) => state.userLogedIn);
 
   let timestamp = post.createdAt
     ? formatRelativeTime(parseDateString(post.createdAt))
@@ -42,7 +43,10 @@ function PostHeader(props) {
 
         <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5"></div>
 
-        <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        <div
+          hidden={userLogedIn.username === post.userUsername}
+          className="col-xs-3 col-sm-3 col-md-3 col-lg-3"
+        >
           <Button onClick={report} className="button">
             Báo cáo
           </Button>

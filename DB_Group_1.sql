@@ -127,7 +127,8 @@ CREATE TABLE User_item(
     user_id INT UNSIGNED NOT NULL,
     item_id INT UNSIGNED NOT NULL,
     FOREIGN KEY (user_id) REFERENCES Users(id),
-    FOREIGN KEY (item_id) REFERENCES Items(id)
+    FOREIGN KEY (item_id) REFERENCES Items(id),
+    UNIQUE(user_id,item_id)
     );
 USE group_1;
 DROP TABLE IF EXISTS Transaction_History;
@@ -157,6 +158,7 @@ id         INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 user_id INT UNSIGNED NOT NULL,
 game_id TINYINT UNSIGNED NOT NULL,
 slot    INT DEFAULT 3,
+UNIQUE KEY (user_id,game_id),
 FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE,
 FOREIGN KEY (game_id) REFERENCES Games(id) ON DELETE CASCADE
 );

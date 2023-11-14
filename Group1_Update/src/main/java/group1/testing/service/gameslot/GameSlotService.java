@@ -9,6 +9,7 @@ import group1.testing.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -35,17 +36,32 @@ public class GameSlotService implements IGameSlotService {
 
     @Override
     public void createGameSlots(int userId) {
-        List<Game> games = gameRepository.findAll();
         User user = userRepository.findById(userId);
-        List<GameSlot> gameSlots = gameSlotRepository.findAllByUserId(userId);
+        if (user == null) {
+            return;
+        }
+
+        List<Game> games = gameRepository.findAll();
+        List<GameSlot> existingGameSlots = gameSlotRepository.findAllByUserId(userId);
+
+        List<GameSlot> newGameSlots = new ArrayList<>();
 
         for (Game game : games) {
-            if (gameSlots.stream().noneMatch(slot -> slot.getGame().getId() == game.getId())) {
+            if (!containsGameSlot(existingGameSlots, userId, game.getId())) {
                 GameSlot gameSlot = new GameSlot();
                 gameSlot.setGame(game);
                 gameSlot.setUser(user);
-                gameSlotRepository.save(gameSlot);
+                newGameSlots.add(gameSlot);
             }
         }
+
+        if (!newGameSlots.isEmpty()) {
+            gameSlotRepository.saveAll(newGameSlots);
+        }
+    }
+
+    private boolean containsGameSlot(List<GameSlot> gameSlots, int userId, int gameId) {
+        return gameSlots.stream()
+                .anyMatch(slot -> slot.getUser().getId() == userId && slot.getGame().getId() == gameId);
     }
 }

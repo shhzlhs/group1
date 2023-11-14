@@ -101,7 +101,7 @@ function ListPost(props) {
         let timestamp = formatRelativeTime(parseDateString(post.createdAt));
         let likes = post.likes;
         let like = likes.find(
-          (like) => like.userUsername == userLogedIn.username
+          (like) => like.userUsername === userLogedIn.username
         );
         let likedUsernames = likes.map((like) => like.userUsername);
         let randomFollowingUser = likedUsernames
@@ -189,7 +189,10 @@ function ListPost(props) {
 
                 <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
 
-                <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <div
+                  hidden={userLogedIn.username === post.userUsername}
+                  className="col-xs-2 col-sm-2 col-md-2 col-lg-2"
+                >
                   <Button
                     onClick={() => {
                       report(post);
