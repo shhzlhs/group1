@@ -361,4 +361,7 @@ VALUES
                           (1,3,"What?"),
                           (3,2,"Chào bạn!"),
                           (2,1,"Ê m ơi...");
+INSERT INTO Games (`name`,logo,slot_coin_price,slot_gold_price)
+VALUES 			  ("Ai là triệu phú","game1.jpg",5000,0),
+				  ("Vòng quay may mắn","game2.jpg",0,100);
 
